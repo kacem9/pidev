@@ -1,0 +1,74 @@
+{% extends "CommentaireBundle::layout.html.twig" %}
+{% set title="Commentaires" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+    {% block body %}
+        <center>
+        <div class="row">
+            {% for commentaires in commentaires %}
+
+                    <div class="col-xs-12 col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">User: {{ commentaires.user.getNom()}}</h4>
+                            <h4 class="card-title">Contenu: {{ commentaires.contenu }}</h4>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Date : {{ commentaires.date|date('m/d/y') }}</small>
+                            <br>
+                            <a href="{{ path('modifier_commentaires',{'id_com' : commentaires.getIdCom()}) }}" class="btn btn-info btn-xs">Modifier</a> &nbsp
+
+
+                            <a href="{{ path('supprimer_commentaires',{'id_com' : commentaires.getIdCom}) }}" class="btn btn-info btn-xs">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        </center>
+            <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <center>
+        <div class="row" >
+            <div class="col-xl-12">
+                <!-- Sorting -->
+                <div class="widget">
+                    <div class="widget-header bordered no-actions d-flex align-items-center" >
+                     <center> <h4>Ajouter des commentaires </h4></center>
+                    </div>
+                    <div class="widget-body">
+                        {{ form_start(form)  }}
+                        <div class="row">
+                            <div class="container" >
+                         <center>     {{ form_row(form.contenu) }}</center>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-xs">Commenter</button>
+                        {{ form_end(form) }}
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
+        </center>
+    {% endblock %}

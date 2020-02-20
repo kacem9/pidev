@@ -1,0 +1,15 @@
+ecommerce_homepage:
+    path:     /
+    defaults: { _controller: EcommerceBundle:Ecommerce:index }
+ecommerce_listevent:
+    path:     /list_event
+    defaults: { _controller: EcommerceBundle:Ecommerce:AfficherListeEvent }
+details_events:
+    path:     /details_event/{id}
+    defaults: { _controller: EcommerceBundle:Ecommerce:detailsEvent }
+modifier_commentaire:
+    path:    /modifier_comm/{id_com}
+    defaults: { _controller: CommentaireBundle:Commentaire:ModifierCommentaire }
+supprimer_commentaire:
+    path:    /supprimer_comm/{id_com}
+    defaults: { _controller: CommentaireBundle:Commentaire:SupprimerCommentaire }

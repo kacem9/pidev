@@ -1,0 +1,51 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Dashboard:index }
+admin_ ajouteractualite:
+    path:     /ajouteractualite
+    defaults: { _controller: AdminBundle:Dashboard:ajouteractualite}
+admin_afficheractualite:
+    path:     /afficheractualite
+    defaults: { _controller: AdminBundle:Dashboard:AfficherActualiteBack }
+admin_supprimer_actulite:
+  path:     /supprimeractualite/{id}
+  defaults: { _controller: AdminBundle:Dashboard:SupprimerActualiteBack }
+admin_modifier_actulite:
+  path:     /modifieractualite/{id}
+  defaults: { _controller: AdminBundle:Dashboard:ModifierActualiteBack }
+admin_details_actualite:
+  path:     /detailsactualite/{id}
+  defaults: { _controller: AdminBundle:Dashboard:detailsActualiteBack }
+admin_AfficherUser:
+    path:     /AfficherUser
+    defaults: { _controller: AdminBundle:Dashboard:AfficherUserBack }
+admin_ajouter_user:
+    path:     /ajouteruser
+    defaults: { _controller: AdminBundle:Dashboard:AjouterUserBack }
+admin_supprimer_user:
+    path:     /supprimeruser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerUserBack }
+admin_modifier_user:
+    path:     /modifieruser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ModifierUserBack }
+admin_details_user:
+    path:     /detailsuser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:detailsUserBack }
+admin_afficher_event:
+    path:     /Afficherevent
+    defaults: { _controller: AdminBundle:Dashboard:AfficherEventBack }
+admin_ajouter_event:
+    path:     /Ajouterevent
+    defaults: { _controller: AdminBundle:Dashboard:AjouterEventBack }
+admin_supprimer_event:
+    path:     /supprimerevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerEventBack }
+admin_modifier_event:
+    path:     /modifierevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ModifierEventBack }
+admin_details_event:
+    path:     /detailsevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:detailsEventBack }
+admin_valider_event:
+    path: /valider_event/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ValiderEvent }

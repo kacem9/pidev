@@ -1,0 +1,9 @@
+ajouter_commentaires:
+    path:       /ajouter_commentaire
+    defaults: { _controller: CommentaireBundle:Commentaire:AjouterCommentaires }
+modifier_commentaires:
+    path:      /modifier_commentaire/{id_com}
+    defaults: { _controller: CommentaireBundle:Commentaire:ModifierCommentaires }
+supprimer_commentaires:
+    path:     /supprimer_commentaire/{id_com}
+    defaults: { _controller: CommentaireBundle:Commentaire:SupprimerCommentaires }

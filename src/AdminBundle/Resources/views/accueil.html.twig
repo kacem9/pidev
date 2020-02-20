@@ -1,0 +1,107 @@
+{% extends "AdminBundle::layout.html.twig" %}
+
+{% set title="Dashboard" %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <div class="row flex-row">
+        <!-- Begin Facebook -->
+        <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="widget widget-12 has-shadow">
+                <div class="widget-body">
+                    <div class="media">
+                        <div class="align-self-center ml-5 mr-5">
+                            <i class="ion-person text-facebook"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <div class="title text-facebook">Utilisateurs</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Facebook -->
+        <!-- Begin Twitter -->
+        <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="widget widget-12 has-shadow">
+                <div class="widget-body">
+                    <div class="media">
+                        <div class="align-self-center ml-5 mr-5">
+                            <i class="ion-checkmark text-twitter"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <div class="title text-twitter">Demandes acceptées</div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Twitter -->
+        <!-- Begin Linkedin -->
+        <div class="col-xl-4 col-md-6 col-sm-6">
+            <div class="widget widget-12 has-shadow">
+                <div class="widget-body">
+                    <div class="media">
+                        <div class="align-self-center ml-5 mr-5">
+                            <i class="ion-close text-linkedin"></i>
+                        </div>
+                        <div class="media-body align-self-center">
+                            <div class="title text-linkedin"> Demandes refusées </div>
+                            <div class="number"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Linkedin -->
+    </div>
+    <!-- End Row -->
+    <!-- Begin Row -->
+    <div class="row flex-row">
+        <div class="col-xl-12 col-md-6">
+            <!-- Begin Widget 09 -->
+            <div class="widget widget-09 has-shadow">
+                <!-- Begin Widget Header -->
+                <div class="widget-header d-flex align-items-center">
+                    <h2></h2>
+                </div>
+                <!-- End Widget Header -->
+                <!-- Begin Widget Body -->
+                <div class="widget-body">
+                    <div class="row">
+                        <div class="col-xl-12 col-12 no-padding">
+                            <div>
+                                <canvas id="demandes"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Widget 09 -->
+        </div>
+    </div>
+    <!-- End Row -->
+    <!-- Begin Row -->
+    <!-- End Row -->
+
+
+    <!-- End Row -->
+{% endblock %}
+
+{% block js %}
+    <!-- Begin Page Vendor Js -->
+    <script src="{{ asset('assets/plugins/chart/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/progress/circle-progress.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/calendar/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/calendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/calendar/locale/fr.js') }}"></script>
+    <!-- End Page Vendor Js -->
+    <!-- Begin Page Snippets -->
+    <script src="{{ asset('assets/js/dashboard/db-default.js') }}"></script>
+
+
+{% endblock %}

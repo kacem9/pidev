@@ -1,0 +1,28 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="Gestion des actualités" %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <div class="widget has-shadow">
+        <div class="widget-header bordered no-actions d-flex align-items-center">
+            <h4>Details </h4>
+        </div>
+        <div class="widget-body">
+            <ul class="list-group">
+                <img class="list-group-item"  width="100" src="{{ asset('uploads/admin/' ~ actualite.image) }}" alt="Card image cap"/>
+                <li class="list-group-item"><b>Titre :</b> {{ actualite.titre }}</li>
+                <li class="list-group-item"><b>Description:</b> {{ actualite.description }}</li>
+                <li class="list-group-item"><b>Date du publication :</b> {{ actualite.datePublication|date('m/d/y') }}</li>
+
+            </ul>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

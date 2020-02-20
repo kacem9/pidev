@@ -1,0 +1,39 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="Gestion des utilisateurs" %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <div class="widget has-shadow">
+        <div class="widget-header bordered no-actions d-flex align-items-center">
+            <h4>Details </h4>
+        </div>
+        <div class="widget-body">
+            <ul class="list-group">
+                <img class="list-group-item"  width="100" src="{{ asset('uploads/admin/' ~ user.photo) }}" alt="Card image cap"/>
+                <li class="list-group-item"><b>Username :</b> {{ user.username }}</li>
+                <li class="list-group-item"><b>Nom :</b> {{ user.Nom }}</li>
+                <li class="list-group-item"><b>Prenom :</b> {{ user.Prenom }}</li>
+                <li class="list-group-item"><b>CIN :</b> {{ user.Cin }}</li>
+                <li class="list-group-item"><b>Email :</b> {{ user.Email }}</li>
+                <li class="list-group-item"><b>Enabled :</b> {{ user.enabled }}</li>
+                <li class="list-group-item"><b>Sexe :</b> {{ user.Sexe }}</li>
+                <li class="list-group-item"><b>Date naissance :</b> {{ user.getDateNaissance()|date('m/d/y') }}</li>
+                <li class="list-group-item"><b>Civilité :</b> {{ user.Civilite }}</li>
+                <li class="list-group-item"><b>Numero telephone</b> {{ user.getNumTel() }}</li>
+                <li class="list-group-item"><b>Pays</b> {{ user.Pays }}</li>
+                <li class="list-group-item"><b>Ville</b> {{ user.Ville }}</li>
+                <li class="list-group-item"><b>Adresse</b> {{ user.Adresse }}</li>
+                <li class="list-group-item"><b>Poste</b> {{ user.Poste }}</li>
+                <li class="list-group-item"><b>code postal </b> {{ user.getCodePostal() }}</li>
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

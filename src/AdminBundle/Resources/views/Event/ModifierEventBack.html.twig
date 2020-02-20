@@ -1,0 +1,58 @@
+{% extends "AdminBundle::layout.html.twig" %}
+{% set title="Modifier le formulaire" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+    {% block body %}
+        <div class="row">
+            <div class="col-xl-12">
+                <!-- Sorting -->
+                <div class="widget">
+                    <div class="widget-header bordered no-actions d-flex align-items-center">
+                        <h4>Modifier le formulaire </h4>
+                    </div>
+                    <div class="widget-body">
+                        {{ form_start(form) }}
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                {{ form_row(form.nom) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.dateEvent	) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.description) }}
+                            </div>
+
+                            <div class="col-md-5">
+                                {{ form_row(form.photo) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.lieuEvent) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.prix) }}
+                            </div>
+                            <div class="col-md-5">
+                                {{ form_row(form.nbrParticipant) }}
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            {{ form_row(form.categories_Event) }}
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-xs">Modifier</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endblock %}

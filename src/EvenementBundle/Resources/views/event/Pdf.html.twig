@@ -1,0 +1,26 @@
+<body>
+<br><br><br><br><br><br>
+<h4>List des evenements</h4>
+<table border="1">
+    <tr>
+        <td>Nom d'evenement</td>
+        <td>Description</td>
+        <td>Lieu</td>
+        <td>Nombre de participant</td>
+        <td>Prix</td>
+        <td>Categorie</td>
+        <td>Date de l'evenement</td>
+    </tr>
+    {% for form in liste %}
+        <tr>
+            <td>{{ form.nom }}</td>
+            <td>{{ form.description }}</td>
+            <td>{{ form.lieuEvent}}</td>
+            <td>{{ form.nbrParticipant  }}</td>
+            <td>{{ form.prix }}</td>
+            <td>{{ form.getCategoriesEvent().type }}</td>
+            <td>{{ form.dateEvent|date('m/d/y') }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>

@@ -1,0 +1,30 @@
+evenement_homepage:
+    path:     /
+    defaults: { _controller: EvenementBundle:Default:actualite }
+ajouter_event:
+    path:     /ajouter_event
+    defaults: { _controller: EvenementBundle:Evenement:AjouterEvent }
+afficher_event:
+    path:     /afficher_event
+    defaults: { _controller: EvenementBundle:Evenement:AfficherEvent }
+supprimer_event:
+    path:     /supprimer_event/{id}
+    defaults: { _controller: EvenementBundle:Evenement:SupprimerEvent }
+modifier_event:
+    path:     /modifier_event/{id}
+    defaults: { _controller: EvenementBundle:Evenement:ModifierEvent }
+chercher_event:
+    path:     /chercher_event
+    defaults: { _controller: EvenementBundle:Evenement:RechercheEvent }
+participer_event:
+    path:     /participer_event
+    defaults: { _controller: EvenementBundle:Evenement:ParticiperEvent }
+details_event:
+    path:   /details/{id}
+    defaults: { _controller: EvenementBundle:Evenement:detailsEvent }
+list_event_pdf:
+    path:   /pdf
+    defaults: { _controller: EvenementBundle:Evenement:pdf }
+
+
+
