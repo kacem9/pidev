@@ -1,0 +1,104 @@
+{% extends 'layout.html.twig' %}
+
+
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+{% endblock %}
+{% block reparation %}
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Sorting -->
+
+
+            <div class="widget-body">
+
+                <div class="container">
+
+                    <div class="row">
+                        {% for Reparateurs in Reparateurs  %}
+
+                            <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ asset('uploads/admin/' ~ Reparateurs.Photo) }}" alt="Card image cap"/>
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ Reparateurs.username }}</h4>
+                                        <p class="card-text">{{Reparateurs.email }}</p>
+                                        <p class="card-text">{{Reparateurs.numTel }}</p>
+
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">{{ Reparateurs .username }}</small>
+                                        <br><button class="btn btn-info btn-xs">Prise de rendez-vous</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            {% endblock %}
+            {% block js %}
+                <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+                <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+                <script>
+                    $(function () {
+                        dtable = $('.table').DataTable({
+                            responsive: true,
+                            "language": {
+                                "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                            }
+                        });
+                        $('.filter').on('keyup change', function() {
+
+                            dtable.search('');
+                            dtable.column(3).search(this.value).draw();
+                        });
+
+                        $(".dataTables_filter input").on('keyup change', function() {
+
+                            dtable.columns().search('');
+
+                            $('.filter').val('');
+                        });
+                    });
+                </script>
+            {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

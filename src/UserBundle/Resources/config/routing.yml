@@ -1,0 +1,40 @@
+user_page_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+
+user_inscription:
+    path:     /register
+    defaults: { _controller: UserBundle:Default:inscription}
+list_reparations:
+    path:     /list
+    defaults: { _controller: UserBundle:Default:Reparateurs}
+Location_user:
+    path:     /Location_user
+    defaults: { _controller: UserBundle:Velo:location}
+Affichervelo_user:
+    path:     /Affichervelo_user/{id}
+    defaults: { _controller: UserBundle:Default:Affichervelo}
+RoadBike_user:
+    path:     /RoadBike_user
+    defaults: { _controller: UserBundle:Velo:RoadBike}
+KidsBikes_user:
+    path:     /KidsBikes_user
+    defaults: { _controller: UserBundle:Velo:KidsBikes}
+MountainBikes_user :
+    path:     /MountainBikes_user
+    defaults: { _controller: UserBundle:Velo:MountainBikes}
+SportsBike_user:
+    path:     /SportsBike_user
+    defaults: { _controller: UserBundle:Velo:SportsBike}
+CyclocrossBike_user:
+    path:     /CyclocrossBike_user
+    defaults: { _controller: UserBundle:Velo:CyclocrossBike}
+prixasc_produits_user:
+    path:     /prixasc-prixasc_produits_user
+    defaults: { _controller: UserBundle:Velo:prixasc }
+
+prixdesc_produits_user:
+    path:     /prixdesc_produits_user
+    defaults: { _controller: UserBundle:Velo:prixdescendant }
+
+

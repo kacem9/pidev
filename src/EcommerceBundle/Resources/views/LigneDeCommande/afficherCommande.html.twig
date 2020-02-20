@@ -1,0 +1,55 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% block body %}
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register">
+                <div class="tab-container">
+                    <div class="tab-content clearfix" id="tab-register">
+                        <div class="panel panel-default nobottommargin">
+                            <div class="panel-body">
+                                <h1>Commande(s)</h1>
+                                <table class="table table-hover" border="1" style="width:100% ;" >
+                                    <tr>
+                                        <th>ID Commande</th>
+                                        <th style="width: 150px">Date Commande</th>
+                                        <th>Mes lignes de commande</th>
+                                    </tr>
+
+                                    {% for commande in commande %}
+                                       <tr class="aaa" >
+                                            <td>{{ commande.id }}</td>
+                                            <td>{{ commande.dateCommande|date('Y-m-d') }}</td>
+                                           <td>
+                                                <a href="{{ path('ligne_commande_aff',{'id':commande.id}) }}">Afficher les ligne de commande</a>
+                                               </td>
+                                           </tr>
+
+                                    {% endfor %}
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- External JavaScripts
+============================================= -->
+<script type="text/javascript" src="{{ asset('Template/js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Template/js/plugins.js') }}"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script type="text/javascript" src="{{ asset('Template/js/functions.js') }}"></script>
+<!-- Bootstrap Switch Plugin -->
+<script type="text/javascript" src="{{ asset('Template/js/components/bs-switches.js') }}"></script>
+<script type="text/javascript">
+/*$('tr.aaa').click(function () {
+window.location.replace('/SoukLemdina2/web/commande/afflc');
+});*/
+</script>
+    {% endblock %}
+

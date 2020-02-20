@@ -1,0 +1,75 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="Gestion des utilisateurs" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <h2> Liste des utilisateurs</h2>
+                    <div class="widget-options">
+                        <a href="" class="btn btn-success">Ajouter</a>
+                    </div>
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Nom d'utilisateur</th>
+                                <th>Email</th>
+                                <th>Activé</th>
+                                <th>Dernier accès</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td class="td-actions">
+                                        <a href=""><i class="la la-edit edit"></i></a>
+                                        <a href="" class="delete-button"><i class="la la-close delete"></i></a>
+                                        <a href="" ><i class="la la-bars"></i></a>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+        });
+    </script>
+{% endblock %}

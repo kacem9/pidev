@@ -1,0 +1,55 @@
+{% extends "EvenementBundle::layout.html.twig" %}
+{% set title="Remplir le formulaire" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+    {% block body %}
+        <div class="row">
+            <div class="col-xl-12">
+                <!-- Sorting -->
+                <div class="widget">
+                    <div class="widget-header bordered no-actions d-flex align-items-center">
+                        <h4>Remplir le formulaire </h4>
+                    </div>
+                    <div class="widget-body">
+                        {{ form_start(form) }}
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                {{ form_row(form.nom) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.date	) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.description) }}
+                            </div>
+
+                            <div class="col-md-5">
+                                {{ form_row(form.image) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.lieu) }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form_row(form.prix) }}
+                            </div>
+                            <div class="col-md-5">
+                                {{ form_row(form.particip) }}
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-success btn-xs">Enregistrer</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

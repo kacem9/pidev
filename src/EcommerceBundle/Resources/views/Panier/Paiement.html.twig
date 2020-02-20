@@ -1,0 +1,105 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Your Store{% endblock  %}
+{% block css %}
+
+    <link rel="stylesheet" href="{{ asset('Template/css/bootstrap.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/swiper.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/dark.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/font-icons.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/animate.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/magnific-popup.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/responsive.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.min.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/components/bs-rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/include/rs-plugin/fonts/font-awesome/css/font-awesome.min.css') }}" type="text/css"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+{% endblock %}
+{% block content %}
+
+    <!-- End breadcrumb -->
+
+    <!-- End breadcrumb -->
+
+    <!-- Single Product Body -->
+    <div class="mb-xl-14 mb-6">
+        <div class="row">
+            <div class="container">
+                <div class="col-md-5 mb-4 mb-md-0">
+
+
+                    <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
+                         data-infinite="true"
+                         data-slides-show="5"
+                         data-is-thumbs="true"
+                         data-nav-for="#sliderSyncingNav">
+
+                        {% for velo in velo %}
+
+                        <div class="js-slide" style="cursor: pointer;">
+
+                            <img src="{{ asset('uploads/admin/' ~ velo.photo) }}" class="img-responsive second-img" alt="hover image"/></a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 mb-md-6 mb-lg-0">
+                    <div class="mb-2">
+
+                        <div class="border-bottom mb-3 pb-md-1 pb-3">
+                            <h2 class="font-size-25 text-lh-1dot2">{{velo.categories}}</h2>
+                            <div class="mb-2">
+
+
+                            <div class="d-md-flex align-items-center">
+                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{ velo.quantite }}</span></div>
+                            </div>
+
+                                <div class="ml-md-3 text-gray-9 font-size-14">Locataire: <span class="text-green font-weight-bold">{{ velo.user.Nom    }} {{ velo.user.Prenom    }}</span></div>
+                            </div>
+
+                        </div>
+
+
+                        <p> Description : {{ velo.description }}</p>
+
+                        <div class="mb-4">
+                            <div class="d-flex align-items-baseline">
+                               Prix Location: {{velo.prixLocation}} D</ins>
+
+
+                            </div>
+
+                            <div class="d-flex align-items-baseline">
+
+                                Age: {{ velo.ageRecommande}}
+
+                            </div>
+                            <div class="product-rating iconlist">
+
+
+                                <a href =""> {{velo.rating|rating }}</a>
+
+                            </div>
+                        </div>
+
+
+                        {% if velo.quantite !=0 %}
+                        <a href="{{ path('ajoute',{'id':velo.id}) }}" class="btn px-5 btn-warning transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
+
+                        {% else %}
+                            <a title="Stock epuisé" data-icon="Icon List 1" style="color: #ff0022">No Stock</a>
+                        {% endif %}
+                        {% endfor %}
+                        <div class="ml-md-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

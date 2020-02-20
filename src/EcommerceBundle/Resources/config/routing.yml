@@ -1,0 +1,67 @@
+ecommerce_homepage:
+    path:     /
+    defaults: { _controller: EcommerceBundle:Default:index }
+Afficherpannier:
+    path:     /Afficherpannier/{id}
+    defaults: { _controller: EcommerceBundle:Paiement:Afficherpannier }
+panier:
+    path:     /panier
+    defaults: { _controller: EcommerceBundle:Paiement:panier }
+ajoute:
+    path:     /ajout/{id}
+    defaults: { _controller: EcommerceBundle:Paiement:ajouter }
+supprimer:
+    path:    /supprimer/{id}
+    defaults: { _controller: EcommerceBundle:Paiement:supprimer }
+menu:
+    path:    /menu
+    defaults: { _controller: EcommerceBundle:Paiement:menu }
+commander_produit:
+    path:    /putinsession/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:PutInSession }
+ajout_ligne_commande:
+    path:     /ajoutbd
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:AjoutLigneDeCommande }
+afficher_commande:
+    path:     /afficherCommande
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:afficherCommande }
+ligne_commande_aff:
+    path:     /afflc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:AfficherLigneDeCommande }
+ligne_commande_modifier:
+    path:     /modifierlc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:ModifierLigneDeCommande }
+ligne_commande_supprimer:
+    path:     /supprimerlc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:SupprimerLigneDeCommande }
+Location_acheteur:
+    path:     /Location_acheteur
+    defaults: { _controller: EcommerceBundle:Location:location}
+Affichervelo:
+    path:     /Affichervelo/{id}
+    defaults: { _controller: EcommerceBundle:Location:Affichervelo}
+RoadBike:
+    path:     /RoadBike
+    defaults: { _controller: EcommerceBundle:Location:RoadBike}
+KidsBikes:
+    path:     /KidsBikes
+    defaults: { _controller: EcommerceBundle:Location:KidsBikes}
+MountainBikes  :
+    path:     /MountainBikes
+    defaults: { _controller: EcommerceBundle:Location:MountainBikes}
+SportsBike:
+    path:     /SportsBike
+    defaults: { _controller: EcommerceBundle:Location:SportsBike}
+CyclocrossBike:
+    path:     /CyclocrossBike
+    defaults: { _controller: EcommerceBundle:Location:CyclocrossBike}
+prixasc_produits:
+    path:     /prixasc-produits
+    defaults: { _controller: EcommerceBundle:Location:prixasc }
+
+prixdesc_produits:
+    path:     /prixdescproduits
+    defaults: { _controller: EcommerceBundle:Location:prixdescendant }
+Rating:
+    path:     /Rating/{id}/{note}
+    defaults: { _controller: EcommerceBundle:Location:rating }

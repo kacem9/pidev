@@ -1,0 +1,18 @@
+evenement_homepage:
+    path:     /
+    defaults: { _controller: EvenementBundle:Default:actualite }
+ajouter_event:
+    path:     /ajouter_event
+    defaults: { _controller: EvenementBundle:Evenement:AjouterEvent }
+afficher_event:
+    path:     /afficher_event
+    defaults: { _controller: EvenementBundle:Evenement:AfficherEvent }
+supprimer_event:
+    path:     /supprimer_event/{cin}
+    defaults: { _controller: EvenementBundle:Evenement:SupprimerEvent }
+modifier_event:
+    path:     /modifier_event/{cin}
+    defaults: { _controller: EvenementBundle:Evenement:ModifierEvent }
+
+
+

@@ -1,0 +1,166 @@
+{% extends 'layout.html.twig' %}
+{% block title %}Your Store{% endblock  %}
+{% block css %}
+<link rel="stylesheet" href="{{ asset('Template/css/bootstrap.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/style.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/swiper.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/dark.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/font-icons.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/animate.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/magnific-popup.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/responsive.css') }}" type="text/css"/>
+<link rel="stylesheet" href="{{ asset('Template/css/rating.css') }}" type="text/css"  />
+<link rel="stylesheet" href="{{ asset('Template/css/font-awesome.min.css') }}" type="text/css"  />
+<link rel="stylesheet" href="{{ asset('Template/css/font-awesome.css') }}" type="text/css"  />
+<link rel="stylesheet" href="{{ asset('Template/css/components/bs-rating.css') }}" type="text/css"  />
+<link rel="stylesheet" href="{{ asset('Template/include/rs-plugin/fonts/font-awesome/css/font-awesome.min.css') }}" type="text/css"  />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+{% endblock %}
+
+
+{% block content %}
+<section id="page-title">
+
+    <div class="container clearfix">
+        <h1>Nos produits</h1>
+        <span>Un vaste choix de produits</span>
+
+
+
+</section>
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+            {% for flashMessage in app.session.flashBag.get('success') %}
+                <div class="alert alert-success"><center>{{ flashMessage }}</center></div>
+            {% endfor %}
+            <!-- Post Content
+            ============================================= -->
+            <div class="postcontent nobottommargin col_last">
+                {% set a=0 %}{% set b=0 %}{% set c=0 %}{% set d=0 %}{% set e=0 %}
+
+
+                <!-- Shop
+                ============================================= -->
+                <div id="content1">
+                    <div id="shop" class="shop product-3 grid-container clearfix">
+                        {% for velo in velo %}
+
+                        <div class="product sf-dress clearfix">
+                            <div class="product-image">
+                                <div class="thumbnail">
+                                   <h2>{{ velo.categories }}</h2>
+                                    <img data-src="holder.js/300x200" src="{{ asset('uploads/admin/' ~ velo.photo) }}"
+                                         style="height: 180px; width: 100%;display: block;"
+                                         alt=" ></div>
+
+                                {% if velo.categories=='Road Bike' %}
+                                                {% set a=a+1 %}
+                                            {% endif %}
+                                              {% if velo.categories=='Kids Bikes' %}
+                                                {% set b=b+1 %}
+                                            {% endif %}
+                                    {% if velo.categories=='Mountain Bikes' %}
+                                                {% set c=c+1 %}
+                                            {% endif %}
+                                              {% if velo.categories=='Sports Bikes' %}
+                                                {% set d=d+1 %}
+                                            {% endif %}
+                                  {% if velo.categories=='Cyclocross Bike' %}
+                                                {% set e=e+1 %}
+                                            {% endif %}
+
+
+
+
+
+                                <div class="sale-flash"></div>
+
+                                <div class="product-overlay">
+                                    <!--  <a href="" class="add-to-cart"><i class="icon-shopping-cart"></i><span> Add to Cart</span></a> -->
+                                    <a href="{{ path('Affichervelo_user',{'id':velo.id}) }}"
+                                       class="add-to-cart"><i
+                                                class="icon-wrench"></i><span> Details</span></a>
+
+
+                                </div>
+                            </div>
+                            <div class="product-desc ">
+
+
+                                <div class="product-price">
+                                    {{ velo.user.Nom  }} {{ velo.user.Prenom  }}
+                                </div>
+
+                                <div class="product-price">
+                                    {{ velo.prixLocation }} DT
+                                </div>
+
+
+                                <div class="product-rating">
+
+
+                                        <a href =""> {{velo.rating|rating }}</a>
+
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- #shop end -->
+                </div>
+            </div><!-- .postcontent end -->
+            <div class="sidebar nobottommargin">
+                <div class="sidebar-widgets-wrap">
+
+                    <div class="widget widget-filter-links clearfix">
+
+                        <h4>Sélectionner une catégorie</h4>
+                        <ul  id="cat"> <li><a href="{{ path('RoadBike_user') }}" >Road Bike</a> <span>{{ a }}</span></li>
+                            <li><a href="{{ path('KidsBikes_user') }}" >Kids Bikes</a> <span>{{ b }}</span></li>
+                            <li><a href="{{ path('MountainBikes_user') }}" >Mountain Bikes</a> <span>{{ c }}</span></li>
+                            <li><a href="{{ path('SportsBike_user') }}" >Sports Bikes</a> <span>{{ d}}</span></li>
+                            <li><a href="{{ path('CyclocrossBike_user') }}" >Cyclocross Bike</a> <span>{{ e }}</span></li>
+
+
+
+                        </ul>
+                    </div>
+
+                    <div class="widget widget-filter-links clearfix">
+
+                        <h4>Trier par</h4>
+                        <ul class="shop-sorting">
+                            <li class="widget-filter-reset active-filter"><a href="#"
+                                                                             data-sort-by="original-order">Clear</a>
+                            </li>
+                            <li><a href="" >Prix</a></li>
+                            <li><a href="{{ path('prixasc_produits_user') }}" >Prix: ascendant</a></li>
+                            <li><a href="{{ path('prixdesc_produits_user') }}" >Prix: descendant</a></li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div><!-- .sidebar end -->
+        </div>
+    </div>
+</section>
+
+
+
+{% block javascripts %}
+    <script>
+        $document.ready(function () {
+        });
+    </script>
+
+{% endblock %}
+
+{% endblock %}

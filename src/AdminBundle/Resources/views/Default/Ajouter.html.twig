@@ -1,0 +1,28 @@
+{% extends "AdminBundle::layout.html.twig" %}
+{% set title="Gestion des actualités" %}
+{% block css %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <h4>Ajouter une actualité </h4>
+                </div>
+                <div class="widget-body">
+                    {{ form_start(form) }}
+
+                    {{ form_widget(form) }}
+
+                    <button class="btn btn-success btn-xs">Enregistrer</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+{% endblock %}

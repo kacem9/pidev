@@ -1,0 +1,31 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Dashboard:index }
+admin_AfficherUser:
+    path:     /AfficherUser
+    defaults: { _controller: AdminBundle:Dashboard:AfficherUser}
+admin_ ajouteractualite:
+    path:     /ajouteractualite
+    defaults: { _controller: AdminBundle:Dashboard:ajouteractualite}
+admin_ajouterCategorie:
+    path:     /ajouterCategorie
+    defaults: { _controller: AdminBundle:Default:ajouterCategorie}
+admin_listeCategories:
+    path:     /listeCategorie
+    defaults: { _controller: AdminBundle:Default:liste_categories}
+UpdateCategorie:
+    path:     /UpdateCategorie/{id}
+    defaults: { _controller: AdminBundle:Default:UpdateCategorie}
+SupprimerCategorie:
+    path:     /SupprimerCategorie/{id}
+    defaults: { _controller: AdminBundle:Default:SupprimerCategorie}
+ListeVelolouer :
+    path:     /ListeVelolouer
+    defaults: { _controller: AdminBundle:Default:ListeVelolouer}
+UpdateVeloLouer:
+    path:     /UpdateVeloLouer/{id}
+    defaults: { _controller: AdminBundle:Default:UpdateVeloLouer}
+SupprimerveloLocation :
+    path:     /SupprimerveloLocation/{id}
+    defaults: { _controller: AdminBundle:Default:SupprimerveloLocation}
+

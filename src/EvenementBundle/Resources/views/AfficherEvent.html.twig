@@ -1,0 +1,95 @@
+{% extends "EvenementBundle::layout.html.twig" %}
+{% set title="Welcome To the World of bikes" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-xl-12">
+        <!-- Sorting -->
+        <div class="widget">
+            <div class="widget-header bordered no-actions d-flex align-items-center">
+                <h2> Liste  des evenements </h2>
+                <div class="widget-options">
+                    <div class="form-group pull-left mr-3">
+                        <select class="form-control filter" id="etat">
+                            <option value="Refusé">Refusé</option>
+                            <option value="Accepté">Accepté</option>
+                            <option value="En attente">En attente</option>
+                        </select>
+                    </div>
+                    <a href="{{ path("ajouter_event") }}" class="btn btn-success">Ajouter un evenement </a>
+                </div>
+            </div>
+
+            <div class="widget-body">
+
+                <div class="container">
+
+                    <div class="row">
+                        {% for e in event %}
+
+                            <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ asset('uploads/admin/' ~ e.image) }}" alt="Card image cap"/>
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ e.nom}}</h4>
+                                        <p class="card-text">{{ e.description }}</p>
+
+                                        <p class="card-text">{{ e.lieu }}</p>
+                                        <p class="card-text">{{ e.prix }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">{{ e.date|date('m/d/y') }}</small>
+                                        <a href=""class="btn btn-info-outline btn-xs">Modifier</a> &nbsp
+                                        <br>
+
+                                        <a href="" class="btn btn-info btn-xs">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            {% endblock %}
+            {% block js %}
+                <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+                <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+                <script>
+                    $(function () {
+                        dtable = $('.table').DataTable({
+                            responsive: true,
+                            "language": {
+                                "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                            }
+                        });
+                        $('.filter').on('keyup change', function() {
+
+                            dtable.search('');
+                            dtable.column(3).search(this.value).draw();
+                        });
+
+                        $(".dataTables_filter input").on('keyup change', function() {
+
+                            dtable.columns().search('');
+
+                            $('.filter').val('');
+                        });
+                    });
+                </script>
+            {% endblock %}

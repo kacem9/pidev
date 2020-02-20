@@ -1,0 +1,134 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% block body %}
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
+                <div class="tab-container">
+                    <div class="tab-content clearfix" id="tab-register">
+                        <div class="panel panel-default nobottommargin">
+                            <div class="panel-body" style="padding: 40px;">
+                                <h1>Ajouter Commande</h1>
+                                {{ form_start(form) }}
+
+                                {{ form_end(form) }}
+                                <div class="col_two_third nobottommargin col_last" >
+
+                                    <div id="google-map-custom" class="gmap"></div>
+                                    <body onload="initialize()">
+                                    <div id="map" style="width: 320px; height: 480px;"></div>
+                                    </body></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Include Google Maps JS API -->
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCAqHLvNJCGulgPVdwQAGFSilOWXz9U_x0">
+    </script>
+
+    <script type="text/javascript" src="{{ asset('Template/js/jquery.vmap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/vmap/jquery.vmap.world.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/vmap/jquery.vmap.usa.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/vmap/jquery.vmap.europe.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/vmap/jquery.vmap.germany.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/vmap/jquery.vmap.sampledata.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/jquery.gmap.js') }}"></script>
+    <script>
+
+        google.maps.event.addDomListener(window, 'load', function () {
+//            console.log(document.getElementById('commandebundle_lignedecommande_adresse').innerHTML);
+            initializeAutocomplete('commandebundle_lignedecommande_adresse');
+            //initializeAutocomplete('commandebundle_lignedecommande_adresse2');
+        });
+
+        function initializeAutocomplete(id) {
+            var element = document.getElementById(id);
+            if (element) {
+                var autocomplete = new google.maps.places.Autocomplete(element, {types: ['geocode']});
+                google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+            }
+        }
+
+        function onPlaceChanged() {
+            var place = this.getPlace();
+            console.log(place);
+            console.log(place);  // Uncomment this line to view the full object returned by Google API.
+            var ville = document.getElementById('commandebundle_lignedecommande_ville');
+            ville.value = place.vicinity;
+            var zcode = document.getElementById('commandebundle_lignedecommande_codePostal');
+            var spaceLoc = place.name.search(' ');
+            console.log(place.name.substr(0, spaceLoc));
+            zcode.value = place.name.substr(1, spaceLoc);
+            var address = document.getElementById('commandebundle_lignedecommande_adresse').value;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+
+        function initialize() {
+            geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+            var mapOptions = {
+                zoom: 8,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: {lat: 40.731, lng: -73.997}
+            });
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
+
+            document.getElementById('submit').addEventListener('click', function() {
+                geocodeLatLng(geocoder, map, infowindow);
+            });
+        }
+
+        function geocodeLatLng(geocoder, map, infowindow) {
+            var input = document.getElementById('latlng').value;
+            var latlngStr = input.split(',', 2);
+            var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === 'OK') {
+                    if (results[1]) {
+                        map.setZoom(11);
+                        var marker = new google.maps.Marker({
+                            position: latlng,
+                            map: map
+                        });
+                        infowindow.setContent(results[1].formatted_address);
+                        infowindow.open(map, marker);
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+
+
+    </script>
+{% endblock %}
