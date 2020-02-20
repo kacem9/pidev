@@ -1,0 +1,30 @@
+<table border="1">
+    <tr>
+        <td>id</td>
+        <td>nom</td>
+        <td>date</td>
+        <td>description</td>
+        <td>image</td>
+        <td>lieu</td>
+        <td>prix</td>
+        <td>participe</td>
+        <td>user</td>
+        <td>Supprimer</td>
+        <td>Modifier</td>
+    </tr>
+    {% for event in e %}
+        <tr>
+            <td>{{ event.getId() }}</td>
+            <td>{{ event.getNom() }}</td>
+            <td>{{ event.getDate() }}</td>
+            <td>{{ event.getDescription() }}</td>
+            <td>{{ event.getImage() }}</td>
+            <td>{{ event.getLieu() }}</td>
+            <td>{{ event.getPrix() }}</td>
+            <td>{{ event.getParticip() }}</td>
+            <td>{{ event.getUser() }}</td>
+            <td><a href="{{ path('supprimer_event',{'cin':event.cin})}}">Supprimer</a></td>
+            <td><a href="{{ path('modifier_event',{'cin':event.cin})}} ">Modifier</a> </td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,37 @@
+ecom_homepage:
+    path:     /
+    defaults: { _controller: EcomBundle:Default:actualite }
+ecom_location:
+    path:     /location
+    defaults: { _controller: EcomBundle:Vente:location }
+Delete:
+    path:     /Delete{id}
+    defaults: { _controller: EcomBundle:Vente:Delete }
+Update:
+    path: /Update/{id}
+    defaults: {_controller: EcomBundle:Vente:Update}
+ecom_formulaire:
+    path:     /formulaire
+    defaults: { _controller: EcomBundle:Vente:formulaire }
+ecom_vente:
+    path:     /ecom_vente
+    defaults: { _controller: EcomBundle:Vente:location }
+
+ecom_vente_id:
+    path:     /ecom_vente/{id}
+    defaults: { _controller: EcomBundle:Vente:locationId }
+ecom_formulaire_vente:
+    path:     /formulaire_vente
+    defaults: { _controller: EcomBundle:Vente:formulaire }
+ecom_formulaire_produits:
+    path:     /formulaire_produits
+    defaults: { _controller: EcomBundle:Vente:Produitsadd }
+ecom_produits:
+    path:     /produits
+    defaults: { _controller: EcomBundle:Vente:produits }
+Deleteproduits:
+    path:     /Deleteproduits/{id}
+    defaults: { _controller: EcomBundle:Vente:Deletep }
+Updateproduits:
+    path:     /Updateproduits/{id}
+    defaults: {_controller: EcomBundle:Vente:Updatep }

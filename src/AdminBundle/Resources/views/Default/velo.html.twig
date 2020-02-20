@@ -1,0 +1,83 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="Affichage velo" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <h2> Liste des vélos</h2>
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Catégorie</th>
+                                <th>Description</th>
+                                <th>Date circulation</th>
+                                <th>Date Publication</th>
+                                <th>Localisation</th>
+                                <th>Prix</th>
+                                <th>Etat</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for vv in v %}
+                                <tr>
+
+                                    <td>{{ vv.categories }}</td>
+                                    <td>{{ vv.description }}</td>
+                                    <td>{{ vv.dateCirculation|date('m/d/y')  }}</td>
+                                    <td>{{ vv.datePublication|date('m/d/y')  }}</td>
+                                    <td>{{ vv.prix }}</td>
+                                        <td>
+                                        {% if vv.etatVendu==1 %}
+                                            Vélo vendu
+                                        {% elseif vv.etatVendu==0 %}
+                                            Vélo non vendu
+                                        {% endif %}
+                                    </td>
+                                    <td class="td-actions">
+                                        <a href="{{ path("Updatevelo",{'id':vv.id}) }}"><i class="la la-edit edit"></i></a>
+                                        <a href="{{ path("Deletevelo",{'id':vv.id}) }}" class="delete-button"><i class="la la-close delete"></i></a>
+
+                                    </td>
+                                </tr>
+
+
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+        });
+    </script>
+{% endblock %}

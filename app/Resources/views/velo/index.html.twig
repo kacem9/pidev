@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Velos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datecirculation</th>
+                <th>Datepublication</th>
+                <th>Prix</th>
+                <th>Etatvendu</th>
+                <th>Etatlocation</th>
+                <th>Description</th>
+                <th>Categories</th>
+                <th>Localitsation_velo</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for velo in velos %}
+            <tr>
+                <td><a href="{{ path('velo_show', { 'id': velo.id }) }}">{{ velo.id }}</a></td>
+                <td>{% if velo.dateCirculation %}{{ velo.dateCirculation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if velo.datePublication %}{{ velo.datePublication|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ velo.prix }}</td>
+                <td>{{ velo.etatVendu }}</td>
+                <td>{{ velo.etatLocation }}</td>
+                <td>{{ velo.description }}</td>
+                <td>{{ velo.categories }}</td>
+                <td>{{ velo.localitsationvelo }}</td>
+                <td>{{ velo.photo }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('velo_show', { 'id': velo.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

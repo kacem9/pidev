@@ -1,0 +1,22 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:    /
+acheteur:
+    resource: "@EcommerceBundle/Resources/config/routing.yml"
+    prefix:   acheteur
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   admin
+chef_equipe:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   chef-equipe
+vendeur:
+    resource: "@EcomBundle/Resources/config/routing.yml"
+    prefix:   vendeur
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+

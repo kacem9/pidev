@@ -1,0 +1,57 @@
+.tours {
+  &.card-deck {
+    margin: 0 auto;
+  }
+  .tour {
+    min-width: 250px;
+    .tour-image {
+      width: 100%;
+      height: auto;
+    }
+    .tour-body {
+      .btn-group {
+        &.icon-only {
+          > .btn {
+            font-size: 0;
+            > i {
+              font-size: 18px;
+              line-height: 30px;
+              width: 30px;
+            }
+          }
+        }
+        &.icon-top {
+          > .btn {
+            > i {
+              display: block;
+              font-size: 18px;
+              line-height: 30px;
+            }
+          }
+        }
+        &.text-only {
+          > .btn {
+            > i {
+              font-size: 0;
+            }
+          }
+        }
+      }
+    }
+    .tour-title {
+      font-weight: 500;
+    }
+    .tour-description {
+      font-weight: 300;
+    }
+    .tour-price {
+      font-weight: 500;
+      font-size: 1em;
+      .currency {
+      }
+      .price {
+        font-size: 1.5em;
+      }
+    }
+  }
+}

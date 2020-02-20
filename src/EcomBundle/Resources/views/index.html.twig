@@ -1,0 +1,66 @@
+{% extends "EcomBundle::layout.html.twig" %}
+
+{% set title="Accueil" %}
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <div class="row d-flex align-items-center">
+        <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
+
+        </div>
+        <div class="col-xl-4 col-md-4 d-flex justify-content-center">
+            <div class="image-default">
+                <img class="rounded-circle" src="{{ asset('uploads/admin/' ~ app.user.Photo) }}" alt="...">
+            </div>
+            <div class="infos">
+                <h2>{{ app.user.nom ~ ' ' ~ app.user.prenom }}</h2>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block actualite %}
+    <div class="row">
+        {% for actualite in actualites %}
+            <div class="col-md-4">
+                <!-- Begin Widget -->
+                <div class="widget has-shadow">
+                    <!-- Begin Widget Header -->
+                    <div class="widget-header d-flex align-items-center">
+                        <div class="d-flex flex-column mr-auto">
+                            <div class="title">
+                                {{ actualite.titre }}
+                            </div>
+                            <div class="time">{{ actualite.datePublication|date('m/d/y') }}</div>
+                        </div>
+                    </div>
+                    <!-- End Widget Header -->
+                    <!-- Begin Widget Body -->
+                    <div class="widget-body">
+                        <div class="content-img">
+                            <img src="{{ asset('uploads/actualite/' ~ actualite.image) }}" class="img-fluid w-100 rounded">
+                        </div>
+                    </div>
+                    <!-- End Widget Body -->
+
+                    <!-- Begin Comments -->
+                    <div class="comments">
+                        <div class="comments-body">
+                            <p>
+                                {{ actualite.description }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Comments -->
+
+                </div>
+                <!-- End Widget -->
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

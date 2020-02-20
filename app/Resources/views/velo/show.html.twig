@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Velo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ velo.id }}</td>
+            </tr>
+            <tr>
+                <th>Datecirculation</th>
+                <td>{% if velo.dateCirculation %}{{ velo.dateCirculation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datepublication</th>
+                <td>{% if velo.datePublication %}{{ velo.datePublication|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ velo.prix }}</td>
+            </tr>
+            <tr>
+                <th>Etatvendu</th>
+                <td>{{ velo.etatVendu }}</td>
+            </tr>
+            <tr>
+                <th>Etatlocation</th>
+                <td>{{ velo.etatLocation }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ velo.description }}</td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>{{ velo.categories }}</td>
+            </tr>
+            <tr>
+                <th>Localitsation_velo</th>
+                <td>{{ velo.localitsationvelo }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ velo.photo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('velo_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

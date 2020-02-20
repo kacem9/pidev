@@ -1,0 +1,27 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Dashboard:index }
+admin_AfficherUser:
+    path:     /AfficherUser
+    defaults: { _controller: AdminBundle:Dashboard:AfficherUser}
+admin_ ajouteractualite:
+    path:     /ajouteractualite
+    defaults: { _controller: AdminBundle:Dashboard:ajouteractualite}
+admin_velo:
+    path:     /velo
+    defaults: { _controller: AdminBundle:Dashboard:Affichervelo}
+admin_ produits:
+    path:     /produits
+    defaults: { _controller: AdminBundle:Dashboard:Afficherproduits}
+Deletevelo:
+    path:     /Deletevelo{id}
+    defaults: { _controller: AdminBundle:Dashboard:Deletevelo }
+Updatevelo:
+    path: /Updatevelo/{id}
+    defaults: {_controller: AdminBundle:Dashboard:Updatevelo}
+Deleteproduit:
+    path:     /Deleteproduit/{id}
+    defaults: { _controller: AdminBundle:Dashboard:Deleteproduit }
+Updateproduit:
+    path:     /Updateproduit/{id}
+    defaults: {_controller: AdminBundle:Dashboard:Updateproduit }

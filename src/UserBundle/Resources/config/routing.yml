@@ -1,0 +1,17 @@
+user_page_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+
+user_inscription:
+    path:     /register
+    defaults: { _controller: UserBundle:Default:inscription}
+
+list_reparations:
+    path:     /list
+    defaults: { _controller: UserBundle:Default:Reparateurs}
+Homeaccessoires:
+    path:     /Homeaccessoires
+    defaults: {_controller: UserBundle:Default:Homeaccessoires }
+Homevelo:
+    path:     /Homevelo
+    defaults: {_controller: UserBundle:Default:Homevelo }
