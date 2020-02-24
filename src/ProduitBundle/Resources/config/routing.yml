@@ -1,0 +1,30 @@
+produit_homepage:
+    path:     /
+    defaults: { _controller: ProduitBundle:Default:index }
+search:
+    path:     /search
+    defaults: { _controller: ProduitBundle:Produit:liveSearch }
+favoris:
+    path:     /Fav/{id}
+    defaults: { _controller: ProduitBundle:Produit:fav }
+panier:
+    path:     /Panier
+    defaults: { _controller: ProduitBundle:Panier:index }
+addpanier:
+    path:     /Panier/{id}
+    defaults: { _controller: ProduitBundle:Panier:addPanier }
+removePanier:
+    path:     /removePanier/{id}/{nre}
+    defaults: { _controller: ProduitBundle:Panier:removePanier }
+chartPie:
+    path:     /chartPie
+    defaults: { _controller: ProduitBundle:Produit:chartPie }
+removeCmtr:
+    path:     /rem/{id}/{prodid}
+    defaults: { _controller: ProduitBundle:Produit:remCom }
+ajaxrate:
+    path:     /rem/{id}
+    defaults: { _controller: ProduitBundle:Produit:ajaxrate }
+Profcc:
+    path:     /prf
+    defaults: { _controller: ProduitBundle:Produit:Prof }
