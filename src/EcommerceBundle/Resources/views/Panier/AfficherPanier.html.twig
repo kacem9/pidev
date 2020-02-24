@@ -36,7 +36,7 @@
                             <th class="cart-product-thumbnail">&nbsp;</th>
                             <th class="cart-product-name">Article</th>
                             <th class="cart-product-quantity">Quantité</th>
-                            <th class="cart-product-price">Prix Location</th>
+                            <th class="cart-product-price">Price Location</th>
 
                             <th class="cart-product-subtotal">Total</th>
                         </tr>
@@ -71,7 +71,7 @@
                                     <td class="cart-product-quantity">
                                         <div class="quantity clearfix">
                                             <select name="qte" class="span1" onChange="this.form.submit()">
-                                                {% for i in 1..produit.quantite %}
+                                                {% for i in 1..produit.quantity %}
                                                     <option value="{{ i }}" {% if i == panier[produit.id] %} selected="selected" {% endif %}>{{ i }}</option>
 
                                                 {% endfor %}
@@ -83,10 +83,10 @@
                                     </td>
 
                                     <td class="cart-product-price">
-                                        <span class="amount">{{ produit.prixLocation }}</span>
+                                        <span class="amount">{{ produit.priceLocation }}</span>
                                     </td>
                                     <td class="cart-product-price">
-                                        <span class="amount">{{ produit.prixLocation*panier[produit.id] }}</span>
+                                        <span class="amount">{{ produit.priceLocation*panier[produit.id] }}</span>
                                     </td>
                                             </select>&nbsp;
                                             <!--     <input type="button" value="-" class="minus" id="negative">
@@ -99,7 +99,7 @@
 
                                 </form>
                             </tr>
-                            {% set totalHT = totalHT + (produit.prixLocation* panier[produit.id]) %}
+                            {% set totalHT = totalHT + (produit.priceLocation* panier[produit.id]) %}
 
                         {% endfor %}
 

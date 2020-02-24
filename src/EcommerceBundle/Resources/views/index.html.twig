@@ -206,7 +206,7 @@
                                                         <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                                         <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
                                                     </div>
-                                                    <p class="price">          {{ velo.prix }}
+                                                    <p class="price">          {{ velo.priceLocation }}
                                                     </p>
 
                                                     <div class="button-group">
@@ -816,151 +816,41 @@
                                 <h3 class="heading">Specials<hr></h3>
                                 <div class="row thummargin">
                                     <div id="special" class="owl-theme owl-carousel">
+                                        {% for v in velos %}
+
                                         <div class="product-layout col-xs-12">
                                             <div class="product-thumb transition">
-                                                <div class="image"><a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/product/opencart-01-315x220.jpg')}}" alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
+                                                <div class="image">
+                                                    <a href="indexbb02.html?route=product/product&amp;product_id=42">
+                                                        <img src="{{ asset('uploads/admin/' ~ v.Photo) }}"
+                                                                                                                                         alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
 
 
                                                     <span class="salepro">sale</span>
 
                                                 </div>
                                                 <div class="caption text-center">
-                                                    <h4><a href="indexbb02.html?route=product/product&amp;product_id=42">Apple Cinema 30&quot;</a></h4>
+                                                    <h4>{{v.categories}}</h4>
                                                     <div class="rating">
-                                    <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                    </div>                <p class="price">  <span class="price-new">$110.00</span> <span class="price-old">$122.00</span>            </p>
 
-                                                    <p class="sale-tag sale">Save 10%</p>
+                                                    </div>
+                                                    <p class="price">  <span class="price-new"> Price:{{ v.priceLocation }}</span>            </p>
+
+                                                    <p class="sale-tag sale">New New </p>
                                                     <div class="button-group">
                                                         <button class="acart" type="button" onclick="cart.add('42');"><svg width="16px" height="16px"><use xlink:href="#addcart"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Wish List" onclick="wishlist.add('42');"><svg width="16px" height="16px"><use xlink:href="#addwish"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Compare" onclick="compare.add('42');"><svg width="16px" height="16px"><use xlink:href="#addcompare"></use></svg></button>
-                                                        <div class="bquickv" data-toggle="tooltip" title="Quick View"> </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="product-layout col-xs-12">
-                                            <div class="product-thumb transition">
-                                                <div class="image"><a href="indexf073.html?route=product/product&amp;product_id=30"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/product/opencart-02-315x220.jpg')}}" alt="Canon EOS 5D" title="Canon EOS 5D" class="img-responsive center-block" /></a>
 
 
-                                                    <span class="salepro">sale</span>
-
-                                                </div>
-                                                <div class="caption text-center">
-                                                    <h4><a href="indexf073.html?route=product/product&amp;product_id=30">Canon EOS 5D</a></h4>
-                                                    <div class="rating">
-                                    <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                    </div>                <p class="price">  <span class="price-new">$98.00</span> <span class="price-old">$122.00</span>            </p>
-
-                                                    <p class="sale-tag new">Save 20%</p>
-                                                    <div class="button-group">
-                                                        <button class="acart" type="button" onclick="cart.add('30');"><svg width="16px" height="16px"><use xlink:href="#addcart"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Wish List" onclick="wishlist.add('30');"><svg width="16px" height="16px"><use xlink:href="#addwish"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Compare" onclick="compare.add('30');"><svg width="16px" height="16px"><use xlink:href="#addcompare"></use></svg></button>
-                                                        <div class="bquickv" data-toggle="tooltip" title="Quick View"> </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="product-layout col-xs-12">
-                                            <div class="product-thumb transition">
-                                                <div class="image"><a href="indexd21c.html?route=product/product&amp;product_id=47"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/product/opencart-03-315x220.jpg')}}" alt="HP LP3065" title="HP LP3065" class="img-responsive center-block" /></a>
-
-
-
-                                                </div>
-                                                <div class="caption text-center">
-                                                    <h4><a href="indexd21c.html?route=product/product&amp;product_id=47">HP LP3065</a></h4>
-                                                    <div class="rating">
-                                    <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                        <span class="fa fa-stack">
-              <i class="fa fa-star-o fa-stack-2x"></i>
-            </span>
-                                                    </div>                <p class="price">           $122.00
-                                                    </p>
-
-                                                    <div class="button-group">
-                                                        <button class="acart" type="button" onclick="cart.add('47');"><svg width="16px" height="16px"><use xlink:href="#addcart"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Wish List" onclick="wishlist.add('47');"><svg width="16px" height="16px"><use xlink:href="#addwish"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Compare" onclick="compare.add('47');"><svg width="16px" height="16px"><use xlink:href="#addcompare"></use></svg></button>
-                                                        <div class="bquickv" data-toggle="tooltip" title="Quick View"> </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="product-layout col-xs-12">
-                                            <div class="product-thumb transition">
-                                                <div class="image"><a href="index6320.html?route=product/product&amp;product_id=28"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/product/opencart-04-315x220.jpg')}}" alt="HTC Touch HD" title="HTC Touch HD" class="img-responsive center-block" /></a>
-
-
-
-                                                </div>
-                                                <div class="caption text-center">
-                                                    <h4><a href="index6320.html?route=product/product&amp;product_id=28">HTC Touch HD</a></h4>
-                                                    <div class="rating">          <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                                        <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
-                                                    </div>
-                                                    <p class="price">           $122.00
-                                                    </p>
-
-                                                    <div class="button-group">
-                                                        <button class="acart" type="button" onclick="cart.add('28');"><svg width="16px" height="16px"><use xlink:href="#addcart"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Wish List" onclick="wishlist.add('28');"><svg width="16px" height="16px"><use xlink:href="#addwish"></use></svg></button>
-                                                        <button type="button" data-toggle="tooltip" title="Compare" onclick="compare.add('28');"><svg width="16px" height="16px"><use xlink:href="#addcompare"></use></svg></button>
-                                                        <div class="bquickv" data-toggle="tooltip" title="Quick View"> </div>
+                                                        <div class="bquickv" data-toggle="tooltip">
+                                                          <a   href="{{ path('Afficherpannier',{'id':v.id}) }}"> </a>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
 
+{% endfor %}
                                     </div>
                                 </div>
                             </div></div>

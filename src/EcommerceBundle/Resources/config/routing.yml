@@ -2,7 +2,7 @@ ecommerce_homepage:
     path:     /
     defaults: { _controller: EcommerceBundle:Default:index }
 Afficherpannier:
-    path:     /Afficherpannier/{id}
+    path:     /Afficherpannier{id}
     defaults: { _controller: EcommerceBundle:Paiement:Afficherpannier }
 panier:
     path:     /panier
@@ -63,5 +63,41 @@ prixdesc_produits:
     path:     /prixdescproduits
     defaults: { _controller: EcommerceBundle:Location:prixdescendant }
 Rating:
-    path:     /Rating/{id}/{note}
-    defaults: { _controller: EcommerceBundle:Location:rating }
+    path:     /Rating
+    defaults: { _controller: EcommerceBundle\Controller\RatingVeloController::newRating }
+BestSeler:
+    path:     /BestSeler
+    defaults: { _controller: EcommerceBundle:Location:BestSeler }
+newVelo:
+    path:     /newVelo
+    defaults: { _controller: EcommerceBundle:Location:newVelo }
+_deleteCommentaire:
+    path:   /DeleteCommentaire{id}
+    defaults: { _controller: EcommerceBundle:Paiement:DeleteCommentaire }
+CyclocrossBikeAchat:
+    path:   /CyclocrossBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:CyclocrossBikeAchat }
+KidsBikesAchat:
+    path:   /KidsBikesAchat
+    defaults: { _controller: EcommerceBundle:Achat:KidsBikesAchat }
+MountainBikesAchat:
+    path:   /MountainBikesAchat
+    defaults: { _controller: EcommerceBundle:Achat:MountainBikesAchat }
+SportsBikeAchat:
+    path:   /SportsBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:SportsBikeAchat }
+RoadBikeAchat:
+    path:   /RoadBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:RoadBikeAchat }
+showAchat:
+    path:  /showAchat/{id}
+    defaults: { _controller: EcommerceBundle:Achat:showAchat }
+addPanier:
+    path:  /addPanier/{id}
+    defaults: { _controller: EcommerceBundle:Achat:addPanier}
+PanierAchaat:
+    path:  /PanierAchaat
+    defaults: { _controller: EcommerceBundle:Achat:PanierAchaat}
+removePanier :
+    path:  /removePanier{id}{nre}
+    defaults: { _controller: EcommerceBundle:Achat:removePanier}

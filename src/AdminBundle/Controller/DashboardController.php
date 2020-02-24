@@ -13,11 +13,38 @@ class DashboardController extends Controller
 {
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getEntityManager();
 
 
 
 
-        return $this->render('@Admin/accueil.html.twig');
+        $nbreveloLouer = $this->formatChart($em->getRepository('AppBundle:Velo')->countByMonthVeloLouer());
+        $nbrevelpasLouer = $this->formatChart($em->getRepository('AppBundle:Velo')->countByMonthVelopasLouer());
+       $countByMonthCommande= $this->formatChart($em->getRepository('AppBundle:Commande')->countByMonthCommande());
+
+        return $this->render('@Admin/accueil.html.twig',[
+
+            'nbreveloLouer' =>  $nbreveloLouer,
+            'nbrevelpasLouer' =>  $nbrevelpasLouer,
+            'countByMonthCommande' =>  $countByMonthCommande,
+
+        ]);
+
+
+
+
+
+    }
+    public function formatChart($data){
+
+        $months =  array_fill_keys(range(1, 12), 0);
+
+
+        foreach($data as $item){
+            $months[$item['month']] = $item['total'];
+
+        }
+        return json_encode(array_values($months));
     }
     public function AfficherUserAction()
     {

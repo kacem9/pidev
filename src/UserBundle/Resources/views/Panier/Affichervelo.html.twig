@@ -37,7 +37,9 @@
                     <div class="product-rating iconlist">
 
 
-                        <a href =""> {{velo.rating|rating }}</a>
+
+
+                        {# {{velo.rating|rating }}</a> --!>#}
 
                     </div>
                     <div class="border-bottom mb-3 pb-md-1 pb-3">
@@ -46,7 +48,7 @@
 
                         </div>
                         <div class="d-md-flex align-items-center">
-                            <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{ velo.quantite }}</span></div>
+                            <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{ velo.quantity }}</span></div>
                         </div>
                     </div>
 
@@ -55,17 +57,13 @@
 
                     <div class="mb-4">
                         <div class="d-flex align-items-baseline">
-                            <ins class="font-size-36 text-decoration-none"> Prix : {{velo.prixLocation}} D</ins>
+                            <ins class="font-size-36 text-decoration-none"> Price : {{velo.priceLocation}} D</ins>
 
 
                         </div>
-                        <div class="d-flex align-items-baseline">
 
-                            <ins class="font-size-36 text-decoration-none"> Age: {{ velo.ageRecommande}}</ins>
-
-                        </div>
                     </div>
-                    {% if velo.quantite !=0 %}
+                    {% if velo.quantity !=0 %}
                         <a href="{{ path('user_page_homepage') }}" class="btn px-5 btn-warning transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
 
 

@@ -13,20 +13,20 @@
                                 <h5>Tout annulation de ligne de commande doit etre faite avant 24h</h5>
                                 <table class="table table-hover" border="1" style="width:100% ;" >
                                     <tr>
-                                        <th style="width: 150px">Prenom et Nom</th>
+                                        <th style="width: 150px">Name and Last name </th>
                                         <th>Categories</th>
                                         <th style="width: 150px">description</th>
                                         <th>prix Location </th>
                                         <th>prix Total</th>
                                         <th style="width: 150px">Date Livraison</th>
-                                        <th>Adresse 1</th>
-                                        <th>Adresse 2</th>
-                                        <th>Ville</th>
-                                        <th>Code Postal</th>
-                                        <th>Numero De Telephone</th>
-                                        <th>Locataire</th>
-                                        <th>Modifier lieu de livraison</th>
-                                        <th style="width: 200px">Annuler</th>
+                                        <th>Address 1</th>
+                                        <th>Address 2</th>
+                                        <th>Town </th>
+                                        <th>Cod Postal</th>
+                                        <th>phone number</th>
+                                        <th>Tenant</th>
+                                        <th>Edit place of livraison</th>
+                                        <th style="width: 200px">Cancel</th>
                                     </tr>
 
                                     {% for commande in lst %}
@@ -34,7 +34,7 @@
                                             <td>{{ app.user.Nom ~ ' '~ app.user.Prenom }}</td>
                                             <td>{{ commande.idVelo.Categories }}</td>
                                             <td>{{ commande.idVelo.description }}</td>
-                                            <td>{{ commande.idVelo.prixLocation }}</td>
+                                            <td>{{ commande.idVelo.priceLocation }}</td>
                                             <td>{{ commande.prixTotal }}</td>
                                             <td>{{ commande.dateLivraison|date('Y-m-d') }}</td>
                                             <td>{{ commande.adresse }}</td>
@@ -46,7 +46,7 @@
 
                                             <td>
 
-                                                <a href="{{ path('ligne_commande_modifier',{'id':commande.id}) }}">Modifier</a>
+                                                <a href="{{ path('ligne_commande_modifier',{'id':commande.id}) }}">Edit</a>
 
 
                                             </td>

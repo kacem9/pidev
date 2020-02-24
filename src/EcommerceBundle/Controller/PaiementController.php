@@ -4,8 +4,13 @@
 namespace EcommerceBundle\Controller;
 
 
+use AppBundle\Entity\CommentaireVelo;
+use AppBundle\Form\CommentaireVeloType;
+use LocalBundle\Entity\Likes;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PaiementController extends Controller
 {
@@ -21,12 +26,51 @@ class PaiementController extends Controller
     }
 
 
-    public function AfficherpannierAction($id)
+    public function AfficherpannierAction(Request $request,$id)
     {
         $em = $this->getDoctrine()->getEntityManager();
         $velo = $em->getRepository('AppBundle:Velo')->findById($id);
-        return $this->render('@Ecommerce/Panier/Paiement.html.twig',array('velo' => $velo));
+        $velos = $em->getRepository('AppBundle:Velo')->find($id);
+
+
+        $form = $this->createForm(CommentaireVeloType::class);
+        $form->handleRequest($request);
+        $contenu = $form['contenu']->getData();
+
+        if ($form->isValid() && $form->isSubmitted()) {
+
+            $commentaire = new CommentaireVelo();
+            $commentaire->setIdVelo($velos);
+            $commentaire->setIdUser($this->getUser());
+            $commentaire->setContenu($contenu);
+            $commentaire->setDate(new \DateTime());
+            $em->persist($commentaire);
+            $em->flush();
+        }
+
+        $commentaires = $em->getRepository("AppBundle:CommentaireVelo")->findBy(array('idVelo' => $id));
+
+        return $this->render('@Ecommerce/Panier/Paiement.html.twig',array('velo' => $velo,'commentaires' => $commentaires,'form' => $form->createView(),
+
+
+            ));
     }
+    public function DeleteCommentaireAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $commentaire=$em->getRepository("AppBundle:CommentaireVelo")->find($id);
+
+        if (!$commentaire) {
+            throw $this->createNotFoundException('No demande found for id '.$id);
+
+        }
+        $idVelo=$commentaire->getIdVelo()->getId();
+        $em->remove($commentaire);
+        $em->flush();
+        return $this->redirectToRoute('Afficherpannier', array('id'=>$idVelo));
+    }
+
+
         public function ajouterAction(Request $request,$id)
     {
 
@@ -81,4 +125,6 @@ class PaiementController extends Controller
 
         return $this->redirect($this->generateUrl('panier'));
     }
+
+
     }

@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends 'EcommerceBundle::layout.html.twig' %}
 {% block title %}Your Store{% endblock  %}
 {% block css %}
 
@@ -55,7 +55,7 @@
 
 
                             <div class="d-md-flex align-items-center">
-                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{ velo.quantite }}</span></div>
+                                <div class="ml-md-3 text-gray-9 font-size-14">Availability: <span class="text-green font-weight-bold">{{ velo.quantity }}</span></div>
                             </div>
 
                                 <div class="ml-md-3 text-gray-9 font-size-14">Locataire: <span class="text-green font-weight-bold">{{ velo.user.Nom    }} {{ velo.user.Prenom    }}</span></div>
@@ -68,32 +68,110 @@
 
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
-                               Prix Location: {{velo.prixLocation}} D</ins>
+                               Price Location: {{velo.priceLocation}} D</ins>
 
 
                             </div>
 
-                            <div class="d-flex align-items-baseline">
 
-                                Age: {{ velo.ageRecommande}}
-
-                            </div>
                             <div class="product-rating iconlist">
+                                <a href ="path('Rating',{'id':velo.id}) }}">
 
-
-                                <a href =""> {{velo.rating|rating }}</a>
-
+                                   {#  {{velo.rating|rating }}#} </a>
                             </div>
+
                         </div>
-
-
-                        {% if velo.quantite !=0 %}
+                        {% if velo.quantity >0 %}
                         <a href="{{ path('ajoute',{'id':velo.id}) }}" class="btn px-5 btn-warning transition-3d-hover"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
 
                         {% else %}
                             <a title="Stock epuisé" data-icon="Icon List 1" style="color: #ff0022">No Stock</a>
                         {% endif %}
                         {% endfor %}
+
+                    </div>
+
+                        <div class="tab-content clearfix" id="tabs-3">
+
+                            <div id="reviews" class="clearfix">
+                                {% for c in commentaires %}
+                                    <ol class="commentlist clearfix">
+
+                                        <li class="comment even thread-even depth-1" id="li-comment-1">
+                                            <div id="comment-1" class="comment-wrap clearfix">
+
+                                                <div class="comment-meta">
+                                                    <div class="comment-author vcard">
+																	<span class="comment-avatar clearfix">
+																	<img alt=''
+                                                                         src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60'
+                                                                         height='60' width='60'/></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="comment-content clearfix">
+                                                    <div class="comment-author"
+                                                         id="commentaires"> {{ c.idUser.Nom }} {{ c.idUser.Prenom }}
+                                                        <span><a href="#"
+                                                                 title="Permalink to this comment">{{ c.date|date }}</a></span>
+                                                    </div>
+                                                    <p>{{ c.contenu }}</p>
+                                                    {% if app.user.id==c.idUser.id %}
+                                                        <div>
+                                                            <a href="{{ path('_deleteCommentaire',{'id':c.id}) }}" class="icon-line-delete"> <span>Supprimer</span></a>
+                                                            {% endif %}
+
+
+
+                                                <div class="clear"></div>
+
+                                            </div>
+                                        </li>
+
+                                    </ol>
+                                {% endfor %}
+
+                                <!-- Modal Reviews
+                               ============================================= -->
+
+
+                        <a href="#" data-toggle="modal" data-target="#reviewFormModal"
+                           class="button button-3d nomargin fright">Ajouter un commentaire</a>
+
+                        <div class="modal fade" id="reviewFormModal" tabindex="-1" role="dialog"
+                             aria-labelledby="reviewFormModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-hidden="true">&times;
+                                        </button>
+
+                                        <h4 class="modal-title" id="reviewFormModalLabel">Ajout
+                                            commentaire</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        {{ form_start(form) }}
+
+                                        {{ form_end(form) }}
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                        <!-- Modal Reviews End -->
+
+                    </div>
+
+                </div>
                         <div class="ml-md-3">
                         </div>
                     </div>
@@ -101,5 +179,9 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+{% block javascripts %}
+
 
 {% endblock %}

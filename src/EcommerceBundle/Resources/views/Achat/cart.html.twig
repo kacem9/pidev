@@ -1,0 +1,95 @@
+
+{% extends 'EcommerceBundle::layout.html.twig' %}
+
+
+
+{% block content %}
+    <link href="{{ asset('assets/css/panier.css') }}" rel="stylesheet" >
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <div class="wrap">
+
+        <header class="cart-header cf">
+            <strong>Items in Your Cart</strong>
+            <span class="btn">Checkout</span>
+        </header>
+        <div class="bonus-products">
+            <strong>Products :</strong>
+
+        </div>
+        <div class="cart-table">
+            {% if items | length > 0%}
+            <ul>
+                {% for x in items %}
+                <!-- begin simple product -->
+                <li class="item" style="margin-left:-40px;">
+
+                    <div class="item-main cf">
+                        <div class="item-block ib-info cf">
+                            <img class="product-img" src="{{ asset('uploads/admin/' ~ x.produit.Photo) }}" />
+                            <div class="ib-info-meta">
+                                <span class="title">{{ x.produit.categories }}</span>
+
+                            </div>
+                        </div>
+                        <div class="item-block ib-qty">
+
+                            <span class="price" style="margin-top:11px;"><span> {{ x.quantity }} x</span> {{ x.produit.price }} $</span>
+                        </div>
+                        <div class="item-block ib-total-price">
+                            <span class="tp-price">{{  x.produit.price * x.quantity }} $</span>
+                            <br><br><br>
+                            <a href="{{ path('removePanier',{'id':x.produit.id,'nre':x.quantity}) }}"><i class="fa fa-trash fa-2x"></i></a>
+                            <span class="tp-remove"><i class="i-cancel-circle"></i></span>
+                        </div>
+                    </div>
+                    <div class="item-foot cf">
+                        <!-- <div class="if-message"><p>Space Reserved for item/promo related messaging</p></div> -->
+                        <div class="if-left"><span class="if-status">{% if(x.produit.quantity) %}In Stock : {% else %}Out of Stock : {% endif %}{{ x.produit.quantity }}</span></div>
+                        <div class="if-right"></div>
+                    </div>
+                </li>
+                {% endfor %}
+                <!-- end simple product -->
+
+
+
+
+            </ul>
+            {% endif %}
+        </div>
+        <div class="sub-table cf">
+            <div class="summary-block">
+
+                <ul>
+                    <li class="subtotal"><span class="sb-label">Subtotal</span><span class="sb-value">{{ total }} $</span></li>
+                    <li class="shipping"><span class="sb-label">Shipping</span><span class="sb-value">Tunisia</span></li>
+                    <li class="tax"><span class="sb-label">Est. Tax  <span class="tax-edit"> <i class="i-notch-down"></i></span></span><span class="sb-value">$5.00</span></li>
+                    <li class="tax-calculate"><input type="text" value="06484" class="tax" /><span class="btn">Calculate</span></li>
+                    <li class="grand-total"><span class="sb-label">Total</span><span class="sb-value">{{ total+5 }} $</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="cart-footer cf">
+            <span class="btn" onclick="alert('your commend is validated');">Checkout</span>
+            <span class="cont-shopping" ><i class="i-angle-left" ></i><a href=""> Continue Shopping</a></span>
+        </div>
+    </div>
+    <script>
+        $( ".tax-edit" ).click(function() {
+            $(this).toggleClass('te-open').parent;
+            $('.tax-calculate').slideToggle(200);
+        });
+
+        $( ".if-left" ).click(function() {
+            $(this).prev('.if-message').slideToggle(200);
+        });
+
+        $( ".bp-toggle" ).click(function() {
+            $('.bonus-products').slideToggle(200);
+        });
+    </script>
+
+{% endblock %}
+

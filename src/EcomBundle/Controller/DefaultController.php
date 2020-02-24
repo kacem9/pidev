@@ -42,21 +42,14 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($velo)
             ->add('date_circulation', DateType::class, array('data' => new \DateTime(), 'widget' => 'single_text'))
             ->add('datePublication', DateType::class, array('data' => new \DateTime(), 'widget' => 'single_text'))
-            ->add('prix_location')
+            ->add('price_location')
             ->add('description')
-            ->add('quantite',IntegerType::class)
+            ->add('quantity',IntegerType::class)
             ->add('localitsation_velo')
             ->add('photo',FileType::class,array('data_class' => null))
-            ->add('categories', EntityType::class, array(
-                'class' => 'AppBundle:Categories',
-                'choice_label' => 'Nom',
-                'mapped' => false
-            ))
-            ->add('age_recommande', EntityType::class, array(
-                'class' => 'AppBundle:Categories',
-                'choice_label' => 'Age',
-                'mapped' => false
-            ))
+            ->add('categories')
+
+
             ->getForm();
 
         $form->handleRequest($request);
@@ -78,20 +71,18 @@ class DefaultController extends Controller
             }
             $velo->setdateCirculation($form['date_circulation']->getData());
             $velo->setdatePublication($form['datePublication']->getData());
-            $velo->setPrixLocation($form['prix_location']->getData());
+            $velo->setPriceLocation($form['price_location']->getData());
             $velo->setdescription($form['description']->getData());
-            $velo->setQuantite($form['quantite']->getData());
+            $velo->setQuantity($form['quantity']->getData());
             $velo->setLocalitsationVelo($form['localitsation_velo']->getData());
           //$velo->setphoto($form['photo']->getData());
             $velo->setUser($this->getUser());
             $velo->setcategories($form['categories']->getData());
-            $velo->setAgeRecommande($form['age_recommande']->getData());
+
 
             $velo->setEtatLocation(1);
             $velo->setetatVendu(0);
-
-            $velo->setRating(0);
-            $velo->setNbruser(0);
+;
 
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($velo);
@@ -109,21 +100,13 @@ class DefaultController extends Controller
         $form = $this->createFormBuilder($velo)
             ->add('date_circulation', DateType::class, array('data' => new \DateTime(), 'widget' => 'single_text'))
             ->add('datePublication', DateType::class, array('data' => new \DateTime(), 'widget' => 'single_text'))
-            ->add('prix_location')
+            ->add('price_location')
             ->add('description')
-            ->add('quantite',IntegerType::class)
+            ->add('quantity',IntegerType::class)
             ->add('localitsation_velo')
             ->add('photo',FileType::class,array('data_class' => null))
-            ->add('categories', EntityType::class, array(
-                'class' => 'AppBundle:Categories',
-                'choice_label' => 'nom',
-                'mapped' => false
-            ))
-            ->add('age_recommande', EntityType::class, array(
-                'class' => 'AppBundle:Categories',
-                'choice_label' => 'Age',
-                'mapped' => false
-            ))
+            ->add('categories')
+
             ->getForm();
 
         $form->handleRequest($request);
@@ -142,17 +125,16 @@ class DefaultController extends Controller
             }
             $velo->setdateCirculation($form['date_circulation']->getData());
             $velo->setdatePublication($form['datePublication']->getData());
-            $velo->setPrixLocation($form['prix_location']->getData());
+            $velo->setPriceLocation($form['price_location']->getData());
             $velo->setDescription($form['description']->getData());
-            $velo->setQuantite($form['quantite']->getData());
+            $velo->setQuantity($form['quantity']->getData());
             $velo->setLocalitsationVelo($form['localitsation_velo']->getData());
             $velo->setUser($this->getUser());
             $velo->setcategories($form['categories']->getData());
-            $velo->setAgeRecommande($form['age_recommande']->getData());
+
             $velo->setEtatLocation(1);
             $velo->setetatVendu(0);
-            $velo->setRating(0);
-            $velo->setNbruser(0);
+
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($velo);
             $em->flush();

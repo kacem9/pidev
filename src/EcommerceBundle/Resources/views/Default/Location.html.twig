@@ -50,7 +50,7 @@
                     <div id="shop" class="shop product-3 grid-container clearfix">
                         {% for velo in velo %}
 
-                        <div class="product sf-dress clearfix">
+                        <div class="product sf-dress clearfix" data-id="{{ velo.id }}">
                             <div class="product-image">
                                 <div class="thumbnail">
                                    <h2>{{ velo.categories }}</h2>
@@ -95,7 +95,7 @@
 
                                 </div>
                                 <div class="product-price">
-                                    {{ velo.prixLocation }} DT
+                                    {{ velo.priceLocation }} DT
                                 </div>
 
 
@@ -103,45 +103,9 @@
                                 <div class="product-rating iconlist">
 
 
-                                    {%  if velo.rating==0 %}
                                         <div class="product-rating iconlist">
-
-
-                                            <form action="{{  path ('Rating', {'id':velo.id}) }}" method="get">
-
-
-                                                <div class="form-group">
-                                                    <label for="form_rating" class="required">
-                                                        Rating</label>
-                                                    <div class="rating"><div class="rating-well">
-                                                            <input type="text" id="form_rating" name="form[rating]" required="required" class="rating form-control">
-                                                            <div id="rating_star_5" class="star" data-value="5">
-
-                                                            </div>
-                                                            <div id="rating_star_4" class="star" data-value="4">
-
-                                                            </div>
-                                                            <div id="rating_star_3" class="star" data-value="3">
-
-                                                            </div>
-                                                            <div id="rating_star_2" class="star" data-value="2">
-
-                                                            </div>
-                                                            <div id="rating_star_1" class="star" data-value="1">
-
-                                                            </div></div></div></div
-                                                ><input type="hidden" id="form__token" name="form[_token]" value="QwDXR1TT131EiEuzpYi0GA9kfS1KcDrDjDaSumzYHhU">
-                                            </form>
-
-
-
-
-
+                                          {# {{velo.rating|rating }} #}
                                         </div>
-                                        {% else %}
-                                            <a href =""> {{velo.rating|rating }}</a>
-
-                                    {% endif %}
 
 
 
@@ -197,90 +161,14 @@
 
 {% block javascripts %}
     <script>
-        $document.ready(function () {
-        });
-        <script>
-        var valeur = 0 ;
-        $("#star-2")
-            .click(function () {
-                valeur = 2 ;
-                $.get("http://localhost/Velo/web/app_dev.php/Ecommerce/routing/Rating/"+"/" +{{ id }}"/"+ valeur,function (data) {
-
-                    console.log(data);
-                    if(data == "error"){
-                        alert("Vous avez déja mis une note");
-                    }
-                    if(data == "Done"){
-                        alert("Done !");
-                    }
-
-                });
-
-
+        $('.product .rating div').on('click', function () {
+            var rating = $(this).index();
+            var idVelo = $(this).parents('.product').data('id');
+            $.post( "{{ path('Rating') }}",{id_velo: idVelo, rating: parseInt(rating) + 1}, function( data ) {
+                $(this).parents('.rating').children('div').removeClass('star-full').addClass('star-empty');
+                $(this).parents('.rating').children('div:lt('+rating-1+')').addClass('star-full').removeClass('star-empty');
             });
-        $("#star-3")
-            .click(function () {
-                valeur = 3 ;
-                $.get("http://localhost/Velo/web/app_dev.php/Ecommerce/routing/Rating/"+"/" +{{ id }}+"/"+ valeur,function (data) {
-
-                    console.log(data);
-                    if(data == "error"){
-                        alert("Vous avez déja mis une note");
-                    }
-                    if(data == "Done"){
-                        alert("Done !");
-                    }
-
-                });
-
-            });
-        $("#star-4")
-            .click(function () {
-                valeur = 4 ;
-                $.get("http://localhost/Velo/web/app_dev.php/Ecommerce/routing/Rating/"+"/" +{{ id }}+"/"+ valeur,function (data) {
-
-                    console.log(data);
-                    if(data == "error"){
-                        alert("Vous avez déja mis une note");
-                    }
-                    if(data == "Done"){
-                        alert("Done !");
-                    }
-
-                });
-
-            });
-        $("#star-5")
-            .click(function () {
-                valeur = 5 ;
-                $.get("http://localhost/Velo/web/app_dev.php/Ecommerce/routing/Rating/"+"/" +{{ id }}+"/"+ valeur,function (data) {
-
-                    console.log(data);
-                    if(data == "error"){
-                        alert("Vous avez déja mis une note");
-                    }
-                    if(data == "Done"){
-                        alert("Done !");
-                    }
-
-                });
-            });
-        $("#star-1")
-            .click(function () {
-                valeur = 1 ;
-                $.get("http://localhost/Velo/web/app_dev.php/Ecommerce/routing/Rating/"+"/" +{{ id }}+"/"+ valeur,function (data) {
-
-                    console.log(data);
-                    if(data == "error"){
-                        alert("Vous avez déja mis une note");
-                    }
-                    if(data == "Done"){
-                        alert("Done !");
-                    }
-
-                });
-            })
-    </script>
+        })
     </script>
 
 {% endblock %}

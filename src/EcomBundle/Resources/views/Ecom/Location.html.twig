@@ -22,7 +22,7 @@
                             <option value="En attente">En attente</option>
                         </select>
                     </div>
-                    <a href="{{ path("ecom_formulaire") }}" class="btn btn-success">Ajouter un velo </a>
+                    <a href="{{ path("ecom_formulaire") }}" class="btn btn-success">Add a bike </a>
                 </div>
             </div>
 
@@ -43,15 +43,15 @@
                                     <img class="card-img-top" src="{{ asset('uploads/admin/' ~ velo.Photo) }}" alt="Card image cap"/>                                    <div class="card-block">
                                         <h4 class="card-title">{{ velo.categories }}</h4>
                                         <p class="card-text">{{ velo.description }}</p>
-                                        <p class="card-text">{{ velo.quantite }}</p>
+                                        <p class="card-text">{{ velo.quantity }}</p>
 
-                                        <p class="card-text">{{ velo.prixLocation }}</p>
+                                        <p class="card-text">{{ velo.priceLocation }}</p>
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">{{ velo.datePublication|date('m/d/y') }}</small>
-                                        <a href="{{ path('ecom_formulaireUpdate',{'id':velo.id}) }}"class="btn btn-info">Modifier</a> &nbsp
+                                        <a href="{{ path('ecom_formulaireUpdate',{'id':velo.id}) }}"class="btn btn-info">Edit a bike </a> &nbsp
                                         <br>
-                                        <a href="{{ path("ecom_Deletelocation",{'id':velo.id}) }}" class="btn btn-info">Supprimer</a>
+                                        <a href="{{ path("ecom_Deletelocation",{'id':velo.id}) }}" class="btn btn-info">Delete a bike </a>
                                     </div>
                                 </div>
                             </div>

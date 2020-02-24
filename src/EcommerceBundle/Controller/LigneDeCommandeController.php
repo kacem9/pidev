@@ -86,7 +86,7 @@ $user=$this->getUser();
             $lcommande->setIdVelo($p);
             $lcommande->setPrixTotal(array_values($panier)[$i] * $p->getPrix());
             $lcommande->setQuantite(array_values($panier)[$i]);
-            $p->setQuantite($p->getQuantite() - $lcommande->getQuantite());
+            $p->setQuantity($p->getQuantity() - $lcommande->getQuantite());
             $lcommande->setAdresse($this->get('session')->get('addresse'));
             $lcommande->setAdresse2($this->get('session')->get('addresse2'));
             $lcommande->setVille($this->get('session')->get('ville'));
@@ -101,9 +101,18 @@ $user=$this->getUser();
             $i++;
             $em = $this->getDoctrine()->getManager();
             $commande = $em->getRepository("AppBundle:Commande", $user)->findOneBy(array('idUser' => $user->getId()), array('id' => 'DESC'));
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Velo Shop')
+                ->setFrom('veloshop@zohomail.com')
+                ->setTo($this->getUser()->getEmail())
+                ->setBody('Nous vous informons que votre commande N° '.$commande->getId().' a été prise en compte, vous avez au maximum 5 heures pour annuler votre commande - merci pour votre achat
+            Cordialement l\'equipe CodeBusters ')
 
-
+            ;
+            $this->get('mailer')->send($message);
         }
+
+
         unset($panier);
         return $this->redirectToRoute('afficher_commande');
 

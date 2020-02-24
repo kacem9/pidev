@@ -10,4 +10,16 @@ namespace AppBundle\Repository;
  */
 class CommandeRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function countByMonthCommande(){
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb
+            ->select('MONTH(c.dateCommande) AS month,count(c.id) as total')
+            ->where('YEAR(c.dateCommande) = YEAR(CURRENT_DATE())')
+            ->from($this->_entityName, 'c')
+            ->groupBy('month')
+            ->getQuery()
+            ->getResult();
+    }
 }

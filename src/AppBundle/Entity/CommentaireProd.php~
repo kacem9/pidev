@@ -1,0 +1,144 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CommentaireProd
+ *
+ * @ORM\Table(name="commentaire_prod")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentaireProdRepository")
+ */
+class CommentaireProd
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255)
+     */
+    private $comment;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="datePublication", type="string", length=255)
+     */
+    private $datePublication;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Rate", type="string", length=255)
+     */
+    private $rate;
+
+    /**
+     * @var
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Produit")
+     * @ORM\JoinColumn(name="id_Prod",referencedColumnName="id" )
+     */
+    private $idProd;
+
+    /**
+     * @var int
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="id_user",referencedColumnName="id")
+     */
+    private $idUser;
+
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     *
+     * @return CommentaireProd
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * Set datePublication
+     *
+     * @param string $datePublication
+     *
+     * @return CommentaireProd
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    /**
+     * Get datePublication
+     *
+     * @return string
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * Set rate
+     *
+     * @param string $rate
+     *
+     * @return CommentaireProd
+     */
+    public function setRate($rate)
+    {
+        $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * Get rate
+     *
+     * @return string
+     */
+    public function getRate()
+    {
+        return $this->rate;
+    }
+}
+
