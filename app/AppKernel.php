@@ -26,7 +26,9 @@ class AppKernel extends Kernel
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new CommentaireBundle\CommentaireBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
-        ];
+            new MyAppMailBundle\MyAppMailBundle(),
+        //    new Liip\ImagineBundle\LiipImagineBundle(),
+            ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

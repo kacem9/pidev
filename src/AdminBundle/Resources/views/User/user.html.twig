@@ -1,6 +1,6 @@
 {% extends 'AdminBundle::layout.html.twig' %}
 
-{% set title="Gestion des utilisateurs" %}
+{% set title="User Management" %}
 
 {% block css %}
     <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
@@ -13,9 +13,9 @@
 
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center">
-                    <h2> Liste des utilisateurs</h2>
+                    <h2> Users list</h2>
                     <div class="widget-options">
-                        <a href="{{ path('admin_ajouter_user') }}" class="btn btn-success">Ajouter</a>
+                        <a href="{{ path('admin_ajouter_user') }}" class="btn btn-success">Add</a>
                     </div>
                 </div>
                 <div class="widget-body">
@@ -23,11 +23,11 @@
                         <table id="sorting-table" class="table mb-0">
                             <thead>
                             <tr>
-                                <th>Nom d'utilisateur</th>
-                                <th>Email</th>
-                                <th>Activé</th>
-                                <th>Dernier accès</th>
-                                <th>Actions</th>
+                                <th>username</th>
+                                <th>E-mail</th>
+                                <th>activated</th>
+                                <th>Last access</th>
+                                <th>stock</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -46,7 +46,7 @@
                                 </tr>
                             {% else %}
                                 <tr>
-                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                    <td colspan="4">No record found /td>
                                 </tr>
                             {% endfor %}
                             </tbody>

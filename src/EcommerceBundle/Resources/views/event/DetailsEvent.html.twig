@@ -17,32 +17,16 @@
              <ul class="list-group">
           <center><img class=""  width="150" src="{{ asset('uploads/admin/' ~ event.photo) }}" alt="Card image cap"/></center>
                  <li class=""><b>Description:</b> {{ event.description }}</li>
-                 <li class=""><b>Categorie :</b> {{ event.getCategoriesEvent().type }}</li>
-                 <li class=""><b>Lieu de l'evenement :</b> {{ event.lieuEvent }}</li>
-                 <li class=""><b>Nombre de participant :</b> {{ event.nbrParticipant }}</li>
-                 <li class=""><b>Prix :</b> {{ event.prix }}</li>
-                 <li class=""><b>Date de l'evenement :</b> {{ event.dateEvent|date('m/d/y') }}</li>
+                 <li class=""><b>Category :</b> {{ event.getCategoriesEvent().type }}</li>
+                 <li class=""><b>Location :</b> {{ event.lieuEvent }}</li>
+                 <li class=""><b>Number of participants:</b> {{ event.nbrParticipant }}</li>
+                 <li class=""><b>Price :</b> {{ event.prix }}</li>
+                 <li class=""><b>Event date :</b> {{ event.dateEvent|date('m/d/y') }}</li>
 
              </ul>
 
          </div>
 
-<h4>Les commentaires :</h4>
-<div class="widget has-shadow">
-            {% for com in com %}
-
-<div class="card">
-  <h4 class="card-title">Nom de client: {{ com.user.getNom()}}</h4>
-  <h4 class="card-title">Contenu: {{ com.contenu }}</h4>
- <small class="text-muted">Date : {{ com.date|date('m/d/y') }}</small></div>
-    <small class="btn ">Modifier</small>
-    <small class="btn " >Supprimer</small>
-            {% endfor %}
-</div>
- {{ form_start(form)  }}
-   {{ form_row(form.contenu) }}
-      <button class="btn btn-info btn-xs" href="{{ path('details_events',{'id':event.id}) }}">Commenter</button>
-{{ form_end(form) }}
  {% endblock %}
     {% block js %}
         <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>

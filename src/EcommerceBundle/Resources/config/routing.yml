@@ -7,9 +7,24 @@ ecommerce_listevent:
 details_events:
     path:     /details_event/{id}
     defaults: { _controller: EcommerceBundle:Ecommerce:detailsEvent }
-modifier_commentaire:
-    path:    /modifier_comm/{id_com}
-    defaults: { _controller: CommentaireBundle:Commentaire:ModifierCommentaire }
-supprimer_commentaire:
-    path:    /supprimer_comm/{id_com}
-    defaults: { _controller: CommentaireBundle:Commentaire:SupprimerCommentaire }
+participation_event:
+    path:   /participe/{id}
+    defaults: { _controller: EcommerceBundle:Ecommerce:Participer }
+participation_annuler:
+    path:   /annuler/{id_participation}
+    defaults: { _controller: EcommerceBundle:Ecommerce:AnnulerParticipation }
+dateasc_event:
+    path: /datedsc
+    defaults: { _controller: EcommerceBundle:Ecommerce:Dateasc }
+datedesc_event:
+    path: /dateasc
+    defaults: { _controller: EcommerceBundle:Ecommerce:Datedesc }
+recherche_event:
+    path: /recherche
+    defaults: { _controller: EcommerceBundle:Ecommerce:search }
+supprimer_comm:
+    path:   /supp/{id_com}
+    defaults: { _controller: EcommerceBundle:Ecommerce:SupprimerCommentaire }
+modifier_comm:
+    path:   /modifier/{id_com}
+    defaults: { _controller: EcommerceBundle:Ecommerce:ModifierCommentaire }

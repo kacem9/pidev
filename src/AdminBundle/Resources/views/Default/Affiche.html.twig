@@ -1,0 +1,63 @@
+{% extends "AdminBundle::layout.html.twig" %}
+{% set title="news" %}
+{% block css %}
+{% endblock %}
+
+
+{% block affiche %}
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <h2> News list</h2> <td> <a href="{{ path('Ajouter') }}" class="padding-bottom-10"> Add </a></td>
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+
+                                <th>Description</th>
+                                <th>Post Date</th>
+                                <th>Photo</th>
+                                <th>Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            {% for actualite in actualites %}
+                                {% set runtimeConfig = {"thumbnail": {"size": [210, 210] }} %}
+                                <tr>
+                                    <td>{{ actualite.titre }}</td>
+
+                                    <td>{{ actualite.description}}</td>
+                                    <td>{{ actualite.datePublication ? actualite.datePublication|date('Y-m-d') : '' }}</td>
+                                    <td> <img  src="{{ asset('uploads/actualite/' ~ actualite.image) }}" /></td>
+                                   <td><a href="{{ path('actualitemodifier', {'id': actualite.id}) }}"><i class="la la-edit edit"></i></a></td>
+                                   <td> <a href="{{ path('Supprimer', {'id': actualite.id}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+
+
+
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+{% endblock %}

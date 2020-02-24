@@ -1,26 +1,57 @@
 <body>
-<br><br><br><br><br><br>
-<h4>List des evenements</h4>
-<table border="1">
-    <tr>
-        <td>Nom d'evenement</td>
-        <td>Description</td>
-        <td>Lieu</td>
-        <td>Nombre de participant</td>
-        <td>Prix</td>
-        <td>Categorie</td>
-        <td>Date de l'evenement</td>
-    </tr>
-    {% for form in liste %}
-        <tr>
-            <td>{{ form.nom }}</td>
-            <td>{{ form.description }}</td>
-            <td>{{ form.lieuEvent}}</td>
-            <td>{{ form.nbrParticipant  }}</td>
-            <td>{{ form.prix }}</td>
-            <td>{{ form.getCategoriesEvent().type }}</td>
-            <td>{{ form.dateEvent|date('m/d/y') }}</td>
-        </tr>
-    {% endfor %}
-</table>
+
+
+<header>
+    <div id="company">
+        <h2 style="color: #531A13" class="name" > <strong>Velo.tn</strong> </h2>
+        <div>Site web :<a href="#">www.velo.tn</a></div>
+        <div style="color: #777777">Numero de telephone :58 491 039</div>
+        <div>Email :<a href="mailto:company@example.com">velotn@velo.tn</a></div>
+    </div>
+</header>
+
+<main>
+
+    <div>
+        <br>
+        <h1 style="color: #E9967A ; font-family: Brush Script MT, Brush Script Std, cursive ; text-align: center" >Liste des evenements </h1>
+        <br><br><br>
+        <div style="text-align: center">
+            <table style="font-size:150% "><thead>
+                <tr>
+                    <th  style="color: #78281F   ; text-align: center"    >     Event name </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Description </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Location </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Nombre de participant </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Price </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Category </th>
+                    <th  style="color: #78281F   ; text-align: center"    >     Event date </th>
+                </tr></thead>
+                {% for form in liste %}
+
+                    <tr>
+                        <td style="text-align: center">{{ form.nom }}</td>
+                        <td style="text-align: center">{{ form.description }}</td>
+                        <td style="text-align: center">{{ form.lieuEvent}}</td>
+                        <td style="text-align: center">{{ form.nbrParticipant  }}</td>
+                        <td style="text-align: center">{{ form.prix }}</td>
+                        <td style="text-align: center">{{ form.getCategoriesEvent().type }}</td>
+                        <td style="text-align: center">{{ form.dateEvent|date('m/d/y') }}</td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    With   <img src="http://localhost/Velo/web/front/templatetasarim.com/opencart/Bicycle/image/catalog/final.PNG"/>
+    <br>
+    All rights reserved <strong>Velo.tn</strong> 2019-2020.
+</footer>
+
 </body>
+</html>

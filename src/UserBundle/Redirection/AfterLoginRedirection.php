@@ -49,7 +49,7 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
             $redirection = new RedirectResponse($this->router->generate('evenement_homepage'));
 
         elseif (in_array('ROLE_REPARATEUR', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate(''));
+            $redirection = new RedirectResponse($this->router->generate('EspaceReparateur'));
 
 
         return $redirection;

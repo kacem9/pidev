@@ -34,7 +34,6 @@ class Actualite
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;
-
     /**
      * @var string
      *
@@ -42,11 +41,87 @@ class Actualite
      */
     private $description;
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nbrLike", type="integer")
+     */
+    private $nbrLike=0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbrFoisLike", type="integer")
+     */
+    private $nbrFoisLike=0;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="moyenneLike", type="float")
+     */
+    private $moyenneLike=0;
+
+    /**
+     * @return int
+     */
+    public function getNbrLike()
+    {
+        return $this->nbrLike;
+    }
+
+    /**
+     * @param int $nbrLike
+     */
+    public function setNbrLike($nbrLike)
+    {
+        $this->nbrLike = $nbrLike;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbrFoisLike()
+    {
+        return $this->nbrFoisLike;
+    }
+
+    /**
+     * @param int $nbrFoisLike
+     */
+    public function setNbrFoisLike($nbrFoisLike)
+    {
+        $this->nbrFoisLike = $nbrFoisLike;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMoyenneLike()
+    {
+        return $this->moyenneLike;
+    }
+
+    /**
+     * @param float $moyenneLike
+     */
+    public function setMoyenneLike($moyenneLike)
+    {
+        $this->moyenneLike = $moyenneLike;
+    }
+
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_publication", type="date")
      */
     private $datePublication;
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user",referencedColumnName="id", onDelete="cascade")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -57,6 +132,7 @@ class Actualite
     {
         return $this->id;
     }
+
 
     /**
      * Set titre
@@ -153,4 +229,22 @@ class Actualite
     {
         return $this->datePublication;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }

@@ -14,11 +14,11 @@
         <!-- Sorting -->
         <div class="widget">
             <div class="widget-header bordered no-actions d-flex align-items-center">
-                <h2> Liste  des evenements </h2>
+                <h2> The list of events </h2>
                 <div class="widget">
                     {{ form(form ,{'attr':{'novalidate':'novalidate'}}) }}
                     <br>
-                    <a href="{{ path("ajouter_event") }}" class="btn btn-success">Ajouter un evenement </a>
+                    <a href="{{ path("ajouter_event") }}" class="btn btn-success">Add an event </a>
 
                 </div>
             </div>
@@ -37,20 +37,20 @@
                                 <div class="card">
                                     <img class="card-img-top" src="{{ asset('uploads/admin/' ~ e.photo) }}" alt="Card image cap"/>
                                     <div class="card-block">
-                                        <h4 class="card-title">Nom d'evenement: {{ e.nom}}</h4>
+                                        <h4 class="card-title">Event name: {{ e.nom}}</h4>
                                         <p class="card-text">Description: {{ e.description }}</p>
-                                        <p class="card-text">Lieu: {{ e.lieuEvent }}</p>
-                                        <p class="card-text">Nombre de participant: {{ e.nbrParticipant }}</p>
-                                        <p class="card-text">Prix: {{ e.prix }}</p>
-                                        <p class="card-text">Categorie:  {{ e.getCategoriesEvent().type }}</p>
+                                        <p class="card-text">Location: {{ e.lieuEvent }}</p>
+                                        <p class="card-text">Number of participants: {{ e.nbrParticipant }}</p>
+                                        <p class="card-text">Price: {{ e.prix }}</p>
+                                        <p class="card-text">Category:  {{ e.getCategoriesEvent().type }}</p>
                                     </div>
                                     <div class="card-footer">
-                                        <small class="text-muted">Date de l'evenement: {{ e.dateEvent|date('m/d/y') }}</small>
+                                        <small class="text-muted">Event date: {{ e.dateEvent|date('m/d/y') }}</small>
                                         <a href="{{ path('details_event',{'id' : e.id}) }}"class="btn btn-info-outline btn-xs">Details</a> &nbsp
-                                        <a href="{{ path('modifier_event',{'id' : e.id}) }}"class="btn btn-info-outline btn-xs">Modifier</a> &nbsp
+                                        <a href="{{ path('modifier_event',{'id' : e.id}) }}"class="btn btn-info-outline btn-xs">Edit</a> &nbsp
                                         <br>
 
-                                        <a href="{{ path('supprimer_event',{'id' : e.id}) }}" class="btn btn-info btn-xs">Supprimer</a>
+                                        <a href="{{ path('supprimer_event',{'id' : e.id}) }}" class="btn btn-info btn-xs">Remove</a>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                 </div>
 
             </div>
-            <a href="{{ path('list_event_pdf') }}">Imprimer</a>
+            <a href="{{ path('list_event_pdf') }}">print</a>
             {% endblock %}
             {% block js %}
                 <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
@@ -93,4 +93,8 @@
                         });
                     });
                 </script>
+
+
+
+
             {% endblock %}

@@ -1,0 +1,99 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+
+
+{% set title="mesreclamation" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block mesreclamation %}
+    <h1> list of my reclamations</h1>
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Last name</th>
+
+                                <th>Name</th>
+                                <th>Id card</th>
+                                <th>Email</th>
+                                <th>Topic</th>
+                                <th>Message</th>
+                                <th>Phone number</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for reclamation in reclamation %}
+                                <tr>
+                                    <td>{{ reclamation.nom }}</td>
+
+                                    <td>{{ reclamation.prenom}}</td>
+                                    <td>{{ reclamation.cin }}</td>
+                                    <td>{{ reclamation.email }}</td>
+
+                                    <td>{{ reclamation.sujet}}</td>
+                                    <td>{{ reclamation.message}}</td>
+                                    <td>{{reclamation.numtel}}</td>
+                                    <td> <a href="{{ path('Suppreclamation', {'reference': reclamation.reference}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                                    <td><a href="{{ path('Modifireclamation', {'reference': reclamation.reference}) }}"><i class="la la-edit edit"></i></a></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style> h1{
+            text-align: center;
+            color:red;
+        }</style>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            dtable = $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('.filter').on('keyup change', function() {
+
+                dtable.search('');
+                dtable.column(5).search(this.value).draw();
+            });
+
+            $(".dataTables_filter input").on('keyup change', function() {
+
+                dtable.columns().search('');
+
+                $('.filter').val('');
+            });
+        });
+    </script>
+
+{% endblock %}

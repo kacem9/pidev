@@ -64,27 +64,34 @@
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav mr-auto">
-                                        <li><a href="/">Accueil</a></li>
-                                        <li> <a href="{{ path('ecommerce_listevent') }}" >Liste des evenements</a>
+                                        <li><a href="/">Home</a></li>
+                                        <li> <a href="{{ path('ecommerce_listevent') }}" >Events list</a>
+
+                                        </li>
                                         <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Achat</a>
+                                            <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My appointment </a>
                                             <ul class="dropdown-menu" aria-labelledby="dashboard">
-                                                <li><a href="#" >Bike</a></li>
-                                                <li><a href="#" >Part of bike </a></li>
+                                                <li><a href="{{ path('listrendezvous') }}" >List of appointment</a></li>
+                                                <li><a href="{{ path('MaRendezVousValid') }}" > my valid appointment</a></li>
 
                                             </ul>
                                         </li>
-
                                         <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#" id="components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">location</a>
+                                            <a class="dropdown-toggle" href="#" id="components" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reclamation</a>
                                             <ul class="dropdown-menu" aria-labelledby="components">
-                                                <li> <a href="#" >Location</a>
-                                                    <ul class="dropdown-menu" aria-labelledby="components">
+                                                <li> <a href="{{ path('reclamation') }}" >Reclamation</a>
 
+                                                    <ul class="dropdown-menu" aria-labelledby="components">
+                                                        <li><a href="{{ path('reclamation') }}" > Add reclamation</a></li>
+                                                        <li><a href="{{ path('mesreclamation') }}" > list of reclamation</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </li>
+
+
+                                        <li><a href="{{ path('EspaceAcheteur') }}">list of repairers</a></li>
+                                        <li><a href="{{ path('blog') }}">news</a></li>
 
 
 
@@ -146,6 +153,7 @@
                                     {% endfor %}
                                 {% endfor %}
                                 {% block body %} {% endblock %}
+                                {% block ModifierCommentaire %}{% endblock %}
 
                             </div>
                         </div>
@@ -169,6 +177,30 @@
     </div>
     <!-- End Page Content -->
 </div>
+{% block EspaceReparateur %}
+
+{% endblock %}
+
+{% block EspaceAcheteur%}
+
+{% endblock %}
+{% block EspaceRdv %}
+
+{% endblock %}
+{% block listrendezvous%}
+
+{% endblock %}
+{% block MaRendezVousValid %}
+{% endblock %}
+{% block reclamation %}
+{% endblock %}
+{% block mesreclamation %}
+{% endblock %}
+{% block Modifireclamation%}
+{% endblock %}
+{% block Modifirendezvous%}
+{% endblock %}
+{% block blog%} {% endblock %}
 <!-- Begin Vendor Js -->
 <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/bootstrap/bootstrap.min.js') }}"></script>

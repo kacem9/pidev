@@ -1,0 +1,51 @@
+{{ form_start(form) }}
+<table>
+
+    <tr>
+        <td>Nom</td>
+        <td>{{ form_widget(form.nom) }}</td>
+    </tr>
+    <tr>
+        <td>Prenom</td>
+        <td>{{ form_widget(form.prenom) }}</td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td>{{ form_widget(form.email) }}</td>
+    </tr>
+    <tr>
+        <td>Adresse</td>
+        <td>{{ form_widget(form.adresse) }}</td>
+    </tr>
+    <tr>
+        <td>message</td>
+        <td>{{ form_widget(form.message) }}</td>
+    </tr>
+    <tr>
+        <td>typepanne</td>
+        <td>{{ form_widget(form.typepanne) }}</td>
+    </tr>
+    <tr>
+        <td>Numtel</td>
+        <td>{{ form_widget(form.numtel) }}</td>
+    </tr>
+    <tr>
+        <td>cinn</td>
+        <td>{{ form_widget(form.user, {'attr': {'disabled': 'disabled'} }) }}</td>
+    </tr>
+    <tr>
+        <td>cin</td>
+        <td>{{ form_widget(form.Ajouter) }}</td>
+    </tr>
+
+
+
+
+
+
+
+
+
+
+</table>
+{{ form_end(form) }}

@@ -17,11 +17,11 @@
              <ul class="list-group">
           <center><img class=""  width="150" src="{{ asset('uploads/admin/' ~ event.photo) }}" alt="Card image cap"/></center>
                  <li class=""><b>Description:</b> {{ event.description }}</li>
-                 <li class=""><b>Categorie :</b> {{ event.getCategoriesEvent().type }}</li>
-                 <li class=""><b>Lieu de l'evenement :</b> {{ event.lieuEvent }}</li>
-                 <li class=""><b>Nombre de participant :</b> {{ event.nbrParticipant }}</li>
-                 <li class=""><b>Prix :</b> {{ event.prix }}</li>
-                 <li class=""><b>Date de l'evenement :</b> {{ event.dateEvent|date('m/d/y') }}</li>
+                 <li class=""><b>Category :</b> {{ event.getCategoriesEvent().type }}</li>
+                 <li class=""><b>Location :</b> {{ event.lieuEvent }}</li>
+                 <li class=""><b>Number of participants :</b> {{ event.nbrParticipant }}</li>
+                 <li class=""><b>Price :</b> {{ event.prix }}</li>
+                 <li class=""><b>Event date :</b> {{ event.dateEvent|date('m/d/y') }}</li>
 
              </ul>
 

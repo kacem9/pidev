@@ -1,0 +1,65 @@
+{% extends "AdminBundle::layout.html.twig" %}
+{% set title=" Liste des reclamations" %}
+{% block css %}
+{% endblock %}
+
+
+{% block adminReclamation %}
+
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                     <td> <a href="{{ path('Ajouter') }}" class="padding-bottom-10"> Add </a></td>
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Last Name</th>
+
+                                <th>Name</th>
+                                <th>ID_card</th>
+                                <th>Email</th>
+                                <th>Topic</th>
+                                <th>Message</th>
+                                <th>Phone number</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            {% for reclamation in reclamation %}
+                                <tr>
+                                    <td>{{ reclamation.nom }}</td>
+
+                                    <td>{{ reclamation.prenom}}</td>
+                                    <td>{{ reclamation.cin}}</td>
+                                    <td>{{ reclamation.email}}</td>
+                                    <td>{{ reclamation.sujet}}</td>
+                                    <td>{{ reclamation.message}}</td>
+                                    <td>{{ reclamation.numtel}}</td>
+
+                                    <td> <a href="{{ path('delReclamation', {'reference': reclamation.reference}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                                    <td>   <a href="{{ path('repondre', {'reference':  reclamation.reference}) }}" id="repondre">Repondre</a></td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="3">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+{% endblock %}

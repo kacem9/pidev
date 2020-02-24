@@ -76,7 +76,7 @@ class DefaultController extends Controller
             $velo->setdescription($form['description']->getData());
             $velo->setLocalitsationVelo($form['localitsation_velo']->getData());
             $velo->setphoto($form['photo']->getData());
-            $velo->setUser($this->getUser());
+            $velo->setUser($form['user']->getData());
             $velo->setcategories($form['categories']->getData());
             $velo->setAgeRecommande($form['age']->getData());
 

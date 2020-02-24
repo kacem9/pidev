@@ -108,7 +108,7 @@ class EvenementController extends Controller
         $em=$this->getDoctrine()->getManager();
         $form=$this->createFormBuilder($event)
             ->add('nom')
-            ->add('Recherche', SubmitType::class , ['attr'=>['formvalidate'=>'formvalidate']])
+            ->add('Search', SubmitType::class , ['attr'=>['formvalidate'=>'formvalidate']])
             ->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted()) {
@@ -140,4 +140,5 @@ class EvenementController extends Controller
             )
         );
     }
+
 }

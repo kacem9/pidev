@@ -2,7 +2,10 @@
 
 namespace AdminBundle\Controller;
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Commentaire;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Participation;
+use AppBundle\Entity\reclamation;
 use AppBundle\Entity\User;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -25,84 +28,7 @@ class DashboardController extends Controller
     {
         return $this->render('@Admin/accueil.html.twig');
     }
-    public function  ajouteractualiteAction(Request $request )
-    {
-        $actualite = new Actualite();
-        $form = $this->createFormBuilder($actualite)
 
-            ->add('titre',TextType::class)
-            ->add('image',FileType::class,array('data_class' => null,'required' => true))
-            ->add('description',TextAreaType::class)
-            ->getForm();
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            $Image = $actualite->getImage();
-            if($Image){
-                $fileName = md5(uniqid()).'.'.$Image->guessExtension();
-
-                try {
-                    $Image->move(
-                        $this->getParameter('Actualite_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-
-                }
-                $actualite->setImage($fileName);
-            }
-
-            $actualite->setDatePublication(new \DateTime());
-
-
-
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($actualite);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('success','Actualité ajoutée avec succés');
-
-        }
-        return $this->render('@Admin/Default/Ajouter.html.twig',array('form' => $form->createView()));
-    }
-    public function AfficherActualiteBackAction()
-    {
-        $actualite=$this->getDoctrine()->getRepository(Actualite::class)->findAll();
-        return $this->render('@Admin/Default/AfficherActualite.html.twig',array('actualite'=>$actualite));
-    }
-    public function SupprimerActualiteBackAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $actualite = $em->getRepository(Actualite ::class)->find($id);
-        $em->remove($actualite);
-        $em->flush();
-        return $this->redirectToRoute('admin_afficheractualite');
-    }
-    public function ModifierActualiteBackAction($id,Request $request)
-    {
-        $em=$this->getDoctrine()->getManager();
-        $actualite=$em->getRepository(Actualite ::class)->find($id);
-        $form = $this->createFormBuilder($actualite)
-            ->add('titre',TextType::class)
-            ->add('image',FileType::class,array('data_class' => null,'required' => true))
-            ->add('description',TextAreaType::class)
-            ->getForm();
-        $form->handleRequest($request);
-        if ($form->isSubmitted()){
-            $em=$this->getDoctrine()->getManager();
-            $em->flush();
-            return $this->redirectToRoute('admin_afficheractualite');
-        }
-        return $this->render('@Admin/Default/ModifierActualiteBack.html.twig',array('form'=>$form->createView()));
-    }
-    public function detailsActualiteBackAction($id)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $actualite = $em->getRepository('AppBundle:Actualite')->find($id);
-
-        return $this->render('AdminBundle:Actualite:DetailsActualiteBack.html.twig',array('actualite'=>$actualite));
-    }
 
     public function AfficherUserBackAction()
     {
@@ -340,5 +266,259 @@ class DashboardController extends Controller
         $val->setEtat(1);
         $em->flush();
         return $this->redirectToRoute('admin_afficher_event');
+    }
+    public function AfficheParticipationAction()
+    {
+        $part=$this->getDoctrine()->getRepository(Participation::class)->findAll();
+        return $this->render('@Admin/participation/Afficherpart.html.twig',array('part'=>$part));
+    }
+    public function SupprimerParticipationAction($id_participation)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $part = $em->getRepository('AppBundle:Participation')->find($id_participation);
+        $em->remove($part);
+        $em->flush();
+        return $this->redirectToRoute("admin_participation_event");
+    }
+    public function AfficheCommentaireAction()
+    {
+        $com=$this->getDoctrine()->getRepository(Commentaire::class)->findAll();
+        return $this->render('@Admin/participation/AfficherComment.html.twig',array('com'=>$com));
+    }
+    public function SupprimerCommentAction($id_com)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $com = $em->getRepository('AppBundle:Commentaire')->find($id_com);
+        $em->remove($com);
+        $em->flush();
+        return $this->redirectToRoute("admin_comment_event");
+    }
+
+
+
+
+
+
+
+
+
+    public function  AjouterAction(Request $request )
+    {
+        $actualite = new Actualite();
+        $form = $this->createFormBuilder($actualite)
+
+            ->add('titre',TextType::class)
+            ->add('image',FileType::class,array('data_class' => null,'required' => true))
+            ->add('description',TextAreaType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $Image = $actualite->getImage();
+            if($Image){
+                $fileName = md5(uniqid()).'.'.$Image->guessExtension();
+
+                try {
+                    $Image->move(
+                        $this->getParameter('Actualite_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+
+                }
+                $actualite->setImage($fileName);
+            }
+
+            $actualite->setDatePublication(new \DateTime());
+
+
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($actualite);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success','News added successfully');
+            return $this->redirect($this->generateUrl('Affiche'));
+
+        }
+        return $this->render('@Admin/Default/Ajouter.html.twig',array('form' => $form->createView()));
+    }
+
+    public function ReparateursAction()
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $expr = $em->createQueryBuilder()->expr();
+        $query = $em->getRepository('AppBundle:User')->createQueryBuilder('u')
+            ->where('u.roles LIKE :bo')
+            ->setParameters([
+                    'bo' => '%"ROLE_REPARATEUR"%']
+            )
+            ->getQuery();
+
+        $reparateurs = $query->getResult();
+
+
+        return $this->render('@Admin/Default/Reparateurs.html.twig', array('Reparateurs' => $reparateurs));
+
+
+    }
+
+
+
+
+
+
+    public function modifieractualiteAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $actualite = $em->getRepository('AppBundle:Actualite')->find($id);
+        $image = $actualite->getImage();
+
+        $form = $this->createFormBuilder($actualite)
+
+            ->add('titre',TextType::class , array('attr' => ['pattern' => '[a-zA-Z]+\s[a-zA-Z]*']))
+            ->add('image',FileType::class,array('data_class' => null,'required' => false))
+            ->add('description',TextAreaType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $Image = $actualite->getImage();
+            if($Image){
+                $fileName = md5(uniqid()).'.'.$Image->guessExtension();
+
+                try {
+                    $Image->move(
+                        $this->getParameter('Actualite_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+
+                }
+                $actualite->setImage($fileName);
+            }
+            else{
+                $actualite->setImage($image);
+            }
+
+            $actualite->setDatePublication(new \DateTime());
+
+
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($actualite);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success',' Actualité  modifiée avec succés');
+            return $this->redirect($this->generateUrl('Affiche'));
+        }
+
+
+        return $this->render('@Admin/Default/Modifier.html.twig',array('form' => $form->createView()));
+    }
+
+
+
+
+    public function AfficheAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $actualites = $em->getRepository('AppBundle:Actualite')->findAll();
+
+
+        return $this->render('@Admin/Default/Affiche.html.twig',array('actualites'=>$actualites));
+    }
+
+
+
+
+    public function SupprimerAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $actualite = $em->getRepository('AppBundle:Actualite')->find($id);
+        if (!$actualite) {
+            throw $this->createNotFoundException('No actualite found for id '.$id);
+        }
+        $em->remove($actualite);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('success', ' Delete done');
+        return $this->redirect($this->generateUrl('Affiche'));
+    }
+
+
+
+    public function deleteAction(Request $request, $id)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $Reparateurs = $em->getRepository('AppBundle:User')->find($id);
+        if (!$Reparateurs) {
+            throw $this->createNotFoundException('No Reparateurs found for id '.$id);
+        }
+        $em->remove($Reparateurs);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('success', ' Delete done');
+        return $this->redirect($this->generateUrl('Reparateurs'));
+    }
+
+    public function adminReclamationAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $Reclamation = $em->getRepository('AppBundle:reclamation')->findAll();
+
+        return $this->render('@Admin/Default/adminReclamation.html.twig',array('reclamation'=>$Reclamation));
+    }
+
+    public function delReclamationAction(Request $request, $reference)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $reclamation = $em->getRepository('AppBundle:reclamation')->find($reference);
+        if (!$reclamation) {
+            throw $this->createNotFoundException('No reclamation found for id '.$reference);
+        }
+        $em->remove($reclamation);
+        $em->flush();
+        $request->getSession()->getFlashBag()->add('success', ' Delete done');
+        return $this->redirect($this->generateUrl('adminReclamation'));
+    }
+
+
+
+    public function repondreAction($reference, Request $request)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $reclamation=$em->getRepository(reclamation ::class)->find($reference);
+
+
+        $Utilisateur=$this->getDoctrine()->getRepository(reclamation::class)->find($reference);
+        $email=$Utilisateur->getEmail();
+        $reclamation->setEmail($email);
+
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Accusé de réception')
+            ->setFrom('nesrine.zouaoui1@esprit.tn')
+            ->setTo($reclamation->getEmail())
+            ->setBody(
+                $this->renderView('@MyAppMail/Mail/rdv.html.twig',
+                    array('message' => 'Nous avons bien reçu votre reclamation ,Nous vous prions de nous excuser de cet incident.
+
+Veuillez agréer, nos salutations distinguées.')));
+        $this->get('mailer')->send($message);
+
+
+
+        $this->getDoctrine()->getManager()->persist($reclamation);
+
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('adminReclamation');
+
+
     }
 }

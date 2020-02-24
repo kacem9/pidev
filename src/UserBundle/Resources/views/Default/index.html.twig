@@ -1796,7 +1796,7 @@
                     <div class="container pro-nepr">
                         <div class="box blog_inspire ">
                             <div class="cmn-title wow bounce">
-                                <h3 class="heading">La liste des evenements<hr></h3>
+                                <h3 class="heading">The list of events<hr></h3>
                             </div>
                             <!-- <div class="blog-heading">Latest Blog</div> -->
                             <div class="box-content row thummargin">
@@ -1827,17 +1827,16 @@
                                                                     <div class="card">
                                                                         <img class="card-img-top" src="{{ asset('uploads/admin/' ~ e.photo) }}" alt="Card image cap"/>
                                                                         <div class="card-block">
-                                                                            <h4 class="card-title">Nom d'evenement: {{ e.nom}}</h4>
+                                                                            <h4 class="card-title">Event name: {{ e.nom}}</h4>
                                                                             <p class="card-text">Description: {{ e.description }}</p>
-                                                                            <p class="card-text">Lieu: {{ e.lieuEvent }}</p>
-                                                                            <p class="card-text">Nombre de participant: {{ e.nbrParticipant }}</p>
-                                                                            <p class="card-text">Prix: {{ e.prix }}</p>
-                                                                            <p class="card-text">Categorie:  {{ e.getCategoriesEvent().type }}</p>
+                                                                            <p class="card-text">Location: {{ e.lieuEvent }}</p>
+                                                                            <p class="card-text">Number of participants: {{ e.nbrParticipant }}</p>
+                                                                            <p class="card-text">Price: {{ e.prix }}</p>
+                                                                            <p class="card-text">Category:  {{ e.getCategoriesEvent().type }}</p>
                                                                         </div>
                                                                         <div class="card-footer">
-                                                                            <small class="text-muted">Date de l'evenement: {{ e.dateEvent|date('m/d/y') }}</small>
-                                                                            <br>
-                                                                            <a href="{{ path('fos_user_security_login') }}"class="btn btn-info btn-xs">Participer</a> &nbsp
+                                                                            <small class="text-muted">Event date: {{ e.dateEvent|date('m/d/y') }}</small>
+
 
                                                                         </div>
                                                                     </div>

@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Commentaire
  *
@@ -66,7 +66,7 @@ class Commentaire
     /**
      * @return int
      */
-    public function getIdCom()
+    public function D()
     {
         return $this->id_com;
     }
@@ -117,6 +117,14 @@ class Commentaire
     public function getContenu()
     {
         return $this->contenu;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdCom()
+    {
+        return $this->id_com;
     }
 
     /**

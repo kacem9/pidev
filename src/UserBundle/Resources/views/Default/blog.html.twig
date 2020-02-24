@@ -1,0 +1,172 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="Espace Acheteur" %}
+{% block css %}
+
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+
+{% endblock %}
+
+
+{% block blog %}
+<style>
+
+
+    body {
+                background: url(../images/actualite.jpg) no-repeat;
+                background-size: cover;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                -ms-background-size: cover;
+                background-attachment: fixed;
+                font-family: 'Abhaya Libre', serif;
+                text-align: center;
+            }
+
+
+form{ background-color: pink;
+      text-align: center;
+      margin-left: 520px;
+      margin-right: 520px;}
+h1{ font: Tahoma}
+
+#txt{color:deeppink;
+     margin-bottom: 5px;
+     background-color: ghostwhite;
+     }
+
+#bt1{ border-raduis: 20px 10px;} </style>
+ <div class="row">
+    <div class="col-xl-12">
+        <!-- Sorting -->
+
+
+            <div class="widget-body">
+
+                <div class="container">
+
+                    <div class="row">
+                        {% for actualite in actualite  %}
+
+                            <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                                <div class="card">
+                                {% set runtimeConfig = {"thumbnail": {"size": [210, 210] }} %}
+
+                                    <img class="card-img-top"  src="{{ asset('uploads/actualite/' ~ actualite.image) }}"  alt="Card image cap"/>
+                                    <div class="card-block">
+                                        <h4 class="card-title" id="txt">{{ actualite.titre }}</h4>
+                                        <p class="card-text" id="txt">{{actualite.description }}</p>
+                                        <p class="card-text">{{actualite.datePublication ? actualite.datePublication|date('Y-m-d') : '' }}</p>
+                                        <a href="{{ path('ajouterUneEtoile',{'id':actualite.id,'nombre':1}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide1"></a>
+                                        <a href="{{ path('ajouterUneEtoile',{'id':actualite.id,'nombre':2}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide2"></a>
+                                        <a href="{{ path('ajouterUneEtoile',{'id':actualite.id,'nombre':3}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide3"></a>
+                                        <a href="{{ path('ajouterUneEtoile',{'id':actualite.id,'nombre':4}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide4"></a>
+                                        <a href="{{ path('ajouterUneEtoile',{'id':actualite.id,'nombre':5}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide5"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+            <div class="w3ls-contact">
+
+    </div>
+
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+    <script>
+        $(function () {
+            dtable = $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                }
+            });
+            $('.filter').on('keyup change', function() {
+
+                dtable.search('');
+                dtable.column(3).search(this.value).draw();
+            });
+
+            $(".dataTables_filter input").on('keyup change', function() {
+
+                dtable.columns().search('');
+
+                $('.filter').val('');
+            });
+            $("#txt").click(function(){
+
+                $("p").slideToggle();
+
+
+
+
+
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+{% endblock %}

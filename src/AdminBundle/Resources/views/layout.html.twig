@@ -93,7 +93,7 @@
                     <li>
                         <a href="{{ path('admin_homepage') }}">
                             <i class="la la-home"></i>
-                            <span>Accueil</span>
+                            <span>Home</span>
                         </a>
                     </li>
                     {# <li>
@@ -103,26 +103,43 @@
                         </a>
                     </li> #}
                     <li>
-                        <a href="{{ path('admin_afficheractualite') }}">
+                        <a href="{{ path('Affiche') }}">
                             <i class="la la-newspaper-o"></i>
-                            <span>Actualités</span>
+                            <span>News</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('admin_AfficherUser') }}">
                             <i class="la la-users"></i>
-                            <span>Utilisateurs</span>
+                            <span>users</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('admin_afficher_event') }}">
-                            <i class="la la-calendar"></i>                            <span>Evenements</span>
+                            <i class="la la-calendar"></i>                            <span>Events</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_AfficherUser') }}">
+                        <a href="{{ path('admin_participation_event') }}">
+                            <i class="la la-calendar"></i>                            <span>list of participants</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_comment_event') }}">
+                            <i class="la la-newspaper-o"></i>
+                            <span>comment list</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('adminReclamation') }}">
                             <i class="la la-exclamation-circle"></i>
-                            <span>Reclamations</span>
+                            <span>Reclamation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('Reparateurs') }}">
+                            <i class="la la-users"></i>
+                            <span>Repairers</span>
                         </a>
                     </li>
                 </ul>
@@ -154,7 +171,24 @@
                     {% endfor %}
                 {% endfor %}
 
+
                 {% block body %}
+                {% endblock %}
+                {% block modifier %}
+                {% endblock %}
+                {% block affiche %}
+                {% endblock %}
+                {% block Reparateurs %}
+
+                {% endblock %}
+                {% block Reclamation %}
+
+                {% endblock %}
+                {% block  Modifireclamation %}
+
+                {% endblock %}
+                {% block  adminReclamation %}
+
                 {% endblock %}
                 <!-- End Row -->
             </div>
