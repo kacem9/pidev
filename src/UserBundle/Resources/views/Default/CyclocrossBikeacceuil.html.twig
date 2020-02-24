@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends "layout.html.twig" %}
 {% set title="vente vélos" %}
 {% block css %}
     <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
 {% endblock %}
-{% block velo %}
+{% block CyclocrossBikeacceuil %}
 
 
     <div class="row">
@@ -53,7 +53,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                             {% endfor %}
 

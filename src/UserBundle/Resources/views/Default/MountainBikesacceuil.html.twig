@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
 {% endblock %}
-{% block velo %}
+{% block MountainBikesacceuil %}
 
 
     <div class="row">
@@ -26,7 +26,7 @@
                         <div class="row py-5">
                             {% for velo in velo %}
 
-                                <div class="col-xs-12 col-md-6 col-lg-3">
+                                <div class="col-sm-4">
 
 
 
@@ -53,7 +53,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                             {% endfor %}
 
@@ -71,6 +70,8 @@
 {% block js %}
     <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
     <script>
         $(function () {
             dtable = $('.table').DataTable({

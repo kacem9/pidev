@@ -80,6 +80,7 @@ class produits
      * @ORM\Column(name="etat_location", type="integer")
      */
     private $etatLocation;
+
     /**
      * Get id
      *
@@ -277,5 +278,8 @@ class produits
     {
         return $this->etatLocation;
     }
+
+
+
 
 }

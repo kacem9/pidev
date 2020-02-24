@@ -1,0 +1,211 @@
+<aside class="side-menu">
+    <header class="side-menu__header">
+        <div class="side--left">
+            <button class="button--transparent color--primary toggle-menu"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="side--center">
+            <div class="input-wrapper">
+                <input type="text" id="search" class="form-control" placeholder="Search nhẹ đi em êi">
+                <button class="button--transparent color--primary button--float"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="side--right"></div>
+    </header>
+    <section></section>
+</aside>
+<div id="map"></div>
+<style>
+    $primary   : #1A237E;
+    $accent    : #1976D2;
+    $background: #FFFFFF;
+
+    #map {
+        position: fixed !important;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .side-menu {
+        position: fixed;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        width: 250px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+
+    &__header {
+         display: flex;
+         background-color: #fff;
+         width: 100%;
+
+    .toggle-menu {
+
+    }
+
+    .input-wrapper {
+        position: relative;
+
+    input {
+        border: none;
+    padding: {
+        left: 5px;
+        right: 40px;
+    }
+    }
+
+    .button--float {
+        position: absolute;
+        display: inline-block;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+    }
+    }
+    }
+    }
+
+    button {
+        outline: none;
+        cursor: pointer;
+    }
+    .button {
+    &--transparent {
+         background: none;
+         border: none;
+     }
+    }
+
+    .color {
+       &--primary {
+         color: $accent;
+     }
+    }
+
+    .side {
+    &--left {
+         padding: 5px;
+     }
+
+    &--center {
+         flex: 1;
+     }
+    }
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS__t3RuAVvaBOGkUCuL2n_kxP2o_MwjQ&libraries=places"></script>
+<script>
+    (function () {
+        'use strict';
+
+        var map = null;
+        var placeService = null;
+        var autocomplete = null;
+        var currentMarker = null;
+        var markers = [];
+
+        const getAddressFromComponents = function (components) {
+            console.log(components);
+            let address = '';
+            components.forEach(function (component) {
+                if (component.types.indexOf('route') > -1) {
+                    address = component.long_name;
+                }
+            });
+
+            return address;
+        };
+
+        const addMarker = (position, options = {}) => {
+            return new google.maps.Marker({
+                position,
+                map,
+                ...options,
+            });
+        };
+
+        const centerToPlace = function (place) {
+            const {
+                geometry: { location },
+                name,
+                address_components,
+            } = place;
+
+            let address = getAddressFromComponents(address_components || []) || name;
+
+            if (address) {
+                // Show Modal ở đây nè <------------- MODAL -------
+                // Remove House Number
+                if (/^[0-9\s\-]+/.test(address)) {
+                    address = address.replace(/^[0-9\s\-]+/, '');
+                }
+
+                const position = { lat: location.lat(), lng: location.lng() };
+
+                // Set Center point of searched place
+                map.setCenter(position);
+
+                // Add marker
+                if (currentMarker) {
+                    currentMarker.setMap(null);
+                }
+                currentMarker = addMarker(position, {
+                    title: address,
+                });
+
+                console.log(address);
+
+                // Set zoom value to 12 if address is not empty
+                map.setZoom(16);
+            }
+        };
+
+        // Init Map
+        (function initMap () {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 16.0585026,
+                    lng: 108.2024494,
+                },
+                zoom: 9,
+                mapTypeControl: false,
+                fullscreenControl: false,
+                streetViewControl: false,
+            });
+
+            // Init PlaceService
+            placeService = new google.maps.places.PlacesService(map);
+
+            // Init Autocomplete
+            autocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('search'),
+                {
+                    types: ['geocode']
+                }
+            );
+        })();
+
+        (function () {
+            'use strict';
+
+            // Registering click event on map
+            map.addListener('click', ({ latLng }) => {
+                const query = [latLng.lat(), latLng.lng()].join(',');
+                const params = { query };
+                placeService.textSearch(params, (results) => {
+                    if (results.length > 0) {
+                        centerToPlace(results[0]);
+                    }
+                });
+            });
+
+            // Registering place_chaged of autocomplete service
+            autocomplete.addListener('place_changed', () => {
+                centerToPlace(autocomplete.getPlace());
+            });
+        })();
+    })();
+</script>

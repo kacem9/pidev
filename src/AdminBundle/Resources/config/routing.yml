@@ -1,5 +1,5 @@
 admin_homepage:
-    path:     /
+    path:     /index
     defaults: { _controller: AdminBundle:Dashboard:index }
 admin_AfficherUser:
     path:     /AfficherUser

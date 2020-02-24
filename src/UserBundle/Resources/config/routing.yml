@@ -15,3 +15,18 @@ Homeaccessoires:
 Homevelo:
     path:     /Homevelo
     defaults: {_controller: UserBundle:Default:Homevelo }
+RoadBikeacceuil:
+    path:     /Homeveloacceuil
+    defaults: {_controller: UserBundle:Default:RoadBikeacceuil }
+KidsBikesacceuil:
+    path:     /KidsBikesacceuil
+    defaults: {_controller: UserBundle:Default:KidsBikesacceuil }
+MountainBikesacceuil:
+    path:     /MountainBikesacceuil
+    defaults: {_controller: UserBundle:Default:MountainBikesacceuil }
+SportsBikeacceuil:
+    path:     /SportsBikeacceuil
+    defaults: {_controller: UserBundle:Default:SportsBikeacceuil }
+CyclocrossBikeacceuil:
+    path:     /CyclocrossBike
+    defaults: {_controller: UserBundle:Default:CyclocrossBikeacceuil }

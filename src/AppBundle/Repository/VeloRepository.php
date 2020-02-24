@@ -9,5 +9,27 @@ namespace AppBundle\Repository;
  * repository methods below.
  */
 class VeloRepository extends \Doctrine\ORM\EntityRepository
-{
+{public function countAccepte()
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb
+            ->select('count(a.id)')
+            ->from($this->_entityName, 'a')
+            ->where('a.etatVendu = 1')
+            ->andwhere('a.etatLocation = 1')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+    public function countByMonth(){
+        $qb = $this->_em->createQueryBuilder();
+
+        return $qb
+            ->select('MONTH(a.heureDepart) AS month,count(a.id) as total')
+            ->where('YEAR(a.heureDepart) = YEAR(CURRENT_DATE())')
+            ->from($this->_entityName, 'a')
+            ->groupBy('month')
+            ->getQuery()
+            ->getResult();
+    }
 }

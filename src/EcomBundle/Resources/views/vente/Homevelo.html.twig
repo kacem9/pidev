@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends "EcomBundle::layout.html.twig" %}
 {% set title="vente vélos" %}
 {% block css %}
     <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
@@ -15,7 +15,9 @@
             <!-- Sorting -->
             <div class="widget">
                 <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <a class="form-control" href="{{  path("Dateasc") }}">date Ascendant </a>
 
+                    <a class="form-control" href="{{  path("Datedescendant") }}"> date Descendant</a>
 
                 </div>
 
@@ -53,7 +55,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                             {% endfor %}
 

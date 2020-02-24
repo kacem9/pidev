@@ -34,7 +34,7 @@
                         </div>
                         <div class="media-body align-self-center">
                             <div class="title text-twitter">Demandes acceptées</div>
-                            <div class="number"></div>
+                            <div class="number">{{demandeAccepte}}</div>
                         </div>
                     </div>
                 </div>
@@ -103,5 +103,86 @@
     <!-- Begin Page Snippets -->
     <script src="{{ asset('assets/js/dashboard/db-default.js') }}"></script>
 
+    <script>
+        var ctx = document.getElementById("demandes").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'roundedBar',
+            data: {
+                labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                datasets: [{
+                    label: 'Autorisation de sortie',
+                    data: {{autorisationSortieChart|raw}},
+                    borderColor: "#fff",
+                    backgroundColor: "#5d5386",
+                    hoverBackgroundColor: "#483d77"
+                }, {
+                    label: 'Demande conge',
+                    data: {{ demandeCongeChart|raw }},
+                    borderColor: "#fff",
+                    backgroundColor: "#007bff",
+                    hoverBackgroundColor: "#0055b1"
+                }, {
+                    label: 'Ordre de mission',
+                    data: {{ ordreMissionChart|raw }},
+                    borderColor: "#fff",
+                    backgroundColor: "#ffc107",
+                    hoverBackgroundColor: "#a47b00"
+                }, {
+                    label: 'Rapport d\'accident de travail',
+                    data: {{rapportAccidentChart|raw}},
+                    borderColor: "#fff",
+                    backgroundColor: "#5cb85c",
+                    hoverBackgroundColor: "#306e30"
+                }]
+            },
+            options: {
+                responsive: true,
+                barRoundness: 1,
+                tooltips: {
+                    backgroundColor: 'rgba(47, 49, 66, 0.8)',
+                    titleFontSize: 13,
+                    titleFontColor: '#fff',
+                    caretSize: 0,
+                    cornerRadius: 4,
+                    xPadding: 5,
+                    displayColors: false,
+                    yPadding: 5,
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        fontColor: "#2e3451",
+                        usePointStyle: true,
+                        padding: 50,
+                        fontSize: 13
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        barThickness: 20,
+                        stacked: false,
+                        gridLines: {
+                            drawBorder: false,
+                            display: false
+                        },
+                        ticks: {
+                            display: true
+                        }
+                    }],
+                    yAxes: [{
+                        stacked: false,
+                        gridLines: {
+                            drawBorder: false,
+                            display: false
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                }
+            }
+        });
 
+    </script>
 {% endblock %}

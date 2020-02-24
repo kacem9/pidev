@@ -10,6 +10,7 @@
 
 
     {% block body %}
+
         <div class="row">
             <div class="col-xl-12">
                 <!-- Sorting -->
@@ -55,4 +56,120 @@
                 </div>
             </div>
         </div>
+        <div id="map"></div>
+        <script href="{{ asset('assets/js/core/jquery.min.js') }}" ></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4N1uhqDRC55eqZ3ZrJ9S_OQ3nL4vPYKg&libraries=places"></script>
+        <script>
+            (function () {
+                'use strict';
+
+                var map = null;
+                var placeService = null;
+                var autocomplete = null;
+                var currentMarker = null;
+                var markers = [];
+
+                const getAddressFromComponents = function (components) {
+                    console.log(components);
+                    let address = '';
+                    components.forEach(function (component) {
+                        if (component.types.indexOf('route') > -1) {
+                            address = component.long_name;
+                        }
+                    });
+
+                    return address;
+                };
+
+                const addMarker = (position, options = {}) => {
+                    return new google.maps.Marker({
+                        position,
+                        map,
+                        ...options,
+                    });
+                };
+
+                const centerToPlace = function (place) {
+                    const {
+                        geometry: { location },
+                        name,
+                        address_components,
+                    } = place;
+
+                    let address = getAddressFromComponents(address_components || []) || name;
+
+                    if (address) {
+                        // Show Modal ở đây nè <------------- MODAL -------
+                        // Remove House Number
+                        if (/^[0-9\s\-]+/.test(address)) {
+                            address = address.replace(/^[0-9\s\-]+/, '');
+                        }
+
+                        const position = { lat: location.lat(), lng: location.lng() };
+
+                        // Set Center point of searched place
+                        map.setCenter(position);
+
+                        // Add marker
+                        if (currentMarker) {
+                            currentMarker.setMap(null);
+                        }
+                        currentMarker = addMarker(position, {
+                            title: address,
+                        });
+
+                        console.log(address);
+
+                        // Set zoom value to 12 if address is not empty
+                        map.setZoom(16);
+                    }
+                };
+
+                // Init Map
+                (function initMap () {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: 16.0585026,
+                            lng: 108.2024494,
+                        },
+                        zoom: 9,
+                        mapTypeControl: false,
+                        fullscreenControl: false,
+                        streetViewControl: false,
+                    });
+
+                    // Init PlaceService
+                    placeService = new google.maps.places.PlacesService(map);
+
+                    // Init Autocomplete
+                    autocomplete = new google.maps.places.Autocomplete(
+                        document.getElementById('form_localitsation_velo'),
+                        {
+                            types: ['geocode']
+                        }
+                    );
+                })();
+
+                (function () {
+                    'use strict';
+
+                    // Registering click event on map
+                    map.addListener('click', ({ latLng }) => {
+                        const query = [latLng.lat(), latLng.lng()].join(',');
+                        const params = { query };
+                        placeService.textSearch(params, (results) => {
+                            if (results.length > 0) {
+                                centerToPlace(results[0]);
+                            }
+                        });
+                    });
+
+                    // Registering place_chaged of autocomplete service
+                    autocomplete.addListener('place_changed', () => {
+                        centerToPlace(autocomplete.getPlace());
+                    });
+                })();
+            })();
+        </script>
+
     {% endblock %}

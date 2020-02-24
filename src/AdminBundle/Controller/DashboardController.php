@@ -15,15 +15,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+
 class DashboardController extends Controller
 {
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $velo = $em->getRepository('AppBundle:Velo')->countAccepte();
+        $veloChart = $this->formatChart($em->getRepository('AppBundle:Velo')->countByMonth());
 
+        $demandeAccepte = $velo;
 
-
-
-        return $this->render('@Admin/accueil.html.twig');
+        return $this->render('@Admin/accueil.html.twig',['demandeAccepte' => $demandeAccepte,
+            'veloChart' =>  $veloChart]);
     }
     public function AfficherUserAction()
     {
@@ -235,6 +239,17 @@ class DashboardController extends Controller
         }
         return $this->render('@Admin/Default/Update.html.twig', array('form' => $form->createView()));
 
+    }
+    public function formatChart($data){
+
+        $months =  array_fill_keys(range(1, 12), 0);
+
+
+        foreach($data as $item){
+            $months[$item['month']] = $item['total'];
+
+        }
+        return json_encode(array_values($months));
     }
 
 }

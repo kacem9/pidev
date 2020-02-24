@@ -1,0 +1,6 @@
+template_homepage:
+    path:     /
+    defaults: { _controller: TemplateBundle:Default:index }
+template:
+    path : /template
+    defaults: { _controller: TemplateBundle:Template:index}

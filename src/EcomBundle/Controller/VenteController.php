@@ -16,13 +16,17 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class VenteController extends Controller
 {
-    public function indexAction()
+    public function indexAction(SessionInterface $session)
     {
+
         return $this->render('@Ecom/index.html.twig');
     }
+public  function NewmapAction(){
+    return $this->render('@Ecom/vente/Newmap.html.twig');
+}
     public function locationAction( Request $request)
 
     {
@@ -334,20 +338,172 @@ class VenteController extends Controller
         return $this->render('@Ecom/vente/Updateproduits.html.twig', array('form' => $form->createView()));
 
     }
-    /*function RechercheAction(Request $request){
-        $velo=new Velo();
-        $Form=$this->createFormBuilder($velo)
-            ->add('categories', TextType::class)
-            ->add('Recherche',SubmitType::class)
-            ->getForm();
-        $Form->handleRequest($request);
-        if($Form->isSubmitted()){
+    public function RoadBikeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '5')
+            ->getQuery();
 
-            $velo=$this->getDoctrine()->getRepository(Velo::class)->findBy(array('categories'=>$velo->getCategories()));
+        $velos = $query->getResult();
+
+
+        return $this->render('@Ecom/Vente/Location.html.twig', array('velo' => $velos));
+    }
+
+    public function KidsBikesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '2')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@Ecom/Vente/Location.html.twig', array('velo' => $velos));
+    }
+
+    public function MountainBikesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '1')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@Ecom/vente/Location.html.twig', array('velo' => $velos));
+    }
+
+    public function SportsBikeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '3')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@Ecom/Vente/Location.html.twig', array('velo' => $velos));
+    }
+
+    public function CyclocrossBikeAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '4')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@Ecom/vente/Location.html.twig', array('velo' => $velos));
+    }
+
+    public function DateascAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->orderBy('v.datePublication', 'ASC')
+            ->getQuery();
+
+        $velos = $query->getResult();
+        return $this->render('@Ecom/vente/Location.html.twig', array('velo' => $velos));
+    }
+    public function DatedescendantAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->orderBy('v.datePublication', 'DESC')
+            ->getQuery();
+
+        $velos = $query->getResult();
+        return $this->render('@Ecom/vente/Location.html.twig', array('velo' => $velos));
+    }
+    public function PrixproduitsascAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:produits');
+        $query = $em->createQueryBuilder()
+            ->select('p')->from('AppBundle:produits', 'p')
+            ->orderBy('p.prix', 'ASC')
+            ->getQuery();
+
+        $produits = $query->getResult();
+        return $this->render('@Ecom/vente/Produits.html.twig', array('produits' => $produits));
+    }
+    public function PrixdescendantproduitAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:produits');
+        $query = $em->createQueryBuilder()
+            ->select('p')->from('AppBundle:produits', 'p')
+            ->orderBy('p.prix', 'DESC')
+            ->getQuery();
+
+        $produits = $query->getResult();
+        return $this->render('@Ecom/vente/Produits.html.twig', array('produits' => $produits));
+    }
+    //trie par catégorie
+    public function TriecAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->orderBy('v.categories')
+            ->getQuery();
+
+        $velos = $query->getResult();
+        return $this->render('@Ecom/vente/Location.html.twig', array('velo' => $velos));
+    }
+    public function searchAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $produits =  $em->getRepository('AppBundle:produits')->findEntitiesByString($requestString);
+        if(!$produits) {
+            $result['produits']['error'] = "produit Not found :( ";
+        } else {
+            $result['produits'] = $this->getRealEntities($produits);
         }
-        return $this->render('@Ecom/vente/Recherche.html.twig',
-            array('velo'=>$velo, 'f' => $Form->createView()));
+        return new Response(json_encode($result));
+    }
 
-    }*/
+
+    public function getRealEntities($produits){
+        foreach ($produits as $produit){
+            $realEntities[$produit->getId()] = [$produit->getNom()];
+
+        }
+        return $realEntities;
+    }
+
+
+
+
+
 
 }

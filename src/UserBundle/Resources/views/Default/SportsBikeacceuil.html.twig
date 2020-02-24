@@ -1,4 +1,4 @@
-{% extends 'layout.html.twig' %}
+{% extends "layout.html.twig" %}
 {% set title="vente vélos" %}
 {% block css %}
     <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
 {% endblock %}
-{% block velo %}
+{% block SportsBikeacceuil %}
 
 
     <div class="row">
@@ -49,11 +49,12 @@
                                         <div class="card-footer">
                                             <small class="text-muted">Publié le :{{ velo.datePublication|date('m/d/y') }}</small>
                                             <br>
+                                            <div  class="btn-group icon-only">
 
+                                            </div>
 
                                         </div>
                                     </div>
-
                                 </div>
                             {% endfor %}
 

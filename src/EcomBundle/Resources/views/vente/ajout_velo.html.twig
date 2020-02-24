@@ -3,14 +3,17 @@
 {% block css %}
     <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap" rel="stylesheet">
+
+
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+
 
 {% endblock %}
 
 
 
     {% block body %}
-        <div class="row">
+       <div class="row">
             <div class="col-xl-12">
                 <!-- Sorting -->
                 <div class="widget">
@@ -35,9 +38,12 @@
                             <div class="col-md-5">
                                 {{ form_row(form.description) }}
                             </div>
+
                             <div class="col-md-4">
-                                {{ form_row(form.localitsation_velo) }}
+                                {{ form_row(form.localitsation_velo)  }}
+
                             </div>
+
                             <div class="col-md-4">
                                 {{ form_row(form.photo) }}
                             </div>
@@ -54,9 +60,34 @@
                             </div>
                         </div>
                         <button class="btn btn-success btn-xs">Enregistrer</button>
+                        <!-- Autocomplete location search input -->
+
+
+
                         {{ form_end(form) }}
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id="map"></div>
+<script href="{{ asset('assets/js/core/jquery.min.js') }}" ></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4N1uhqDRC55eqZ3ZrJ9S_OQ3nL4vPYKg&libraries=places"></script>
+        <script>
+            (function () {
+                'use strict';
+
+                var autocomplete = null;
+                    // Init Autocomplete
+                    autocomplete = new google.maps.places.Autocomplete(
+                        document.getElementById('form_localitsation_velo'),
+                        {
+                            types: ['geocode']
+                        }
+                    );
+                })();
+
+
+        </script>
+
     {% endblock %}

@@ -72,7 +72,20 @@
                                         <li class="dropdown">
                                             <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vente</a>
                                             <ul class="dropdown-menu" aria-labelledby="dashboard">
-                                                <li><a href="{{ path('ecom_vente') }}" >Bike</a></li>
+                                                <li><a href="{{ path('ecom_vente') }}" >Bike</a>
+                                                    <ul class="dropdown-menu" aria-labelledby="components">
+                                                        <li > <a href="{{ path('KidsBikes') }}" class="submenu-title"> Kids Bikes  </a>
+                                                        </li>
+                                                        <li > <a href="{{ path('MountainBikes') }}" class="submenu-title"> Mountain Bike </a>
+                                                        </li>
+                                                        <li > <a href="{{ path('RoadBike') }}" class="submenu-title"> Road Bike  </a>
+                                                        </li>
+                                                        <li > <a href="{{ path('SportsBike') }}" class="submenu-title"> Sports Bike  </a>
+                                                        </li>
+                                                        <li class="dropdown-submenu"> <a href="{{ path('CyclocrossBike') }}" class="submenu-title"> Cyclocross Bike </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
                                                 <li><a href="{{ path('ecom_produits') }}" >Part of bike </a></li>
 
                                             </ul>
@@ -100,9 +113,8 @@
                 </div>
                 <!-- Begin Navbar Menu -->
 
-                <form class="navbar-form navbar-right" method="post" action="">
-                    <input type="text" class="form-control" placeholder="Search..." >
-                </form>
+
+
                     </li>
                     <!-- End Notifications -->
                     <!-- User -->
@@ -170,6 +182,11 @@
                 <!-- End Row -->
             </div>
             <!-- End Container -->
+            {% block CyclocrossBike %}{% endblock %}
+            {% block RoadBike %}{% endblock %}
+            {% block KidsBikes %}{% endblock %}
+            {% block MountainBikes %}{% endblock %}
+            {% block SportsBike %}{% endblock %}
             <!-- Begin Page Footer-->
             <div class="foot-power" style="color: #fff;
     padding: 12px 0;
@@ -237,7 +254,10 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
 {% block js %}{% endblock %}
+
 <!-- Socket io Notification -->
+
+
 
 
 <!-- end notification -->

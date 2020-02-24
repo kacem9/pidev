@@ -16,7 +16,6 @@ ecom_formulaire:
 ecom_vente:
     path:     /ecom_vente
     defaults: { _controller: EcomBundle:Vente:location }
-
 ecom_vente_id:
     path:     /ecom_vente/{id}
     defaults: { _controller: EcomBundle:Vente:locationId }
@@ -35,3 +34,40 @@ Deleteproduits:
 Updateproduits:
     path:     /Updateproduits/{id}
     defaults: {_controller: EcomBundle:Vente:Updatep }
+RoadBike:
+    path:     /RoadBike
+    defaults: {_controller: EcomBundle:Vente:RoadBike }
+KidsBikes:
+    path:     /KidsBikes
+    defaults: {_controller: EcomBundle:Vente:KidsBikes }
+CyclocrossBike:
+    path:     /CyclocrossBike
+    defaults: {_controller: EcomBundle:Vente:CyclocrossBike }
+MountainBikes:
+  path:     /MountainBikes
+  defaults: {_controller: EcomBundle:Vente:MountainBikes }
+SportsBike:
+    path:     /SportsBike
+    defaults: {_controller: EcomBundle:Vente:SportsBike }
+Datedescendant:
+    path:     /Datedescendant
+    defaults: {_controller: EcomBundle:Vente:Datedescendant }
+Dateasc:
+    path:     /Dateasc
+    defaults: {_controller: EcomBundle:Vente:Dateasc }
+Prixproduitsasc:
+    path:     /Prixproduitsasc
+    defaults: {_controller: EcomBundle:Vente:Prixproduitsasc }
+Prixdescendantproduit:
+    path:     /Prixdescendantproduit
+    defaults: {_controller: EcomBundle:Vente:Prixdescendantproduit }
+Triec:
+    path:     /Triec
+    defaults: {_controller: EcomBundle:Vente:Triec }
+Newmap:
+    path:     /Newmap
+    defaults: {_controller: EcomBundle:Vente:Newmap }
+search:
+    path:     /search
+    defaults: {_controller: EcomBundle:Vente:search }
+

@@ -164,7 +164,86 @@ class DefaultController extends Controller
 
 
 
-        return $this->render('@User/Default/Homevelo.html.twig',array('velo'=>$velo))
-            ;
+        return $this->render('@User/Default/Homevelo.html.twig',array('velo'=>$velo));
     }
+    public function RoadBikeacceuilAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '5')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@User/Default/RoadBikeacceuil.twig', array('velo' => $velos));
+    }
+
+    public function KidsBikesacceuilAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '2')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@User/Default/KidsBikesacceuil.twig', array('velo' => $velos));
+    }
+
+    public function MountainBikesacceuilAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '1')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@User/Default/MountainBikesacceuil.html.twig', array('velo' => $velos));
+    }
+
+    public function SportsBikeacceuilAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '3')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@User/Default/SportsBikeacceuil.html.twig', array('velo' => $velos));
+    }
+
+    public function CyclocrossBikeacceuilAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Velo');
+        $query = $em->createQueryBuilder()
+            ->select('v')->from('AppBundle:Velo', 'v')
+            ->where('v.categories = :categories')
+            ->setParameter('categories', '4')
+            ->getQuery();
+
+        $velos = $query->getResult();
+
+
+        return $this->render('@User/Default/CyclocrossBikeacceuil.html.twig', array('velo' => $velos));
+    }
+
 }

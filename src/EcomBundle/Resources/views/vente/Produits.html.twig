@@ -14,11 +14,35 @@
         <div class="widget">
             <div class="widget-header bordered no-actions d-flex align-items-center">
                 <h2> Liste  des produits </h2>
-                <div class="widget-options">
+                <div class="sidebar-search">
 
-                    <a href="{{ path("ecom_formulaire_produits") }}" class="btn btn-success">Ajouter un accessoire </a>
+                    <div class="input-group custom-search-form">
 
-            </div>
+                        <input type="text" id="search_produits" class="form-control" placeholder="Search here">
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="#"><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level" id="entitiesNav">
+                        </ul>
+                    </li>
+                </ul><br><br><br><br>
+
+                <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by price</a>
+                        <ul class="dropdown-menu" aria-labelledby="dashboard">
+                            <li><a href="{{ path('Prixproduitsasc') }}" >Ascending Price</a>
+
+                            </li>
+                            <li><a href="{{ path('Prixdescendantproduit') }}" >Descending price
+                                </a></li>
+
+                        </ul>
+                    </li>
+                &nbsp;&nbsp;&nbsp;
+                <a href="{{ path("ecom_formulaire_produits") }}" class="btn btn-success">Ajouter un accessoire </a>
             </div>
 
             <div class="widget-body">
@@ -70,9 +94,56 @@
     </div>
 </div>
             {% endblock %}
-            {% block js %}
+
+            {% block javascripts %}
                 <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
                 <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+                <script src="{{ asset('assets/js/jquery.js') }}"></script>
+
+              {#<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>#}
+
+                <script>
+                    $(document).ready(function() {
+                        var searchRequest = null;
+                        $("#search_produits").keyup(function() {
+                            var minlength = 1;
+                            var that = this;
+                            var value = $(this).val();
+                            var entitySelector = $("#entitiesNav").html('');
+                            if (value.length >= minlength ) {
+                                if (searchRequest != null)
+                                    searchRequest.abort();
+                                searchRequest =
+                                    $.ajax({
+                                    type: "GET",
+                                    url: "{{ path('search') }}",
+                                    data: {
+                                        'q' : value
+                                    },
+                                    dataType: "text",
+                                    success: function(msg){
+                                        //we need to check if the value is the same
+                                        if (value===$(that).val()) {
+                                            var result = JSON.parse(msg);
+                                            $.each(result, function(key, arr) {
+                                                $.each(arr, function(id, value) {
+                                                    if (key === 'produits') {
+                                                        if (id !== 'error') {
+                                                            console.log(value[1]);
+                                                            entitySelector.append('<li><a href="/produits/'+id+'">'+value+'</a></li>');
+                                                        } else {
+                                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
                 <script>
                     $(function () {
                         dtable = $('.table').DataTable({
