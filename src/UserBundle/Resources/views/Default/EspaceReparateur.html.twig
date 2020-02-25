@@ -1,0 +1,115 @@
+{% extends "EcommerceBundle::base.html.twig" %}
+
+
+{% set title="Espace Reparateur" %}
+
+{% block css %}
+<link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+    <style>
+
+        a:link{
+            color:#1DAAA1;
+
+        }
+        a:visited{
+            color:green;
+        }
+        a:hover{
+            background: #ff0000;
+            color: #FFF;
+        }
+
+
+    </style>
+    <h1> List of my request appointments</h1>
+
+    <div class="row">
+      Search :  <input id="myInput" type="text">
+
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="myTable" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Last name</th>
+
+                                <th>name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Message</th>
+                                <th>Breakdown type</th>
+                                <th>Phone number</th>
+
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for rendezvous in rendezvous %}
+                              <tr>
+                                  <td>{{ rendezvous.nom }}</td>
+
+                                  <td>{{ rendezvous.prenom}}</td>
+                                  <td>{{ rendezvous.email }}</td>
+                                  <td>{{ rendezvous.adresse }}</td>
+
+                                  <td>{{ rendezvous.message}}</td>
+                                  <td>{{ rendezvous.typepanne}}</td>
+                                  <td>{{ rendezvous.numtel}}</td>
+                                  <td> <a href="{{ path('del', {'cin': rendezvous.cin}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                               <td>   <a href="{{ path('validrendezvous', {'id':  rendezvous.cin}) }}" id="rendezvous">Valider</a></td>
+                                  <td> <span class="isDisabled">  <a href="{{ path('refuserrendezvous', {'id':  rendezvous.cin}) }}" id="rendezvouss" class="undo_link">Refuser</a></span></td>
+                                  <p id="demo"></p>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style> h1{
+            text-align: center;
+            color:red;
+        }</style>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+
+
+    </script>
+
+{% endblock %}

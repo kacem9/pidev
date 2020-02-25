@@ -1,0 +1,72 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="list of participation" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+                    <h2> list of participation</h2>
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>identification</th>
+                                <th>Customer name</th>
+                                <th>Name of the event</th>
+
+                                <th>delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for part in part %}
+                                <tr>
+                                    <td>{{ part.getIdParticipation() }}</td>
+                                    <td>{{ part.getUser().nom}}</td>
+                                    <td>{{ part.getEvent().nom }}</td>
+                                    <td class="td-actions">
+
+                                        <a href="{{ path('admin_supprimer_participation', {'id_participation': part.getIdParticipation()}) }}" class="delete-button"><i class="la la-close delete"></i></a>
+
+
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">No record found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+        });
+    </script>
+{% endblock %}

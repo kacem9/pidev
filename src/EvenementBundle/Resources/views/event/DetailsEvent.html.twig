@@ -1,0 +1,59 @@
+{% extends "EvenementBundle::layout.html.twig" %}
+{% set title="Welcome To the World of bikes" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+ {% block body %}
+     <div class="widget has-shadow">
+         <div class="widget-header bordered no-actions d-flex align-items-center">
+             <h4>Details : {{ event.nom }}</h4>
+         </div>
+         <div class="widget-body">
+             <ul class="list-group">
+          <center><img class=""  width="150" src="{{ asset('uploads/admin/' ~ event.photo) }}" alt="Card image cap"/></center>
+                 <li class=""><b>Description:</b> {{ event.description }}</li>
+                 <li class=""><b>Category :</b> {{ event.getCategoriesEvent().type }}</li>
+                 <li class=""><b>Location :</b> {{ event.lieuEvent }}</li>
+                 <li class=""><b>Number of participants :</b> {{ event.nbrParticipant }}</li>
+                 <li class=""><b>Price :</b> {{ event.prix }}</li>
+                 <li class=""><b>Event date :</b> {{ event.dateEvent|date('m/d/y') }}</li>
+
+             </ul>
+
+         </div>
+
+     </div>
+
+ {% endblock %}
+    {% block js %}
+        <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+        <script>
+            $(function () {
+                dtable = $('.table').DataTable({
+                    responsive: true,
+                    "language": {
+                        "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                    }
+                });
+                $('.filter').on('keyup change', function() {
+
+                    dtable.search('');
+                    dtable.column(3).search(this.value).draw();
+                });
+
+                $(".dataTables_filter input").on('keyup change', function() {
+
+                    dtable.columns().search('');
+
+                    $('.filter').val('');
+                });
+            });
+        </script>
+    {% endblock %}

@@ -1,0 +1,198 @@
+{% extends 'layout.html.twig' %}
+
+
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+{% endblock %}
+{% block reparation %}
+    <body>
+    <h2> <strong> Formulaire De Contact</strong> </h2>
+    <hr> <h3><p> Contacter nous </p></h3>
+    {{ form_start (form) }}
+    <table>
+        <tr>
+            <td> Nom </td>
+            <td> {{ form_widget (form.nom) }} </td>
+        </tr>
+        <tr>
+            <td> Prenom </td>
+            <td> {{ form_widget (form.prenom) }} </td>
+        </tr>
+        <tr>
+            <td> Téléphone </td>
+            <td> {{ form_widget (form.tel) }} </td>
+        </tr>
+        <tr>
+            <td> Email </td>
+            <td> {{ form_widget (form.email) }} </td>
+        </tr>
+        <tr>
+            <td> Text </td>
+            <td> {{ form_widget (form.text) }} </td>
+        </tr>
+    </table>
+    {{ form_end (form) }}
+    </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {% endblock %}
+
+            {% block js %}
+                <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+                <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+                <script>
+                    $(function () {
+                        dtable = $('.table').DataTable({
+                            responsive: true,
+                            "language": {
+                                "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                            }
+                        });
+                        $('.filter').on('keyup change', function() {
+
+                            dtable.search('');
+                            dtable.column(3).search(this.value).draw();
+                        });
+
+                        $(".dataTables_filter input").on('keyup change', function() {
+
+                            dtable.columns().search('');
+
+                            $('.filter').val('');
+                        });
+                    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    jQuery(document).ready(function() {
+                        var searchRequest = null;
+                        $("#search").keyup(function() {
+                            var minlength = 1;
+                            var that = this;
+                            var value = $(this).val();
+                            var entitySelector = $("#entitiesNav").html('');
+                            if (value.length >= minlength ) {
+                                if (searchRequest != null)
+                                    searchRequest.abort();
+                                searchRequest = $.ajax({
+                                    type: "GET",
+                                    url: "{{ path('ajax_search') }}",
+                                    data: {
+                                        'q' : value
+                                    },
+                                    dataType: "text",
+                                    success: function(msg){
+                                        //we need to check if the value is the same
+                                        if (value===$(that).val()) {
+                                            var result = JSON.parse(msg);
+                                            $.each(result, function(key, arr) {
+                                                $.each(arr, function(id, value) {
+                                                    if (key === 'rendezvous') {
+                                                        if (id !== 'error') {
+                                                            console.log(value[1]);
+                                                            entitySelector.append('<li><b>'+value[1]+'</b><a href="/EspaceAcheteur/'+id+'">'+'<img src="/uploads/admin/'+value[0]+'" style="width: 50px; height: 50px"/>'+'</a></li>');
+                                                        } else {
+                                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+            {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

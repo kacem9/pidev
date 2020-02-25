@@ -1,0 +1,81 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Dashboard:index }
+admin_AfficherUser:
+    path:     /AfficherUser
+    defaults: { _controller: AdminBundle:Dashboard:AfficherUserBack }
+admin_ajouter_user:
+    path:     /ajouteruser
+    defaults: { _controller: AdminBundle:Dashboard:AjouterUserBack }
+admin_supprimer_user:
+    path:     /supprimeruser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerUserBack }
+admin_modifier_user:
+    path:     /modifieruser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ModifierUserBack }
+admin_details_user:
+    path:     /detailsuser/{id}
+    defaults: { _controller: AdminBundle:Dashboard:detailsUserBack }
+admin_afficher_event:
+    path:     /Afficherevent
+    defaults: { _controller: AdminBundle:Dashboard:AfficherEventBack }
+admin_ajouter_event:
+    path:     /Ajouterevent
+    defaults: { _controller: AdminBundle:Dashboard:AjouterEventBack }
+admin_supprimer_event:
+    path:     /supprimerevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerEventBack }
+admin_modifier_event:
+    path:     /modifierevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ModifierEventBack }
+admin_details_event:
+    path:     /detailsevent/{id}
+    defaults: { _controller: AdminBundle:Dashboard:detailsEventBack }
+admin_valider_event:
+    path: /valider_event/{id}
+    defaults: { _controller: AdminBundle:Dashboard:ValiderEvent }
+admin_participation_event:
+    path: /part_event
+    defaults: { _controller: AdminBundle:Dashboard:AfficheParticipation }
+admin_supprimer_participation:
+    path:     /supprimerpart/{id_participation}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerParticipation  }
+admin_comment_event:
+    path:     /comm_event
+    defaults: { _controller: AdminBundle:Dashboard:AfficheCommentaire }
+admin_supprimer_comment:
+    path:     /supprimercom/{id_com}
+    defaults: { _controller: AdminBundle:Dashboard:SupprimerComment  }
+Ajouter:
+    path:     /Ajouter
+    defaults: { _controller: AdminBundle:Dashboard:Ajouter}
+actualitemodifier:
+    path:     /actualitemodifier/{id}
+    defaults: { _controller: AdminBundle:Dashboard:modifieractualite}
+Affiche:
+    path:     /Affiche
+    defaults: { _controller: AdminBundle:Dashboard:Affiche}
+Supprimer:
+    path:     /Supprimer/{id}
+    defaults: { _controller: AdminBundle:Dashboard:Supprimer}
+Reparateurs:
+    path:     /Reparateurs
+    defaults: { _controller: AdminBundle:Dashboard:Reparateurs}
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: AdminBundle:Dashboard:delete}
+adminReclamation:
+    path:     /adminReclamation
+    defaults: { _controller: AdminBundle:Dashboard:adminReclamation}
+delReclamation:
+    path:     /delReclamation/{reference}
+    defaults: { _controller: AdminBundle:Dashboard:delReclamation}
+repondre:
+    path:     /repondre/{reference}
+    defaults: { _controller: AdminBundle:Dashboard:repondre}
+likedescendant:
+    path:     /likedescendant
+    defaults: { _controller: AdminBundle:Dashboard:likedescendant}
+likeascendant:
+    path:     /likeascendant
+    defaults: { _controller: AdminBundle:Dashboard:likeascendant}

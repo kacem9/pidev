@@ -1,0 +1,44 @@
+{% extends "AdminBundle::layout.html.twig" %}
+{% set title="list of repairers" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+
+    {% block body %}
+        <div class="row">
+            {% for Reparateurs in Reparateurs  %}
+
+                <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                    <div class="card">
+                        <img class="card-img-top" src="{{ asset('uploads/admin/' ~ Reparateurs.Photo) }}" alt="Card image cap"/>
+                        <div class="card-block">
+                            <h4 class="card-title">Name: {{ Reparateurs.username }}</h4>
+                            <p class="card-text">Email: {{Reparateurs.email }}</p>
+                            <p class="card-text">Phone number : {{Reparateurs.numTel }}</p>
+                            <p class="card-text">ID_Card: {{Reparateurs.cin }}</p>
+
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{ Reparateurs .username }}</small>
+                            <br>
+
+
+                            <td> <a href="{{ path('delete', {'id': Reparateurs.id}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+        </div>
+    {% endblock %}

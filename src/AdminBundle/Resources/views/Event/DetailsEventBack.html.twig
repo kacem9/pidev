@@ -1,0 +1,37 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% set title="Event management" %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+    <div class="widget has-shadow">
+        <div class="widget-header bordered no-actions d-flex align-items-center">
+            <h4>Details </h4>
+        </div>
+        <div class="widget-body">
+            <ul class="list-group">
+                <img class="list-group-item"  width="100" src="{{ asset('uploads/admin/' ~ event.photo) }}" alt="Card image cap"/>
+                <li class="list-group-item"><b>Name of the event :</b> {{ event.nom }}</li>
+                <li class="list-group-item"><b>Description:</b> {{ event.description }}</li>
+                <li class="list-group-item"><b>Category :</b> {{ event.getCategoriesEvent().type }}</li>
+                <li class="list-group-item"><b>Location of the event:</b> {{ event.lieuEvent }}</li>
+                <li class="list-group-item"><b>Number of participants :</b> {{ event.nbrParticipant }}</li>
+                <li class="list-group-item"><b>Price :</b> {{ event.prix }}</li>
+                <li class="list-group-item"><b>Event date :</b> {{ event.dateEvent|date('m/d/y') }}</li>
+
+            </ul>
+
+        </div>
+
+        <div class="widget-options">
+            <a href="{{ path('admin_valider_event',{'id':event.id}) }}" class="btn btn-success">Validate</a>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
