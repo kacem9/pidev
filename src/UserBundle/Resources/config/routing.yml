@@ -1,74 +1,56 @@
 user_page_homepage:
     path:     /
     defaults: { _controller: UserBundle:Default:index }
+
 user_inscription:
     path:     /register
     defaults: { _controller: UserBundle:Default:inscription}
-list_event:
-    path: /list_event
-    defaults: { _controller: UserBundle:Default:Event}
-EspaceAcheteur:
-    path:     /EspaceAcheteur
-    defaults: { _controller: UserBundle:Default:EspaceAcheteur}
-rendezvous:
-    path:     /rendezvous/{id}
-    defaults: { _controller: UserBundle:Default:rendezvous}
-EspaceReparateur:
-    path:     /EspaceReparateur
-    defaults: { _controller: UserBundle:Default:EspaceReparateur}
-EspaceRdv:
-    path:     /EspaceRdv/{id}
-    defaults: { _controller: UserBundle:Default:EspaceRdv}
-index:
-    path:     /index
-    defaults: { _controller: UserBundle:Default:indexx }
-Reparateurs:
-    path:     /Reparateurs
-    defaults: { _controller: UserBundle:Default:Reparateurs }
-mail:
-    path:     /mail
-    defaults: { _controller: UserBundle:Default:mail}
-del:
-    path:     /del/{cin}
-    defaults: { _controller: UserBundle:Default:del}
-validrendezvous:
-    path:     /validrendezvous/{id}
-    defaults: { _controller: UserBundle:Default:validrendezvous}
-listrendezvous:
-    path:     /listrendezvous
-    defaults: { _controller: UserBundle:Default:listrendezvous}
-MaRendezVousValid:
-    path:     /MaRendezVousValid
-    defaults: { _controller: UserBundle:Default:MaRendezVousValid}
-reclamation:
-    path:     /reclamation
-    defaults: { _controller: UserBundle:Default:reclamation}
-mesreclamation:
-    path:     /mesreclamation
-    defaults: { _controller: UserBundle:Default:mesreclamation}
-Suppreclamation:
-    path:     /Suppreclamation/{reference}
-    defaults: { _controller: UserBundle:Default:Suppreclamation}
-Modifireclamation:
-    path:     /Modifireclamation/{reference}
-    defaults: { _controller: UserBundle:Default:Modifireclamation}
-Suppriml:
-    path:     /Suppriml/{reference}
-    defaults: { _controller: UserBundle:Default:Suppriml}
-Supprimes:
-    path:     /Supprimes/{Cin}
-    defaults: { _controller: UserBundle:Default:Supprimes}
-Modifirendezvous:
-    path:     /Modifirendezvous/{Cin}
-    defaults: { _controller: UserBundle:Default:Modifirendezvous}
-refuserrendezvous:
-    path:     /refuserrendezvous/{id}
-    defaults: { _controller: UserBundle:Default:refuserrendezvous}
-blog:
-    path:     /blog
-    defaults: { _controller: UserBundle:Default:blog}
-ajouterUneEtoile:
-    path:     /ajouterUneEtoile/{id}/{nombre}
-    defaults: { _controller: UserBundle:Default:ajouterUneEtoile }
-
+list_reparations:
+    path:     /list
+    defaults: { _controller: UserBundle:Default:Reparateurs}
+Location_user:
+    path:     /Location_user
+    defaults: { _controller: UserBundle:Velo:location}
+Affichervelo_user:
+    path:     /Affichervelo_user/{id}
+    defaults: { _controller: UserBundle:Default:Affichervelo}
+RoadBike_user:
+    path:     /RoadBike_user
+    defaults: { _controller: UserBundle:Velo:RoadBike}
+KidsBikes_user:
+    path:     /KidsBikes_user
+    defaults: { _controller: UserBundle:Velo:KidsBikes}
+MountainBikes_user :
+    path:     /MountainBikes_user
+    defaults: { _controller: UserBundle:Velo:MountainBikes}
+SportsBike_user:
+    path:     /SportsBike_user
+    defaults: { _controller: UserBundle:Velo:SportsBike}
+CyclocrossBike_user:
+    path:     /CyclocrossBike_user
+    defaults: { _controller: UserBundle:Velo:CyclocrossBike}
+prixasc_produits_user:
+    path:     /prixasc-prixasc_produits_user
+    defaults: { _controller: UserBundle:Velo:prixasc }
+prixdesc_produits_user:
+    path:     /prixdesc_produits_user
+    defaults: { _controller: UserBundle:Velo:prixdescendant }
+RoadBike_userA:
+    path:     /RoadBikeA
+    defaults: { _controller: UserBundle:Default:RoadBikeA}
+KidsBikes_userA:
+    path:     /KidsBikesA
+    defaults: { _controller: UserBundle:Default:KidsBikesA}
+MountainBikes_userA :
+    path:     /MountainBikesA
+    defaults: { _controller: UserBundle:Default:MountainBikesA}
+SportsBike_userA:
+    path:     /SportsBikeA
+    defaults: { _controller: UserBundle:Default:SportsBikeA}
+CyclocrossBike_userA:
+    path:     /CyclocrossBikeA
+    defaults: { _controller: UserBundle:Default:CyclocrossBikeA}
+Homeaccessoires:
+    path:     /Homeaccessoires
+    defaults: { _controller: UserBundle:Default:Homeaccessoires}
 

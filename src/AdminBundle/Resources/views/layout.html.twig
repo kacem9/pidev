@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ title|default('') }} | </title>
+    <title>{{ title|default('') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -108,10 +108,36 @@
                             <span>News</span>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ path('admin_listeCategories') }}">
+                            <i class="la la-align-justify"></i>
+
+                            <span>Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ListeVelolouer') }}">
+                            <i class="la la-motorcycle"></i>
+                            <span>List of bike of location </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_velo') }}">
+                            <i class="la la-motorcycle"></i>
+                            <span>List of bike  </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_ produits') }}">
+                            <i class="la la-motorcycle"></i>
+                            <span>List of parts  </span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ path('admin_AfficherUser') }}">
                             <i class="la la-users"></i>
-                            <span>users</span>
+                            <span>Users</span>
                         </a>
                     </li>
                     <li>
@@ -120,26 +146,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_participation_event') }}">
-                            <i class="la la-calendar"></i>                            <span>list of participants</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_comment_event') }}">
-                            <i class="la la-newspaper-o"></i>
-                            <span>comment list</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ path('adminReclamation') }}">
                             <i class="la la-exclamation-circle"></i>
-                            <span>Reclamation</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('Reparateurs') }}">
-                            <i class="la la-users"></i>
-                            <span>Repairers</span>
+                            <span>Reclamations</span>
                         </a>
                     </li>
                 </ul>
@@ -171,24 +180,7 @@
                     {% endfor %}
                 {% endfor %}
 
-
                 {% block body %}
-                {% endblock %}
-                {% block modifier %}
-                {% endblock %}
-                {% block affiche %}
-                {% endblock %}
-                {% block Reparateurs %}
-
-                {% endblock %}
-                {% block Reclamation %}
-
-                {% endblock %}
-                {% block  Modifireclamation %}
-
-                {% endblock %}
-                {% block  adminReclamation %}
-
                 {% endblock %}
                 <!-- End Row -->
             </div>

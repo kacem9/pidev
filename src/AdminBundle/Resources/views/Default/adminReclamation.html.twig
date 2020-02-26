@@ -1,18 +1,16 @@
 {% extends "AdminBundle::layout.html.twig" %}
-{% set title=" Liste des reclamations" %}
+{% set title=" List of reclamations" %}
 {% block css %}
 {% endblock %}
 
 
-{% block adminReclamation %}
+{% block body %}
 
     <div class="row">
         <div class="col-xl-12">
             <!-- Sorting -->
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center">
-                     <td> <a href="{{ path('Ajouter') }}" class="padding-bottom-10"> Add </a></td>
-
                 </div>
                 <div class="widget-body">
                     <div class="table-responsive">
@@ -45,8 +43,8 @@
                                     <td>{{ reclamation.message}}</td>
                                     <td>{{ reclamation.numtel}}</td>
 
-                                    <td> <a href="{{ path('delReclamation', {'reference': reclamation.reference}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
-                                    <td>   <a href="{{ path('repondre', {'reference':  reclamation.reference}) }}" id="repondre">Repondre</a></td>
+                                    <td> <a href="{{ path('delReclamation', {'reference':reclamation.reference}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                                    <td>   <a href="{{ path('repondre', {'reference': reclamation.reference}) }}" id="repondre">Repondre</a></td>
                                 </tr>
                             {% else %}
                                 <tr>

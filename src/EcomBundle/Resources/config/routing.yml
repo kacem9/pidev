@@ -7,15 +7,81 @@ ecom_location:
 ecom_formulaire:
     path:     /formulaire
     defaults: { _controller: EcomBundle:Default:formulaire }
-ecom_vente:
-    path:     /ecom_vente
-    defaults: { _controller: EcomBundle:Vente:location }
-ecom_formulaire_vente:
-    path:     /formulaire_vente
-    defaults: { _controller: EcomBundle:Vente:formulaire }
+ecom_formulaireUpdate:
+    path:     /formulaireUpdate{id}
+    defaults: { _controller: EcomBundle:Default:updateformulaire }
 ecom_Deletelocation:
     path:     /ecom_Deletelocation:{id}
     defaults: { _controller: EcomBundle:Default:Deletelocation }
-ecom_Deletevente:
-    path:     /ecom_Deletevente{id}
-    defaults: { _controller: EcomBundle:Vente:Deletevente }
+Delete:
+    path:     /Delete{id}
+    defaults: { _controller: EcomBundle:Vente:Delete }
+Update:
+    path: /Update/{id}
+    defaults: {_controller: EcomBundle:Vente:Update}
+ecom_formulaireVelo:
+    path:     /formulaire
+    defaults: { _controller: EcomBundle:Vente:formulaireVelo }
+ecom_affichervelo:
+    path:     /ecom_affichervelo
+    defaults: { _controller: EcomBundle:Vente:affichervelo }
+ecom_vente_id:
+    path:     /ecom_vente/{id}
+    defaults: { _controller: EcomBundle:Vente:locationId }
+ecom_formulaire_vente:
+    path:     /formulaire_vente
+    defaults: { _controller: EcomBundle:Vente:formulaireVelo }
+ecom_formulaire_produits:
+    path:     /formulaire_produits
+    defaults: { _controller: EcomBundle:Vente:Produitsadd }
+ecom_produits:
+    path:     /produits
+    defaults: { _controller: EcomBundle:Vente:produits }
+Deleteproduits:
+    path:     /Deleteproduits/{id}
+    defaults: { _controller: EcomBundle:Vente:Deletep }
+Updateproduits:
+    path:     /Updateproduits/{id}
+    defaults: {_controller: EcomBundle:Vente:Updatep }
+RoadBike:
+    path:     /RoadBike
+    defaults: {_controller: EcomBundle:Vente:RoadBike }
+KidsBikes:
+    path:     /KidsBikes
+    defaults: {_controller: EcomBundle:Vente:KidsBikes }
+CyclocrossBike:
+    path:     /CyclocrossBike
+    defaults: {_controller: EcomBundle:Vente:CyclocrossBike }
+MountainBikes:
+    path:     /MountainBikes
+    defaults: {_controller: EcomBundle:Vente:MountainBikes }
+SportsBike:
+    path:     /SportsBike
+    defaults: {_controller: EcomBundle:Vente:SportsBike }
+Datedescendant:
+    path:     /Datedescendant
+    defaults: {_controller: EcomBundle:Vente:Datedescendant }
+Dateasc:
+    path:     /Dateasc
+    defaults: {_controller: EcomBundle:Vente:Dateasc }
+Prixproduitsasc:
+    path:     /Prixproduitsasc
+    defaults: {_controller: EcomBundle:Vente:Prixproduitsasc }
+Prixdescendantproduit:
+    path:     /Prixdescendantproduit
+    defaults: {_controller: EcomBundle:Vente:Prixdescendantproduit }
+Triec:
+    path:     /Triec
+    defaults: {_controller: EcomBundle:Vente:Triec }
+Newmap:
+    path:     /Newmap
+    defaults: {_controller: EcomBundle:Vente:Newmap }
+search:
+    path:     /search
+    defaults: {_controller: EcomBundle:Vente:search }
+CommentActV:
+    path:   /CommentActV
+    defaults: { _controller: EcomBundle:Default:CommentActV }
+ajouterUneEtoileV :
+    path:   /ajouterUneEtoileV/{id}/{nombre}
+    defaults: { _controller: EcomBundle:Default:ajouterUneEtoileV }

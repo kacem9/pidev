@@ -4,13 +4,45 @@
 {% endblock %}
 
 
-{% block affiche %}
+{% block body %}
     <div class="row">
         <div class="col-xl-12">
             <!-- Sorting -->
             <div class="widget has-shadow">
                 <div class="widget-header bordered no-actions d-flex align-items-center">
-                    <h2> News list</h2> <td> <a href="{{ path('Ajouter') }}" class="padding-bottom-10"> Add </a></td>
+                    <h2><li>  <a href="{{ path('admin_ ajouteractualite') }}" class="padding-bottom-10"> Add </a> </li></h2>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by like</a>
+                        <ul class="dropdown-menu" aria-labelledby="dashboard">
+                            <li><a href="{{ path('likeascendant') }}" >ascending By number like
+                                </a>
+
+                            </li>
+                            <li><a href="{{ path('likedescendant') }}" >Descending By number like</a>
+
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 </div>
                 <div class="widget-body">
@@ -23,6 +55,7 @@
                                 <th>Description</th>
                                 <th>Post Date</th>
                                 <th>Photo</th>
+                                <th>Number like</th>
                                 <th>Action</th>
 
                             </tr>
@@ -37,9 +70,11 @@
 
                                     <td>{{ actualite.description}}</td>
                                     <td>{{ actualite.datePublication ? actualite.datePublication|date('Y-m-d') : '' }}</td>
-                                    <td> <img  src="{{ asset('uploads/actualite/' ~ actualite.image) }}" /></td>
-                                   <td><a href="{{ path('actualitemodifier', {'id': actualite.id}) }}"><i class="la la-edit edit"></i></a></td>
-                                   <td> <a href="{{ path('Supprimer', {'id': actualite.id}) }}" class="delete-button"><i class="la la-close delete"></i></a> </td>
+                                    <td> <img  src="{{ asset('uploads/actualite/' ~ actualite.image ) | imagine_filter('my_thumb') }}" /></td>
+                                    <td><img src="{{ asset('/images/like.png') }}" width="25px" height="25px" class="etoileVide1"> {{ actualite.nbrLike}}</td>
+                                    <td><a href="{{ path('actualitemodifier', {'id': actualite.id}) }}"><i class="la la-edit edit"></i></a>
+                                     <a href="{{ path('Supprimer', {'id': actualite.id}) }}" class="delete-button"><i class="la la-close delete"></i></a>
+                                    </td>
 
 
 
@@ -58,6 +93,4 @@
         </div>
     </div>
 
-{% endblock %}
-{% block js %}
 {% endblock %}

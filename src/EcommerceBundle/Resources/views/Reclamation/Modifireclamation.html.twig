@@ -1,0 +1,44 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="appointment" %}
+
+{% block reparation %}
+    <div class="container">
+        <h1>Edit Reclamation</h1>
+
+        <header>
+
+        </header>
+
+
+        <div class="w3ls-contact">
+
+
+            <!-- form starts here -->
+            <form action="#" method="post">
+                {{ form_start(form) }}
+
+
+
+                <div class="agile-field-txt">
+                    <label>
+                        Topic</label>
+                    {{ form_widget(form.sujet) }}
+
+                </div>
+                <div class="agile-field-txt">
+                    <label>
+                        Message</label>
+                    {{ form_widget(form.message) }}
+
+                </div>
+
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% block body %}
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register">
+                <div class="tab-container">
+                    <div class="tab-content clearfix" id="tab-register">
+                        <div class="panel panel-default nobottommargin">
+                            <div class="panel-body">
+                                <h1>ligne(s) de commande(s)</h1>
+                                <h5>Tout annulation de ligne de commande doit etre faite avant 24h</h5>
+                                <table class="table table-hover" border="1" style="width:100% ;" >
+                                    <tr>
+                                        <th style="width: 150px">Name and Last name </th>
+                                        <th>Categories</th>
+                                        <th style="width: 150px">description</th>
+                                        <th>price </th>
+                                        <th>Price Total</th>
+                                        <th style="width: 150px">Date Livraison</th>
+                                        <th>Address 1</th>
+                                        <th>Address 2</th>
+                                        <th>Town </th>
+                                        <th>Cod Postal</th>
+                                        <th>phone number</th>
+                                        <th>Tenant</th>
+                                        <th>Edit place of livraison</th>
+                                        <th style="width: 200px">Cancel</th>
+                                    </tr>
+
+                                    {% for commande in lst %}
+                                        <tr>
+                                            <td>{{ app.user.Nom ~ ' '~ app.user.Prenom }}</td>
+                                            <td>{{ commande.idVelo.Categories }}</td>
+                                            <td>{{ commande.idVelo.description }}</td>
+                                            <td>{{ commande.idVelo.price }}</td>
+                                            <td>{{ commande.prixTotal }}</td>
+                                            <td>{{ commande.dateLivraison|date('Y-m-d') }}</td>
+                                            <td>{{ commande.adresse }}</td>
+                                            <td>{{ commande.adresse2 }}</td>
+                                            <td>{{ commande.ville }}</td>
+                                            <td>{{ commande.codePostal }}</td>
+                                            <td>{{ commande.numTel }}</td>
+                                            <td>{{ commande.idVelo.user.Nom }} {{ commande.idVelo.user.Prenom }}</td>
+
+                                            <td>
+
+                                                <a href="{{ path('ligne_commande_modifierVelo',{'id':commande.id}) }}">Edit</a>
+
+
+                                            </td>
+                                            <td>
+
+                                                {% if datesys|date ("Y-m-d")<=commande.IdCommande.dateMax|date ("Y-m-d") %}
+                                                    <a href="{{ path('ligne_commande_supprimerVelo',{'id':commande.id}) }}">Annuler la ligne de commande</a>
+
+                                                {% else %}
+                                                    <a title="Vous avez depasser le delai maximum de 24h pour annuler votre commande" data-icon="Icon List 1" style="color: #ff0022">Impossible d'annuler la ligne de commande</a>
+                                                {% endif %}
+                                            </td>
+
+
+                                        </tr>
+
+                                    {% endfor %}
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

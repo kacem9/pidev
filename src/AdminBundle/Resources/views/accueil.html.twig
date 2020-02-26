@@ -16,7 +16,7 @@
                             <i class="ion-person text-facebook"></i>
                         </div>
                         <div class="media-body align-self-center">
-                            <div class="title text-facebook">users</div>
+                            <div class="title text-facebook">Users</div>
                             <div class="number"></div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             <i class="ion-checkmark text-twitter"></i>
                         </div>
                         <div class="media-body align-self-center">
-                            <div class="title text-twitter">requests accepted</div>
+                            <div class="title text-twitter">requests accepted </div>
                             <div class="number"></div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <i class="ion-close text-linkedin"></i>
                         </div>
                         <div class="media-body align-self-center">
-                            <div class="title text-linkedin"> Rejected requests</div>
+                            <div class="title text-linkedin"> Rejected requests </div>
                             <div class="number"></div>
                         </div>
                     </div>
@@ -104,4 +104,86 @@
     <script src="{{ asset('assets/js/dashboard/db-default.js') }}"></script>
 
 
+    <script>
+        var ctx = document.getElementById("demandes").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'roundedBar',
+            data: {
+                labels: ['Janvier', 'Fevrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                datasets: [{
+                    label: 'Nombre des vélos loué ',
+                    data: {{ nbreveloLouer|raw}},
+                    borderColor: "#fff",
+                    backgroundColor: "#ffc107",
+                    hoverBackgroundColor: "#a47b00"
+                },
+                    {
+                        label: 'nombres des vélos pas encore louer ',
+                        data: {{ nbrevelpasLouer|raw }},
+                        borderColor: "#fff",
+                        backgroundColor: "#F3700C",
+                        hoverBackgroundColor: "#a47b00"
+
+
+                    },{
+
+
+                      label: 'Nombre des commandes ',
+                       data: {{ countByMonthCommande|raw }},
+                       borderColor: "#fff",
+                        backgroundColor: "#327DED",
+                        hoverBackgroundColor: "#327DED"
+
+        }]
+            },
+            options: {
+                responsive: true,
+                barRoundness: 1,
+                tooltips: {
+                    backgroundColor: 'rgba(47, 49, 66, 0.8)',
+                    titleFontSize: 13,
+                    titleFontColor: '#fff',
+                    caretSize: 0,
+                    cornerRadius: 4,
+                    xPadding: 5,
+                    displayColors: false,
+                    yPadding: 5,
+                },
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        fontColor: "#2e3451",
+                        usePointStyle: true,
+                        padding: 50,
+                        fontSize: 13
+                    }
+                },
+                scales: {
+                    xAxes: [{
+                        barThickness: 20,
+                        stacked: false,
+                        gridLines: {
+                            drawBorder: false,
+                            display: false
+                        },
+                        ticks: {
+                            display: true
+                        }
+                    }],
+                    yAxes: [{
+                        stacked: false,
+                        gridLines: {
+                            drawBorder: false,
+                            display: false
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    }]
+                }
+            }
+        });
+
+    </script>
 {% endblock %}

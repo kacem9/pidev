@@ -1,0 +1,31 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% block head %}{% endblock %}
+{% block stylesheets %}{% endblock %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('Template/css/rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.min.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/components/bs-rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/include/rs-plugin/fonts/font-awesome/css/font-awesome.min.css') }}" type="text/css"  />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+    <section id="page-title" style="background-color:#F4A460">
+
+        <div class="container clearfix">
+            <h1 style="color:#7c1212">Evaluer Le velo  </h1>
+
+            <div class="center-block" align="center">
+            </div>
+        </div>
+    </section>
+    <div class="center">
+
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+
+    </div>
+
+
+    <script type="text/javascript" src="{{ asset('Template/js/components/bs-switches.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('Template/js/rating.js') }}"></script>
+{% endblock %}

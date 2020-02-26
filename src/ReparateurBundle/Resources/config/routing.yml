@@ -1,0 +1,21 @@
+reparateur_homepage:
+    path:     /
+    defaults: { _controller: ReparateurBundle:Default:index }
+espacereparateur:
+    path:     /espacereparateur
+    defaults: { _controller: ReparateurBundle:Default:espacereparateur }
+del:
+    path:   /del/{cin}
+    defaults: { _controller: ReparateurBundle:Default:del }
+refuserendezvousr:
+    path:   /refuserendezvousr/{id}
+    defaults: { _controller: ReparateurBundle:Default:refuserendezvousr }
+validrendezvous:
+    path:   /validrendezvous/{id}
+    defaults: { _controller: ReparateurBundle:Default:validrendezvous }
+CommentAct:
+    path:   /CommentAct
+    defaults: { _controller: ReparateurBundle:Default:CommentAct }
+ajouterUneEtoile :
+    path:   /ajouterUneEtoile/{id}/{nombre}
+    defaults: { _controller: ReparateurBundle:Default:ajouterUneEtoile }

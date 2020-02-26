@@ -1,0 +1,79 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="appointment" %}
+
+{% block reparation %}
+
+
+        <title>Add appointment </title>
+        <!-- Meta-Tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="keywords" content="Company Shipping Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"/>
+
+        <script>
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+
+        </script>
+        <!-- //Meta-Tags -->
+        <!-- Stylesheets -->
+
+        <link href="{{ asset('assets/css/style.css') }}" rel='stylesheet' />
+        <!--// Stylesheets -->
+        <!--fonts-->
+        <!-- title -->
+        <link href="{{ asset('assets/css?family=Abhaya+Libre:400,500,600,700,800') }}" rel="stylesheet">
+        <!-- body -->
+        <!--//fonts-->
+    </head>
+
+    <body>
+
+
+
+
+
+            <div class="w3ls-contact">
+<div class="container">
+        <!-- form starts here -->
+        <form action="#" method="post">
+            <h1>Add appointment</h1>
+            {{ form_start(form) }}
+
+
+
+
+            <div class="agile-field-txt">
+                <label>
+                    Type panne</label>
+      {{ form_widget(form.typepanne) }}
+
+            </div>
+            <div class="agile-field-txt">
+                <label>
+                    Message</label>
+                {{ form_widget(form.message) }}
+
+            </div>
+
+
+            {{ form_end(form) }}
+        </form>
+    </div>
+            </div>
+
+    </body>
+    <!-- //Body -->
+
+    </html>
+{% endblock %}
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+{% endblock %}

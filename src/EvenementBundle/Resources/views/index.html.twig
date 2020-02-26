@@ -44,21 +44,86 @@
                     <div class="widget-body">
                         <div class="content-img">
                             <img src="{{ asset('uploads/actualite/' ~ actualite.image) }}" class="img-fluid w-100 rounded">
-                        </div>
-                    </div>
-                    <!-- End Widget Body -->
 
-                    <!-- Begin Comments -->
-                    <div class="comments">
-                        <div class="comments-body">
-                            <p>
-                                {{ actualite.description }}
-                            </p>
+
+
+                            <div class="card-block">
+                                <h4 class="card-title" id="txt">{{ actualite.titre }}</h4>
+                                <p class="card-text" id="txt">{{actualite.description }}</p>
+                                <img src="{{ asset('/images/like.png') }}" width="25px" height="25px" class="etoileVide1"> {{ actualite.nbrLike}}
+                                <p class="card-text">{{actualite.datePublication ? actualite.datePublication|date('Y-m-d') : '' }}</p>
+                                <a href="{{ path('ajouterUneEtoileE',{'id':actualite.id,'nombre':1}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide1"></a>
+                                <a href="{{ path('ajouterUneEtoileE',{'id':actualite.id,'nombre':2}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide2"></a>
+                                <a href="{{ path('ajouterUneEtoileE',{'id':actualite.id,'nombre':3}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide3"></a>
+                                <a href="{{ path('ajouterUneEtoileE',{'id':actualite.id,'nombre':4}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide4"></a>
+                                <a href="{{ path('ajouterUneEtoileE',{'id':actualite.id,'nombre':5}) }}"><img src="{{ asset('/images/etoile pleine.svg') }}" width="25px" height="25px" class="etoileVide5"></a>
+
+
+
+                            </div>
+
                         </div>
                     </div>
+
+
+                    <div class="w3ls-contact">
+
+                    </div>
+
+
+
+
 
                 </div>
+                <!-- End Widget -->
             </div>
         {% endfor %}
+
+
+    </div>
+    <div class="widget-header d-flex align-items-center">
+
+        <div class="title">
+            <button class="btn btn-success btn-xs"><a href="{{ path('CommentActE') }}"> Add comment</a></button>
+        </div>
+
+    </div>
+    </div>
+
+
+    <div class="table-responsive">
+        <table id="sorting-table" class="table mb-0">
+            <thead>
+            <tr>
+                <th>Comment</th>
+
+                <th>Date</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+            {% for Comment in Comment %}
+
+                <tr>
+                    <td>{{ Comment.commentaires }}</td>
+
+                    <td>{{ Comment.date |date}}</td>
+
+
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
     </div>
 {% endblock %}

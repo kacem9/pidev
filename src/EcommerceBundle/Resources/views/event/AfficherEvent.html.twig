@@ -1,223 +1,283 @@
-
-{% extends "EcommerceBundle::layout.html.twig" %}
-{% set title="Welcome To the World of bikes" %}
+{% extends 'EcommerceBundle::layout.html.twig' %}
+{% block title %}Your Store{% endblock  %}
 {% block css %}
-    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('Template/css/bootstrap.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/style.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/swiper.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/dark.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/font-icons.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/animate.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/magnific-popup.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/responsive.css') }}" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('Template/css/rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.min.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/font-awesome.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/css/components/bs-rating.css') }}" type="text/css"  />
+    <link rel="stylesheet" href="{{ asset('Template/include/rs-plugin/fonts/font-awesome/css/font-awesome.min.css') }}" type="text/css"  />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
+{% endblock %}
+
+
+{% block content %}
+    <section id="page-title">
+
+        <div class="container clearfix">
+            <h1>List of Events</h1>
+
+
+
+
+    </section>
+    <br><br>
+    <div class="sidebar-search container">
+        <div class="input-group custom-search-form">
+            <input type="text" id="search" class="form-control" placeholder="Search here">
+        </div>
+        <!-- /input-group -->
+    </div>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-{% endblock %}
-{% block body %}
-<div class="row">
-    <div class="col-xl-12">
-        <!-- Sorting -->
-        <div class="widget">
-            <div class="widget-header bordered no-actions d-flex align-items-center">
-                <h2> The list of events </h2>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by date</a>
-                    <ul class="dropdown-menu" aria-labelledby="dashboard">
-                     <center>  <li><a href="{{ path('dateasc_event') }}" >ascending date</a></center>
-                        </li>
-                        <center> <li><a href="{{ path('datedesc_event') }}" >Descending date</a></center>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#listevent").html('');
+                if (1 ) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('recherche_event') }}",
+                        data: {
+                            'q' : value
+                        },
+                        dataType: "text",
+                        success: function(msg){
+                            //we need to check if the value is the same
+                            if (value===$(that).val()) {
+                                var result = JSON.parse(msg);
+                                $("#listevent").empty()
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key === 'Event') {
+                                            var pathToRedirect = "{{ path('details_events', {'id': 'ABCDEF'} ) }}";
+                                            var finalPath = pathToRedirect.replace("ABCDEF", id);
+                                            var x =
+                                                "{% if part is empty %}\n" +
+                                                "                                            <a href= {{ path('participation_event',{'id': 'aaa'}) }} class= 'btn btn-info btn-xs' >Participate</a>" +
+                                                "                                        {% endif %}\n" +
+                                                "                                        {% for p in part %}\n" +
+                                                "\n" +
+                                                "                                          {% if p.getEvent().getId() != 'aaa' %}\n" +
+                                                "\n" +
+                                                "                                                <a href= {{ path('participation_annuler',{'id_participation': p.getIdParticipation()}) }} class= 'btn btn-info btn-xs' >Cancel</a>\n" +
 
-                    </ul>
-                </li>
-                <div class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" id="search" class="form-control" placeholder="Search here">
-                    </div>
-                    <!-- /input-group -->
-                </div>
-                <ul class="nav" id="side-menu">
-                    <li>
-                        <ul class="nav nav-second-level" id="entitiesNav">
-                        </ul>
-                    </li>
-                </ul><br><br><br><br>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                                                "                                            {% elseif p.getEvent().getId() == 'aaa' %}\n" +
+                                                "                                                <a href= {{ path('participation_event',{'id': 'aaa'}) }}  class= ' btn btn-info btn-xs' >Participate</a>\n" +
 
-                <script type="text/javascript">
-                    jQuery(document).ready(function() {
-                        var searchRequest = null;
-                        $("#search").keyup(function() {
-                            var minlength = 1;
-                            var that = this;
-                            var value = $(this).val();
-                            var entitySelector = $("#listevent").html('');
-                            if (1 ) {
-                                if (searchRequest != null)
-                                    searchRequest.abort();
-                                searchRequest = $.ajax({
-                                    type: "GET",
-                                    url: "{{ path('recherche_event') }}",
-                                    data: {
-                                        'q' : value
-                                    },
-                                    dataType: "text",
-                                    success: function(msg){
-                                        //we need to check if the value is the same
-                                        if (value===$(that).val()) {
-                                            var result = JSON.parse(msg);
-                                            $("#listevent").empty()
-                                             $.each(result, function(key, arr) {
-                                                $.each(arr, function(id, value) {
-                                                    if (key === 'Event') {
-                                                        var pathToRedirect = "{{ path('details_events', {'id': 'ABCDEF'} ) }}";
-                                                        var finalPath = pathToRedirect.replace("ABCDEF", id);
-                                                        var x =
-                                                            "{% if part is empty %}\n" +
-                                                            "                                            <a href= {{ path('participation_event',{'id': 'aaa'}) }} class= 'btn btn-info btn-xs' >Participate</a>" +
-                                                            "                                        {% endif %}\n" +
-                                                            "                                        {% for p in part %}\n" +
-                                                            "\n" +
-                                                            "                                          {% if p.getEvent().getId() != 'aaa' %}\n" +
-                                                            "\n" +
-                                                            "                                                <a href= {{ path('participation_annuler',{'id_participation': p.getIdParticipation()}) }} class= 'btn btn-info btn-xs' >Cancel</a>\n" +
+                                                "                                          {% endif %}\n" +
+                                                "                                         {% endfor %}";
+                                            var final = x.replace("aaa", id);
 
-                                                            "                                            {% elseif p.getEvent().getId() == 'aaa' %}\n" +
-                                                            "                                                <a href= {{ path('participation_event',{'id': 'aaa'}) }}  class= ' btn btn-info btn-xs' >Participate</a>\n" +
+                                            console.log(value[0]);
+                                            entitySelector.append(" <div class= col-xs-12 col-md-6 col-lg-3  id= listevent >" +
+                                                "<div class= card >\n" +
+                                                "                                    <img class= card-img-top  src= {{ asset('uploads/admin/00fe582165fd4a78b168d3ded7a811e3.png') }}  alt= Card image cap />\n" +
+                                                "                                    <div class= card-block >\n" +
+                                                "                                        <h4 class= card-title >Event name: "+value[0]+"</h4>\n" +
+                                                "                                    </div>\n" +
+                                                "                                    <div class= card-footer >\n" +
+                                                "                                        <small class= text-muted >Event date: "+value[1].date+"</small>\n" +
+                                                "                                        <br>\n" +final+
+                                                "  <a href="+finalPath+" class= btn btn-info-outline btn-xs >Details</a> &nbsp\n"+
+                                                "\n" +
+                                                "</div>\n" +
+                                                "</div>"+
+                                                "</div>");
 
-                                                            "                                          {% endif %}\n" +
-                                                            "                                         {% endfor %}";
-                                                            var final = x.replace("aaa", id);
-
-                                                        console.log(value[0]);
-                                                            entitySelector.append(" <div class= col-xs-12 col-md-6 col-lg-3  id= listevent >" +
-                                                                "<div class= card >\n" +
-                                                                "                                    <img class= card-img-top  src= {{ asset('uploads/admin/780f1cb5046ac7edc4fb058cdc9b2c20.png') }}  alt= Card image cap />\n" +
-                                                                "                                    <div class= card-block >\n" +
-                                                                "                                        <h4 class= card-title >Event name: "+value[0]+"</h4>\n" +
-                                                                "                                    </div>\n" +
-                                                                "                                    <div class= card-footer >\n" +
-                                                                "                                        <small class= text-muted >Event date: "+value[1].date+"</small>\n" +
-                                                                "                                        <br>\n" +final+
-                                                                "  <a href="+finalPath+" class= btn btn-info-outline btn-xs >Details</a> &nbsp\n"+
-                                                                "\n" +
-                                                                "</div>\n" +
-                                                                "</div>"+
-                                                        "</div>");
-
-                                                    }
-                                                });
-                                            });
                                         }
-                                    },
+                                    });
                                 });
                             }
-                        });
+                        },
                     });
-                </script>
-                <div class="widget-options">
-
-                </div>
-            </div>
-
-            <div class="widget-body">
-
-                <div class="container">
-
-                    <div class="row" id="listevent">
-                        {% for e in event %}
-
-                            <div class="col-xs-12 col-md-6 col-lg-3" >
+                }
+            });
+        });
+    </script>
 
 
+
+
+
+
+
+
+
+
+
+
+
+    <ul class="nav" id="side-menu">
+        <li>
+            <ul class="nav nav-second-level" id="entitiesNav">
+            </ul>
+        </li>
+    </ul>
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+                {% for flashMessage in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success"><center>{{ flashMessage }}</center></div>
+                {% endfor %}
+                <!-- Post Content
+                ============================================= -->
+                <div class="postcontent nobottommargin col_last">
+
+
+                    <!-- Shop
+                    ============================================= -->
+                    <div id="content1">
+                        <div id="shop" class="shop product-3 grid-container clearfix" id="listevent">
+                            {% for e in event %}
+
+                                <div class="product sf-dress clearfix" >
+                                    <div class="product-image">
+                                        <div class="thumbnail">
+                                            <h2>{{ e.Nom }}</h2>
+                                            <img data-src="holder.js/300x200" src="{{ asset('uploads/admin/' ~ e.photo) }}"
+                                                 style="height: 180px; width: 100%;display: block;" alt=" >
+                                                 </div>
+
+
+
+
+
+
+
+                                <div class="sale-flash"></div>
+                                        <small class="text-muted">Event date: {{ e.dateEvent|date('m/d/y') }}</small>
+
+                                        <div class="product-overlay">
+                                            {% if part is empty %}
+                                                <a href="{{ path('participation_event',{'id': e.id}) }}"class="btn btn-info btn-xs">Participate</a>
+                                            {% endif %}
+                                            {% for p in part %}
+                                                aaa
+                                                {% if p.getEvent().getId() != e.getId() %}
+
+                                                    <a href="{{ path('participation_event',{'id': e.id}) }}"class="btn btn-info btn-xs">Participate</a>
+                                                {% elseif p.getEvent().getId() == e.getId() %}
+                                                    <a href="{{ path('participation_annuler',{'id_participation': p.getIdParticipation()}) }}"class="btn btn-info btn-xs">Cancel</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <a href="{{ path('details_events',{'id' : e.id}) }}"class="btn btn-info-outline btn-xs">Details</a> &nbsp
+
+                                        </div>
+                                    </div>
+                                    <div class="product-desc ">
+
+
+                                        <div class="product-price">
+
+                                        </div>
+                                        <div class="product-price">
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+                            </div>
+                            {{ form_start(f)  }}
+                            {{ form_row(f.contenu) }}
+                            <button class="btn btn-info btn-xs" >Comment</button>
+                            {{ form_end(f) }}
+                        <div class="media-body container">
+                            <div class="well well-lg">
+
+                            {% for com in com %}
 
                                 <div class="card">
-                                    <img class="card-img-top" src="{{ asset('uploads/admin/' ~ e.photo) }}" alt="Card image cap"/>
-                                    <div class="card-block">
-                                        <h4 class="card-title">Event name: {{ e.nom}}</h4>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">Event date: {{ e.dateEvent|date('m/d/y') }}</small>
-                                        <br>
-                                        {% if part is empty %}
-                                            <a href="{{ path('participation_event',{'id': e.id}) }}"class="btn btn-info btn-xs">Participate</a>
-                                        {% endif %}
-                                        {% for p in part %}
-aaa
-                                          {% if p.getEvent().getId() != e.getId() %}
 
-                                                <a href="{{ path('participation_event',{'id': e.id}) }}"class="btn btn-info btn-xs">Participate</a>
-                                            {% elseif p.getEvent().getId() == e.getId() %}
-                                                <a href="{{ path('participation_annuler',{'id_participation': p.getIdParticipation()}) }}"class="btn btn-info btn-xs">Cancel</a>
-                                          {% endif %}
-                                         {% endfor %}
-                                                  <a href="{{ path('details_events',{'id' : e.id}) }}"class="btn btn-info-outline btn-xs">Details</a> &nbsp
-
-</div>
-</div>
-</div>
+                                    <p class="card-title">Customer name: {{ com.user.getNom()}} {{ 'folder'|trans }}
+                                       <br> contents: {{ com.contenu }}
+                                        <br> Date : {{ com.date|date('m/d/y') }}
 
 
-{% endfor %}
-
-<!-- Add the extra clearfix for only the required viewport -->
+<br>
+                                {% if com.getUser() == app.user %}
+                                    <a href="{{ path('modifier_comm',{'id_com' : com.getIdCom()}) }}"class="btn btn-info-outline btn-xs">Edit</a> &nbsp
+                                    <a href="{{ path('supprimer_comm',{'id_com' : com.getIdCom()}) }}"class="btn btn-info-outline btn-xs">Remove</a> &nbsp
+                                {% endif %}
+                                    </p>
+                                </div>
+                            {% endfor %}
 
 
 
 </div>
-</div>
 
-</div>
-            <h4>Comments :</h4>
-            <div class="widget has-shadow">
-                {% for com in com %}
 
-                    <div class="card">
-                        <h4 class="card-title">Customer name: {{ com.user.getNom()}}</h4>
-                        <h4 class="card-title">contents: {{ com.contenu }}</h4>
-                        <small class="text-muted">Date : {{ com.date|date('m/d/y') }}</small></div>
-                {% if com.getUser() == app.user %}
-                    <a href="{{ path('modifier_comm',{'id_com' : com.getIdCom()}) }}"class="btn btn-info-outline btn-xs">Edit</a> &nbsp
-                    <a href="{{ path('supprimer_comm',{'id_com' : com.getIdCom()}) }}"class="btn btn-info-outline btn-xs">Remove</a> &nbsp
-                {% endif %}
-                {% endfor %}
+
+
+                        </div>
+                        <!-- #shop end -->
+                    </div>
+                </div><!-- .postcontent end -->
+                <div class="sidebar nobottommargin">
+                    <div class="sidebar-widgets-wrap">
+
+
+
+
+
+
+
+
+                        <div class="widget widget-filter-links clearfix">
+
+                            <h4>Filter By </h4>
+                            <ul class="shop-sorting">
+                                <li><a href="{{ path('dateasc_event') }}" >ascending date</a>
+                                </li>
+                                <li><a href="{{ path('datedesc_event') }}" >Descending date</a>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                </div><!-- .sidebar end -->
             </div>
-            {{ form_start(f)  }}
-            {{ form_row(f.contenu) }}
-            <button class="btn btn-info btn-xs" >Comment</button>
-            {{ form_end(f) }}
-
-
-
-
-
-
-{% endblock %}
-{% block js %}
-
-            <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
-
-            <script>
-$(function () {
-dtable = $('.table').DataTable({
-responsive: true,
-"language": {
-"url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-
-}
-});
-$('.filter').on('keyup change', function() {
-
-dtable.search('');
-dtable.column(3).search(this.value).draw();
-});
-
-$(".dataTables_filter input").on('keyup change', function() {
-
-dtable.columns().search('');
-
-$('.filter').val('');
-});
-});
-</script>
         </div>
-    </div>
-</div>
+    </section>
+
+
+
+    {% block javascripts %}
+        <script>
+            $('.product .rating div').on('click', function () {
+                var rating = $(this).index();
+                var idVelo = $(this).parents('.product').data('id');
+                $.post( "{{ path('Rating') }}",{id_velo: idVelo, rating: parseInt(rating) + 1}, function( data ) {
+                    $(this).parents('.rating').children('div').removeClass('star-full').addClass('star-empty');
+                    $(this).parents('.rating').children('div:lt('+rating-1+')').addClass('star-full').removeClass('star-empty');
+                });
+            })
+        </script>
+
+    {% endblock %}
 
 {% endblock %}

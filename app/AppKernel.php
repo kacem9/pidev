@@ -24,10 +24,11 @@ class AppKernel extends Kernel
             new EvenementBundle\EvenementBundle(),
             new EcomBundle\EcomBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
-            new CommentaireBundle\CommentaireBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
-            new MyAppMailBundle\MyAppMailBundle(),
-        //    new Liip\ImagineBundle\LiipImagineBundle(),
+            new ReparateurBundle\ReparateurBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

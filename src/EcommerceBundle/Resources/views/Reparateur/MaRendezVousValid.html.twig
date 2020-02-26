@@ -1,0 +1,91 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="appointment" %}
+
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block reparation %}
+    <h1> List of my valid appointments</h1>
+    <div class="container">
+
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget has-shadow">
+                <div class="widget-header bordered no-actions d-flex align-items-center">
+
+
+                </div>
+                <div class="widget-body">
+                    <div class="table-responsive">
+                        <table id="sorting-table" class="table mb-0">
+                            <thead>
+                            <tr>
+                                <th>Date _time</th>
+
+                                <th>Price</th>
+                                <th>Promo</th>
+                                <th>Message</th>
+                                <th>State</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for listrendezvous in listrendezvous %}
+                                <tr>
+                                    <td>{{ listrendezvous.dateheure |date}}</td>
+
+                                    <td>{{ listrendezvous.prix}}</td>
+                                    <td>{{ listrendezvous.promo }}</td>
+                                    <td>{{ listrendezvous.message}}</td>
+
+                                    <td>{{ listrendezvous.etat}}</td>
+                                    <td> <a href="{{ path('Suppriml', {'reference': listrendezvous.reference}) }}" class="delete-button"><i class="la la-close delete"></i>Delete</a> </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style> h1{
+            text-align: center;
+            color:red;
+        }</style>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            dtable = $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('.filter').on('keyup change', function() {
+
+                dtable.search('');
+                dtable.column(5).search(this.value).draw();
+            });
+
+            $(".dataTables_filter input").on('keyup change', function() {
+
+                dtable.columns().search('');
+
+                $('.filter').val('');
+            });
+        });
+    </script>
+
+{% endblock %}

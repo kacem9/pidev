@@ -27,7 +27,7 @@ class rendezvousType extends AbstractType
 
 
 
-            ->add('Ajouter', SubmitType::class);
+            ->add('Add', SubmitType::class);
 
     }/**
      * {@inheritdoc}

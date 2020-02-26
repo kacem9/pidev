@@ -1,0 +1,112 @@
+{% extends "EcomBundle::layout.html.twig" %}
+{% set title="Welcome To the World of bikes" %}
+{% block css %}
+    <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-xl-12">
+            <!-- Sorting -->
+            <div class="widget">
+                    <div class="widget-header bordered no-actions d-flex align-items-center">
+                        <h2> List of bikes </h2>
+
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by date</a>
+                            <ul class="dropdown-menu" aria-labelledby="dashboard">
+                                <li><a href="{{ path('Dateasc') }}" >ascending date
+                                    </a>
+
+                                </li>
+                                <li><a href="{{ path('Datedescendant') }}" >Descending date
+
+
+                            </ul>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#" id="dashboard" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filter by category</a>
+                            <ul class="dropdown-menu" aria-labelledby="dashboard">
+                                <li><a href="{{ path('RoadBike') }}" >RoadBike</a></li>
+                                <li><a href="{{ path('KidsBikes') }}" >KidsBikes</a></li>
+                                <li><a href="{{ path('MountainBikes') }}" >MountainBikes</a></li>
+                                <li><a href="{{ path('CyclocrossBike') }}" >CyclocrossBike</a></li>
+                                <li><a href="{{ path('SportsBike') }}" >SportsBike</a></li>
+                            </ul>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="{{ path("ecom_formulaire_vente") }}" class="btn btn-success">Ajouter un velo </a>
+                    </div>
+
+                </div>
+
+                <div class="widget-body">
+
+                    <div class="container">
+
+                        <div class="row">
+                            {% for velo in velo %}
+
+                                <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                                <div class="card">
+                                    <img class="card-img-top" src="{{ asset('uploads/admin/' ~ velo.Photo) }}" alt="Card image cap"/>
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ velo.categories }}</h4>
+                                        <p class="card-text">{{ velo.description }}</p>
+
+                                        <p class="card-text">{{ velo.price  }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">{{ velo.datePublication|date('m/d/y') }}</small>
+                                        <a href="{{ path('Update',{'id':velo.id}) }}"class="btn btn-info-outline btn-xs">Edit</a> &nbsp
+                                        <br>
+
+                                        <a href="{{ path("Delete",{'id':velo.id}) }}" class="btn btn-info btn-xs">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+                        </div>
+                    </div>
+
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script>
+        $(function () {
+            dtable = $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url":"//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+
+                }
+            });
+            $('.filter').on('keyup change', function() {
+
+                dtable.search('');
+                dtable.column(3).search(this.value).draw();
+            });
+
+            $(".dataTables_filter input").on('keyup change', function() {
+
+                dtable.columns().search('');
+
+                $('.filter').val('');
+            });
+        });
+    </script>
+{% endblock %}

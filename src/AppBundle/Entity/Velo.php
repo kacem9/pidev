@@ -39,9 +39,17 @@ class Velo
     /**
      * @var float
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="price", type="float",nullable=true)
      */
-    private $prix;
+    private $price;
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price_location", type="float",nullable=true)
+     */
+    private $price_location;
+
+
 
     /**
      * @var int
@@ -50,6 +58,12 @@ class Velo
      */
     private $etatVendu;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="quantity", type="integer")
+     */
+    private $quantity;
     /**
      * @var int
      *
@@ -65,6 +79,8 @@ class Velo
     private $description;
 
 
+
+
     /**
      * @var string
      *
@@ -77,12 +93,7 @@ class Velo
      * @ORM\Column(name="photo", type="string", length=255)
      */
     private $photo;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="age_recommande", type="string", length=255)
-     */
-    private $age_recommande;
+
     /**
  * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="velo")
  * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -103,6 +114,7 @@ class Velo
     {
         return $this->id;
     }
+
 
     /**
      * Set dateCirculation
@@ -152,29 +164,6 @@ class Velo
         return $this->datePublication;
     }
 
-    /**
-     * Set prix
-     *
-     * @param float $prix
-     *
-     * @return Velo
-     */
-    public function setPrix($prix)
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    /**
-     * Get prix
-     *
-     * @return float
-     */
-    public function getPrix()
-    {
-        return $this->prix;
-    }
 
     /**
      * Set etatVendu
@@ -368,30 +357,88 @@ class Velo
         return $this->user;
     }
 
+    public function __toString()
+    {
+        return (string) $this->quantity;
+    }
+
+
+
+
+
+
+
+
+
     /**
-     * Set ageRecommande
+     * Set priceLocation
      *
-     * @param string $ageRecommande
+     * @param float $priceLocation
      *
      * @return Velo
      */
-    public function setAgeRecommande($ageRecommande)
+    public function setPriceLocation($priceLocation)
     {
-        $this->age_recommande = $ageRecommande;
+        $this->price_location = $priceLocation;
 
         return $this;
     }
 
     /**
-     * Get ageRecommande
+     * Get priceLocation
      *
-     * @return string
+     * @return float
      */
-    public function getAgeRecommande()
+    public function getPriceLocation()
     {
-        return $this->age_recommande;
+        return $this->price_location;
     }
-    public function _toString(){
-        return $this->nom;
+
+    /**
+     * Set quantity
+     *
+     * @param integer $quantity
+     *
+     * @return Velo
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity
+     *
+     * @return integer
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Velo
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

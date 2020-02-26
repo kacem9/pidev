@@ -20,12 +20,17 @@ participer_event:
     path:     /participer_event
     defaults: { _controller: EvenementBundle:Evenement:ParticiperEvent }
 details_event:
-    path:   /details/{id}
+    path:   /details_event/{id}
     defaults: { _controller: EvenementBundle:Evenement:detailsEvent }
 list_event_pdf:
     path:   /pdf
     defaults: { _controller: EvenementBundle:Evenement:pdf }
-
+CommentActE:
+    path:   /CommentActE
+    defaults: { _controller: EvenementBundle:Default:CommentActE }
+ajouterUneEtoileE :
+    path:   /ajouterUneEtoileE/{id}/{nombre}
+    defaults: { _controller: EvenementBundle:Default:ajouterUneEtoileE }
 
 
 

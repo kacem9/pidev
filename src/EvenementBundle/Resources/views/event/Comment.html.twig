@@ -1,0 +1,82 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="Rendez vous" %}
+
+{% block body %}
+
+
+        <title>Request appointment </title>
+        <!-- Meta-Tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="keywords" content="Company Shipping Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"/>
+
+        <script>
+            addEventListener("load", function () {
+                setTimeout(hideURLbar, 0);
+            }, false);
+
+            function hideURLbar() {
+                window.scrollTo(0, 1);
+            }
+
+        </script>
+        <!-- //Meta-Tags -->
+        <!-- Stylesheets -->
+
+        <link href="{{ asset('assets/css/style.css') }}" rel='stylesheet' />
+        <!--// Stylesheets -->
+        <!--fonts-->
+        <!-- title -->
+        <link href="{{ asset('assets/css?family=Abhaya+Libre:400,500,600,700,800') }}" rel="stylesheet">
+        <!-- body -->
+        <!--//fonts-->
+
+
+
+
+
+    <header>
+        <h1>Appointment</h1>
+    </header>
+
+
+
+
+
+
+
+
+
+    <div class="w3ls-contact">
+
+        <!-- form starts here -->
+        <form action="#" method="post">
+            {{ form_start(form) }}
+            <div class="agile-field-txt">
+
+                <div class="mr_agilemain">
+
+                    <div class="left-wthree"> <label class="bot_w3">
+                            Comment</label>
+
+                        {{ form_widget(form. commentaires) }}
+                    </div>
+                </div>
+                <button class="btn btn-success btn-xs">Enregistrer</button>
+            </div>
+
+
+
+
+
+
+            {{ form_end(form) }}
+        </form>
+    </div>
+
+
+    </body>
+    <!-- //Body -->
+
+    </html>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "EcommerceBundle::layout.html.twig" %}
+{% set title="appointment" %}
+    {% block css %}
+        <link href="{{ asset('assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/plugins/datatables/responsive.dataTables.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block  reparation %}
+
+	<div class="container">
+        <div class="col-xl-12">
+    <div class="widget has-shadow">
+        <div class="widget-header bordered no-actions d-flex align-items-center">
+            <h2>Edit Appointment </h2>
+
+        </div>
+        {{ form_start(form) }}
+        <div class="widget-body">
+            <div class="table-responsive">
+                <table id="sorting-table" class="table mb-0">
+                    <thead>
+                    <tr>
+
+                        <th>Message</th>
+                        <th>Type Panne</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+
+                        <td>{{ form_widget(form.message) }}</td>
+                        <td>{{ form_widget(form.typepanne) }} </td>
+
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('assets/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script>
+        $(function () {
+            dtable = $('.table').DataTable({
+                responsive: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+            $('.filter').on('keyup change', function() {
+
+                dtable.search('');
+                dtable.column(5).search(this.value).draw();
+            });
+
+            $(".dataTables_filter input").on('keyup change', function() {
+
+                dtable.columns().search('');
+
+                $('.filter').val('');
+            });
+        });
+    </script>
+
+{% endblock %}

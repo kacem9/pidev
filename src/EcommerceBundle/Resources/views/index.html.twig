@@ -1,66 +1,515 @@
-{% extends "EcommerceBundle::layout.html.twig" %}
+{% extends 'EcommerceBundle::layout.html.twig' %}
+{% block title %}Your Store{% endblock  %}
+{% block content %}
 
-{% set title="Accueil" %}
-{% block css %}
-{% endblock %}
-
-{% block body %}
-    <div class="row d-flex align-items-center">
-        <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
-
-        </div>
-        <div class="col-xl-4 col-md-4 d-flex justify-content-center">
-            <div class="image-default">
-                <img class="rounded-circle" src="{{ asset('uploads/admin/' ~ app.user.Photo) }}" alt="...">
-            </div>
-            <div class="infos">
-                <h2>{{ app.user.nom ~ ' ' ~ app.user.prenom }}</h2>
-
+    <div id="page-preloader" class="visible">
+        <div class="preloader">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
             </div>
         </div>
-
+    </div>
+    <div id="common-home">
+    <div class="bg-color-b">
+    <div class="row commonrow">
+    <div id="content" class="col-sm-12"><div class="slide-padding">
+        <div class="homeslide">
+            <div id="slideshow0" class="owl-carousel owl-theme">
+                <div class="text-center"><a href="#"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/slider/slide-03-1920x700.jpg')}}" alt="slider" class="img-responsive" /></a></div>
+                <div class="text-center"><a href="#"><img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/slider/slide-01-1920x700.jpg')}}" alt="MacBookAir" class="img-responsive" /></a></div>
+            </div>
+        </div>
     </div>
 
-{% endblock %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#slideshow0").owlCarousel({
+                itemsCustom : [
+                    [0, 1]
+                ],
+                autoPlay: 2500,
+                animateIn: 'fadeIn',
+                animateOut: 'fadeOut',
+                loop: true,
+                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                navigation : true,
+                pagination:false
+            });
+        });
+    </script>
 
-{% block actualite %}
-    <div class="row">
-        {% for actualite in actualites %}
-            <div class="col-md-4">
-                <!-- Begin Widget -->
-                <div class="widget has-shadow">
-                    <!-- Begin Widget Header -->
-                    <div class="widget-header d-flex align-items-center">
-                        <div class="d-flex flex-column mr-auto">
-                            <div class="title">
-                                {{ actualite.titre }}
+    <div class="cbanner pro-nepr">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="banner-e">
+                    <a href="#">
+                        <img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/Allbanner/640x300-3-640x300.jpg')}}" alt="banner" class="img-responsive center-block" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="banner-e">
+                    <a href="#">
+                        <img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/Allbanner/640x300-02-640x300.jpg')}}" alt="banner" class="img-responsive center-block" />
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="banner-e">
+                    <a href="#">
+                        <img src="{{ asset('front/templatetasarim.com/opencart/Bicycle/image/cache/catalog/Allbanner/640x300-640x300.jpg')}}" alt="banner" class="img-responsive center-block" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="pro-bg">
+            <div class="tab-pro text-center">
+                <h2>BIKES<hr></h2>
+                <ul class="nav nav-tabs pro-tab">
+
+                </ul>
+            </div>
+            <div class="tab-content pro-nepr">
+
+                <div class="tab-pane active" id="featurep">
+
+                    <div class="pro-nepr">
+                        <div class="row thummargin">
+                            <div id="feature" class="owl-theme owl-carousel">
+
+
+
+
+                                {% for velo in velo %}
+                                    <div class="multi-row">
+                                        <div class="product-layout col-xs-12">
+                                            <div class="product-thumb transition">
+                                                <div class="image"><a href=""><img src="{{ asset('uploads/admin/' ~ velo.Photo) }}" alt="iMac" title="iMac" class="img-responsive center-block" /></a>
+
+                                                    <h4><a href="indexcae8.html?route=product/product&amp;product_id=41">{{ velo.categories }}</a></h4>
+
+
+                                                </div>
+                                                <div class="caption text-center">
+                                                    <h4><a href="indexcae8.html?route=product/product&amp;product_id=41">{{ velo.description }}</a></h4>
+                                                    <div class="rating">
+
+                                                        <p class="price"><span class="price-new"></span> <span class="price-new">{{ velo.price }}TND</span>            </p>
+                                                        <p class="price"><span class="price-new">Localisation :{{ velo.localitsationVelo }}</span><br>Publié le :{{ velo.datePublication|date('m/d/y') }}</p>
+                                                    </div>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                {% endfor %}
+
+
+
+
                             </div>
-                            <div class="time">{{ actualite.datePublication|date('m/d/y') }}</div>
-                        </div>
-                    </div>
-                    <!-- End Widget Header -->
-                    <!-- Begin Widget Body -->
-                    <div class="widget-body">
-                        <div class="content-img">
-                            <img src="{{ asset('uploads/actualite/' ~ actualite.image) }}" class="img-fluid w-100 rounded">
-                        </div>
-                    </div>
-                    <!-- End Widget Body -->
 
-                    <!-- Begin Comments -->
-                    <div class="comments">
-                        <div class="comments-body">
-                            <p>
-                                {{ actualite.description }}
-                            </p>
                         </div>
                     </div>
-                    <!-- End Comments -->
+                </div>
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $("#feature").owlCarousel({
+                            itemsCustom : [
+                                [0, 2],
+                                [375, 2],
+                                [600, 3],
+                                [768, 3],
+                                [992, 3],
+                                [1200, 4],
+                                [1410, 4]
+                            ],
+                            // autoPlay: 1000,
+                            navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                            navigation : true,
+                            pagination:false
+                        });
+                    });
+                </script>
+                <div class="tab-pane" id="bestp">
+                    <div class="row thummargin">
+                        <div id="best" class="owl-theme owl-carousel">
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $("#best").owlCarousel({
+                            itemsCustom : [
+                                [0, 2],
+                                [375, 2],
+                                [600, 3],
+                                [768, 3],
+                                [992, 3],
+                                [1200, 4],
+                                [1410, 4]
+                            ],
+                            // autoPlay: 1000,
+                            navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                            navigation : true,
+                            pagination:false
+                        });
+                    });
+                </script>
+
+                <div class="tab-pane" id="newp">
+                    <div class="row thummargin">
+                        <div id="latest" class="owl-theme owl-carousel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#latest").owlCarousel({
+                itemsCustom : [
+                    [0, 2],
+                    [375, 2],
+                    [600, 3],
+                    [768, 3],
+                    [992, 3],
+                    [1200, 4],
+                    [1410, 4]
+                ],
+                // autoPlay: 1000,
+                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                navigation : true,
+                pagination:false
+            });
+        });
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#owl-testi").owlCarousel({
+                itemsCustom : [
+                    [0, 1],
+                    [768, 2],
+                    [992, 2],
+                    [1200, 3]
+                ],
+                autoPlay: false,
+                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                navigation : true,
+                pagination:false
+            });
+        });
+    </script>
+
+
+
+    <div class="dealbg">
+        <div class="pro-bg pro-nepr container">
+            <div class="">
+                <h2 class="heading">Accessories<hr></h2>
+                <div class="count-pro">
+
+                    <div class="row thummargin">
+
+                        <div id="count" class="owl-theme owl-carousel">
+                            {% for produits in produits %}
+                                <div class="product-layout col-xs-12">
+                                    <div class="product-thumb transition">
+                                        <div class="image"><a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="{{ asset('uploads/admin/' ~ produits.Photo) }}" alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
+
+
+
+
+                                        </div>
+
+
+                                        <div class="caption text-center">
+
+                                            <h4><a href="indexbb02.html?route=product/product&amp;product_id=42">Model : {{ produits.model }}</a></h4>
+                                            <div class="rating">
+
+                                            </div>
+
+                                            <p class="price">  <span class="price-new"> Price: {{ produits.price }}TND</span><br> <span class="price-new">   Type:  {{ produits.type }}</span>            </p>
+
+
+
+
+                                        </div>
+
+
+
+
+                                        <script type="text/javascript">
+                                            $(document).ready(function () {
+                                                $('#Countdown42').countdown({
+                                                    until: new Date(2021, 10-1, 13, 00, 00, 00),
+                                                    labels: ['Years', 'Months', 'Weeks', 'Days', 'Hrs', 'Mins', 'Secs'],
+                                                    labels1: ['Year', 'Month', 'Week', 'Day', 'Hr', 'Min', 'Sec'],
+                                                });
+                                                //$('#Countdown<?php echo $product['product_id'];?>').countdown('pause');
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+
+
+
+
+                        </div>
+                    </div>
 
                 </div>
-                <!-- End Widget -->
             </div>
-        {% endfor %}
+        </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#count").owlCarousel({
+                itemsCustom : [
+                    [0, 1],
+                    [375, 2],
+                    [600, 3],
+                    [768, 3],
+                    [992, 3],
+                    [1200, 4]
+                ],
+                // autoPlay: 1000,
+                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                navigation : true,
+                pagination:false
+            });
+        });
+    </script>
 
-{% endblock %}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#carousel0").owlCarousel({
+                    itemsCustom : [
+                        [0, 2],
+                        [600, 4],
+                        [768, 5],
+                        [992, 5],
+                        [1200, 7]
+                    ],
+                    autoPlay: 2000,
+                    loop: true,
+                    navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                    navigation : false,
+                    pagination:false
+                });
+            });
+        </script>
+        <div class="container pro-nepr">
+            <div class="box blog_inspire ">
+                <div class="cmn-title wow bounce">
+                    <h3 class="heading">List of event<hr></h3>
+                </div>
+                <!-- <div class="blog-heading">Latest Blog</div> -->
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Sorting -->
+                        <div class="widget" >
+                            <div class="widget-header bordered no-actions d-flex align-items-center">
+
+                                <div class="widget-options" >
+
+                                </div>
+                            </div>
+
+                            <div class="widget-body">
+
+                                <div class="container">
+
+                                    <div class="row">
+                                        {% for e in event %}
+
+                                            <div class="col-xs-12 col-md-6 col-lg-3">
+
+
+
+                                                <div class="card">
+                                                    <div class="image"><a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="{{ asset('uploads/admin/' ~ e.Photo) }}" alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
+                                                        <div class="card-block">
+                                                            <h4 class="card-title">Event name: {{ e.nom}}</h4>
+                                                            <p class="card-text">Description: {{ e.description }}</p>
+                                                            <p class="card-text">Location: {{ e.lieuEvent }}</p>
+                                                            <p class="card-text">Number of participants: {{ e.nbrParticipant }}</p>
+                                                            <p class="card-text">Price: {{ e.prix }}</p>
+                                                            <p class="card-text">Category:  {{ e.getCategoriesEvent().type }}</p>
+                                                        </div>
+                                                        <div class="card-footer">
+                                                            <small class="text-muted">Event date: {{ e.dateEvent|date('m/d/y') }}</small>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Add the extra clearfix for only the required viewport -->
+
+
+
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                $("#blog").owlCarousel({
+                                    itemsCustom : [
+                                        [0, 1],
+                                        [600, 2],
+                                        [768, 2],
+                                        [992, 3],
+                                        [1200, 3]
+                                    ],
+                                    // autoPlay: 1000,
+                                    navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                                    navigation : true,
+                                    pagination:false
+                                });
+                            });
+                        </script>
+
+                        <div class="pro-nepr container">
+                            <h3 class="heading">News<hr></h3>
+
+                            <div class="row thummargin">
+                                <div class="row thummargin">
+                                    <div id="special" class="owl-theme owl-carousel">
+                                        {% for velo in velos %}
+                                        <div class="product-layout col-xs-12">
+                                            <div class="product-thumb transition">
+                                                <div class="image"><a href="indexbb02.html?route=product/product&amp;product_id=42"><img src="{{ asset('uploads/admin/' ~ velo.Photo) }}" alt="Apple Cinema 30&quot;" title="Apple Cinema 30&quot;" class="img-responsive center-block" /></a>
+
+
+                                                    <span class="salepro">sale</span>
+
+                                                </div>
+                                                <div class="caption text-center">
+                                                    <h4><a href="indexbb02.html?route=product/product&amp;product_id=42">{{ velo.categories }}</a></h4>
+                                                    <h4><a href="indexbb02.html?route=product/product&amp;product_id=42">Publish on :{{ velo.datePublication|date('m/d/y') }}</a></h4>
+                                                    <h4><a href="indexbb02.html?route=product/product&amp;product_id=42">{{ velo.localitsationVelo }}</a></h4>
+
+                                                </div>                <p class="price">  <span class="price-new">Price of Location:{{ velo.priceLocation }}</span> <span class="price-old"></span>            </p>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+
+
+                                </div>
+                            </div></div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("#special").owlCarousel({
+                                itemsCustom : [
+                                    [0, 2],
+                                    [375, 2],
+                                    [600, 3],
+                                    [768, 3],
+                                    [992, 4],
+                                    [1200, 4],
+                                    [1410, 4]
+                                ],
+                                // autoPlay: 1000,
+                                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                                navigation : true,
+                                pagination:false
+                            });
+                        });
+                    </script>
+
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $("#owl-testi").owlCarousel({
+                                itemsCustom : [
+                                    [0, 1],
+                                    [768, 2],
+                                    [992, 2],
+                                    [1200, 3]
+                                ],
+                                autoPlay: false,
+                                navigationText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+                                navigation : true,
+                                pagination:false
+                            });
+                        });
+                    </script>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock  %}

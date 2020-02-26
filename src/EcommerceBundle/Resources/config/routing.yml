@@ -1,30 +1,217 @@
 ecommerce_homepage:
     path:     /
-    defaults: { _controller: EcommerceBundle:Ecommerce:index }
+    defaults: { _controller: EcommerceBundle:Default:index }
+Afficherpannier:
+    path:     /Afficherpannier{id}
+    defaults: { _controller: EcommerceBundle:Paiement:Afficherpannier }
+panier:
+    path:     /panier
+    defaults: { _controller: EcommerceBundle:Paiement:panier }
+ajoute:
+    path:     /ajout/{id}
+    defaults: { _controller: EcommerceBundle:Paiement:ajouter }
+supprimer:
+    path:    /supprimer/{id}
+    defaults: { _controller: EcommerceBundle:Paiement:supprimer }
+menu:
+    path:    /menu
+    defaults: { _controller: EcommerceBundle:Paiement:menu }
+commander_produit:
+    path:    /putinsession/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:PutInSession }
+ajout_ligne_commande:
+    path:     /ajoutbd
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:AjoutLigneDeCommande }
+afficher_commande:
+    path:     /afficherCommande
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:afficherCommande }
+ligne_commande_aff:
+    path:     /afflc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:AfficherLigneDeCommande }
+ligne_commande_modifier:
+    path:     /modifierlc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:ModifierLigneDeCommande }
+ligne_commande_supprimer:
+    path:     /supprimerlc/{id}
+    defaults: { _controller: EcommerceBundle:LigneDeCommande:SupprimerLigneDeCommande }
+Location_acheteur:
+    path:     /Location_acheteur
+    defaults: { _controller: EcommerceBundle:Location:location}
+Affichervelo:
+    path:     /Affichervelo/{id}
+    defaults: { _controller: EcommerceBundle:Location:Affichervelo}
+RoadBike:
+    path:     /RoadBike
+    defaults: { _controller: EcommerceBundle:Location:RoadBike}
+KidsBikes:
+    path:     /KidsBikes
+    defaults: { _controller: EcommerceBundle:Location:KidsBikes}
+MountainBikes  :
+    path:     /MountainBikes
+    defaults: { _controller: EcommerceBundle:Location:MountainBikes}
+SportsBike:
+    path:     /SportsBike
+    defaults: { _controller: EcommerceBundle:Location:SportsBike}
+CyclocrossBike:
+    path:     /CyclocrossBike
+    defaults: { _controller: EcommerceBundle:Location:CyclocrossBike}
+prixasc_produits:
+    path:     /prixasc-produits
+    defaults: { _controller: EcommerceBundle:Location:prixasc }
+
+prixdesc_produits:
+    path:     /prixdescproduits
+    defaults: { _controller: EcommerceBundle:Location:prixdescendant }
+Rating:
+    path:     /Rating
+    defaults: { _controller: EcommerceBundle\Controller\RatingVeloController::newRating }
+BestSeler:
+    path:     /BestSeler
+    defaults: { _controller: EcommerceBundle:Location:BestSeler }
+newVelo:
+    path:     /newVelo
+    defaults: { _controller: EcommerceBundle:Location:newVelo }
+_deleteCommentaire:
+    path:   /DeleteCommentaire{id}
+    defaults: { _controller: EcommerceBundle:Paiement:DeleteCommentaire }
+CyclocrossBikeAchat:
+    path:   /CyclocrossBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:CyclocrossBikeAchat }
+KidsBikesAchat:
+    path:   /KidsBikesAchat
+    defaults: { _controller: EcommerceBundle:Achat:KidsBikesAchat }
+MountainBikesAchat:
+    path:   /MountainBikesAchat
+    defaults: { _controller: EcommerceBundle:Achat:MountainBikesAchat }
+SportsBikeAchat:
+    path:   /SportsBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:SportsBikeAchat }
+RoadBikeAchat:
+    path:   /RoadBikeAchat
+    defaults: { _controller: EcommerceBundle:Achat:RoadBikeAchat }
+showAchat:
+    path:  /showAchat/{id}
+    defaults: { _controller: EcommerceBundle:Achat:showAchat }
+addPanier:
+    path:  /addPanier
+    defaults: { _controller: EcommerceBundle:Achat:addPanier}
+ajouter :
+    path:  /ajouter/{id}
+    defaults: { _controller: EcommerceBundle:Achat:ajouter}
+supprimerCard :
+    path:  /supprimerCard/{id}
+    defaults: { _controller: EcommerceBundle:Achat:supprimerCard}
+commander_velo:
+    path:    /commander_velo/{id}
+    defaults: { _controller: EcommerceBundle:Achat:commander_velo }
+ajout_ligne_commandevelo:
+    path:     /ajout_ligne_commandevelo
+    defaults: { _controller: EcommerceBundle:Achat:ajout_ligne_commandevelo }
+ligne_commande_affVelo:
+    path:     /ligne_commande_affVelo/{id}
+    defaults: { _controller: EcommerceBundle:Achat:ligne_commande_affVelo }
+afficher_commandeVelo:
+    path:     /afficher_commandeVelo
+    defaults: { _controller: EcommerceBundle:Achat:afficherCommandeVelo }
+ligne_commande_modifierVelo:
+    path:     /ligne_commande_modifierVelo/{id}
+    defaults: { _controller: EcommerceBundle:Achat:ligne_commande_modifierVelo }
+ligne_commande_supprimerVelo  :
+    path:     /ligne_commande_supprimerVelo/{id}
+    defaults: { _controller: EcommerceBundle:Achat:ligne_commande_supprimerVelo }
+bikeparts:
+    path:   /bikeparts
+    defaults: { _controller: EcommerceBundle:Achat:bikeparts }
+showBike:
+    path:   /showBike/{id}
+    defaults: { _controller: EcommerceBundle:Achat:showBike }
+removeCmtr:
+    path:   /remCom/{id}/{prodid}
+    defaults: { _controller: EcommerceBundle:Achat:remCom }
+addPanierAccesory :
+    path:   /addPanierAccesory
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:addPanierAccesory }
+ajouterAccesory:
+    path:   /ajouterAccesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:ajouterAccesory }
+supprimerCardAccesory:
+    path:   /supprimerCardAccesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:supprimerCardAccesory }
+commander_Accesory:
+    path:   /commander_Accesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:commander_Accesory }
+ajout_ligne_commandeAccesory :
+    path:   /ajout_ligne_commandeAccesory
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:ajout_ligne_commandeAccesory }
+afficherCommandeAccesory:
+    path:   /afficherCommandeAccesory
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:afficherCommandeAccesory }
+afficheLigneDeCommandeAccesory:
+    path:   /afficheLigneDeCommandeAccesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:afficheLigneDeCommandeAccesory }
+ModifierLigneDeCommandeAccesory :
+    path:   /ModifierLigneDeCommandeAccesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:ModifierLigneDeCommandeAccesory }
+SupprimerLigneDeCommandeAccesory :
+    path:   /SupprimerLigneDeCommandeAccesory/{id}
+    defaults: { _controller: EcommerceBundle:LigneCommandeAccesory:SupprimerLigneDeCommandeAccesory }
 ecommerce_listevent:
     path:     /list_event
-    defaults: { _controller: EcommerceBundle:Ecommerce:AfficherListeEvent }
+    defaults: { _controller: EcommerceBundle:Evenement:AfficherListeEvent }
 details_events:
     path:     /details_event/{id}
-    defaults: { _controller: EcommerceBundle:Ecommerce:detailsEvent }
+    defaults: { _controller: EcommerceBundle:Evenement:detailsEvent }
 participation_event:
     path:   /participe/{id}
-    defaults: { _controller: EcommerceBundle:Ecommerce:Participer }
+    defaults: { _controller: EcommerceBundle:Evenement:Participer }
 participation_annuler:
     path:   /annuler/{id_participation}
-    defaults: { _controller: EcommerceBundle:Ecommerce:AnnulerParticipation }
+    defaults: { _controller: EcommerceBundle:Evenement:AnnulerParticipation }
 dateasc_event:
     path: /datedsc
-    defaults: { _controller: EcommerceBundle:Ecommerce:Dateasc }
+    defaults: { _controller: EcommerceBundle:Evenement:Dateasc }
 datedesc_event:
     path: /dateasc
-    defaults: { _controller: EcommerceBundle:Ecommerce:Datedesc }
+    defaults: { _controller: EcommerceBundle:Evenement:Datedesc }
 recherche_event:
     path: /recherche
-    defaults: { _controller: EcommerceBundle:Ecommerce:search }
+    defaults: { _controller: EcommerceBundle:Evenement:search }
 supprimer_comm:
     path:   /supp/{id_com}
-    defaults: { _controller: EcommerceBundle:Ecommerce:SupprimerCommentaire }
+    defaults: { _controller: EcommerceBundle:Evenement:SupprimerCommentaire }
 modifier_comm:
     path:   /modifier/{id_com}
-    defaults: { _controller: EcommerceBundle:Ecommerce:ModifierCommentaire }
+    defaults: { _controller: EcommerceBundle:Evenement:ModifierCommentaire }
+Liste_reparateur:
+    path:   /Liste_reparateur
+    defaults: { _controller: EcommerceBundle:Reparateur:Liste_reparateur }
+EspaceRdv:
+    path:   /EspaceRdv/{id}
+    defaults: { _controller: EcommerceBundle:Reparateur:EspaceRdv }
+listrendezvous:
+    path:   /listrendezvous
+    defaults: { _controller: EcommerceBundle:Reparateur:listrendezvous }
+MaRendezVousValid:
+    path:   /MaRendezVousValid
+    defaults: { _controller: EcommerceBundle:Reparateur:MaRendezVousValid }
+Supprimes:
+    path:   /Supprimes/{Cin}
+    defaults: { _controller: EcommerceBundle:Reparateur:Supprimes }
+Modifirendezvous:
+    path:   /Modifirendezvous/{Cin}
+    defaults: { _controller: EcommerceBundle:Reparateur:Modifirendezvous }
+reclamation :
+    path:   /reclamation
+    defaults: { _controller: EcommerceBundle:Reclamation:reclamation }
+mesreclamation :
+    path:   / mesreclamation
+    defaults: { _controller: EcommerceBundle:Reclamation:mesreclamation }
+Modifireclamation:
+    path:   /Modifireclamation/{reference}
+    defaults: { _controller: EcommerceBundle:Reclamation:Modifireclamation }
+Suppreclamation:
+    path:   /Suppreclamation/{reference}
+    defaults: { _controller: EcommerceBundle:Reclamation:Suppreclamation }
+Suppriml:
+    path:   /Suppriml/{reference}
+    defaults: { _controller: EcommerceBundle:Reparateur:Suppriml }

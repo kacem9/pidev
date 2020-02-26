@@ -1,12 +1,57 @@
 admin_homepage:
     path:     /
     defaults: { _controller: AdminBundle:Dashboard:index }
+admin_ ajouteractualite:
+    path:     /ajouteractualite
+    defaults: { _controller: AdminBundle:Dashboard:ajouteractualite}
+actualitemodifier:
+    path:     /actualitemodifier/{id}
+    defaults: { _controller: AdminBundle:Dashboard:modifieractualite}
+likeascendant:
+    path:    /likeascendant
+    defaults: { _controller: AdminBundle:Dashboard:likeascendant}
+likedescendant:
+    path:    /likedescendant
+    defaults: { _controller: AdminBundle:Dashboard:likedescendant}
+adminReclamation:
+    path:     /adminReclamation
+    defaults: { _controller: AdminBundle:Dashboard:adminReclamation}
+delReclamation:
+    path:     /delReclamation/{reference}
+    defaults: { _controller: AdminBundle:Dashboard:delReclamation}
+repondre:
+    path:    /repondre/{reference}
+    defaults: { _controller: AdminBundle:Dashboard:repondre}
+Affiche:
+    path:     /Affiche
+    defaults: { _controller: AdminBundle:Dashboard:Affiche}
+Supprimer:
+    path:     /Supprimer/{id}
+    defaults: { _controller: AdminBundle:Dashboard:Supprimer}
+admin_ajouterCategorie:
+    path:     /ajouterCategorie
+    defaults: { _controller: AdminBundle:Default:ajouterCategorie}
+admin_listeCategories:
+    path:     /listeCategorie
+    defaults: { _controller: AdminBundle:Default:liste_categories}
+UpdateCategorie:
+    path:     /UpdateCategorie/{id}
+    defaults: { _controller: AdminBundle:Default:UpdateCategorie}
+SupprimerCategorie:
+    path:     /SupprimerCategorie/{id}
+    defaults: { _controller: AdminBundle:Default:SupprimerCategorie}
+ListeVelolouer :
+    path:     /ListeVelolouer
+    defaults: { _controller: AdminBundle:Default:ListeVelolouer}
+UpdateVeloLouer:
+    path:     /UpdateVeloLouer/{id}
+    defaults: { _controller: AdminBundle:Default:UpdateVeloLouer}
+SupprimerveloLocation :
+    path:     /SupprimerveloLocation/{id}
+    defaults: { _controller: AdminBundle:Default:SupprimerveloLocation}
 admin_AfficherUser:
     path:     /AfficherUser
     defaults: { _controller: AdminBundle:Dashboard:AfficherUserBack }
-admin_ajouter_user:
-    path:     /ajouteruser
-    defaults: { _controller: AdminBundle:Dashboard:AjouterUserBack }
 admin_supprimer_user:
     path:     /supprimeruser/{id}
     defaults: { _controller: AdminBundle:Dashboard:SupprimerUserBack }
@@ -19,9 +64,6 @@ admin_details_user:
 admin_afficher_event:
     path:     /Afficherevent
     defaults: { _controller: AdminBundle:Dashboard:AfficherEventBack }
-admin_ajouter_event:
-    path:     /Ajouterevent
-    defaults: { _controller: AdminBundle:Dashboard:AjouterEventBack }
 admin_supprimer_event:
     path:     /supprimerevent/{id}
     defaults: { _controller: AdminBundle:Dashboard:SupprimerEventBack }
@@ -34,42 +76,21 @@ admin_details_event:
 admin_valider_event:
     path: /valider_event/{id}
     defaults: { _controller: AdminBundle:Dashboard:ValiderEvent }
-admin_participation_event:
-    path: /part_event
-    defaults: { _controller: AdminBundle:Dashboard:AfficheParticipation }
-admin_supprimer_participation:
-    path:     /supprimerpart/{id_participation}
-    defaults: { _controller: AdminBundle:Dashboard:SupprimerParticipation  }
-admin_comment_event:
-    path:     /comm_event
-    defaults: { _controller: AdminBundle:Dashboard:AfficheCommentaire }
-admin_supprimer_comment:
-    path:     /supprimercom/{id_com}
-    defaults: { _controller: AdminBundle:Dashboard:SupprimerComment  }
-Ajouter:
-    path:     /Ajouter
-    defaults: { _controller: AdminBundle:Dashboard:Ajouter}
-actualitemodifier:
-    path:     /actualitemodifier/{id}
-    defaults: { _controller: AdminBundle:Dashboard:modifieractualite}
-Affiche:
-    path:     /Affiche
-    defaults: { _controller: AdminBundle:Dashboard:Affiche}
-Supprimer:
-    path:     /Supprimer/{id}
-    defaults: { _controller: AdminBundle:Dashboard:Supprimer}
-Reparateurs:
-    path:     /Reparateurs
-    defaults: { _controller: AdminBundle:Dashboard:Reparateurs}
-delete:
-    path:     /delete/{id}
-    defaults: { _controller: AdminBundle:Dashboard:delete}
-adminReclamation:
-    path:     /adminReclamation
-    defaults: { _controller: AdminBundle:Dashboard:adminReclamation}
-delReclamation:
-    path:     /delReclamation/{reference}
-    defaults: { _controller: AdminBundle:Dashboard:delReclamation}
-repondre:
-    path:     /repondre/{reference}
-    defaults: { _controller: AdminBundle:Dashboard:repondre}
+admin_velo:
+    path:     /velo
+    defaults: { _controller: AdminBundle:Dashboard:Affichervelo}
+Deletevelo:
+    path:     /Deletevelo{id}
+    defaults: { _controller: AdminBundle:Dashboard:Deletevelo }
+Updatevelo:
+    path: /Updatevelo/{id}
+    defaults: {_controller: AdminBundle:Dashboard:Updatevelo}
+admin_ produits:
+    path:     /produits
+    defaults: { _controller: AdminBundle:Dashboard:Afficherproduits}
+Deleteproduit:
+    path:     /Deleteproduit/{id}
+    defaults: { _controller: AdminBundle:Dashboard:Deleteproduit }
+Updateproduit:
+    path:     /Updateproduit/{id}
+    defaults: {_controller: AdminBundle:Dashboard:Updateproduit }

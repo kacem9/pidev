@@ -101,7 +101,7 @@ class Categories
     public function __toString()
     {
 
-        return $this->nom;
+        return $this->nom.' - '.$this->age;
 
     }
 }
